@@ -1,0 +1,18 @@
+/* Simple responsive styles */
+:root{--max:1000px;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+*{box-sizing:border-box}
+body{font-family:var(--font, Arial);margin:0;color:#222}
+.site-header{background:#0a2540;color:#fff;padding:16px}
+.site-header h1{margin:0;font-size:20px}
+.site-header nav{margin-top:8px}
+.site-header a{color:#cfe7ff;margin-right:12px;text-decoration:none}
+.container{max-width:var(--max);margin:24px auto;padding:0 16px}
+.hero{background:#eef6ff;padding:24px;border-radius:8px}
+.hero h2{margin-top:0}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+.card{padding:12px;border:1px solid #e0e7ef;border-radius:8px;background:#fff}
+.site-footer{background:#f3f6f8;padding:12px;text-align:center;margin-top:24px}
+.course-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.course{padding:12px;border:1px solid #e6eef6;border-radius:8px;background:#fff}
+.btn{display:inline-block;padding:10px 14px;border-radius:6px;background:#0a66c2;color:#fff;text-decoration:none;border:none;cursor:pointer}
+form input, form textarea{width:100%;padding:8px;margin-top:6px;margin-bottom:10px;border-radius:4px;border:1px solid #ccc}
