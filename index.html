@@ -212,7 +212,7 @@ body {
 </head>
 <body>
 <header class="site-header">
- <h1>Online IT Academy</h1>
+  <h1>Online IT Academy</h1>
   <nav>
     <a href="index.html">Home</a>
     <a href="courses.html">Courses</a>
@@ -222,12 +222,14 @@ body {
 </header>
 
 <main class="container">
+  <!-- Hero -->
   <section class="hero">
     <h2>Learn practical IT skills — from zero to pro</h2>
     <p>Join live classes, watch recorded lessons, and build real projects.</p>
     <a class="btn" href="courses.html">See Courses</a>
   </section>
 
+  <!-- Features -->
   <section class="features">
     <div class="card">
       <h3>Web Development</h3>
@@ -237,71 +239,114 @@ body {
       <h3>Python Programming</h3>
       <p>From basics to data science and automation.</p>
     </div>
+    <div class="card">
+      <h3>DevOps & Cloud</h3>
+      <p>Deploy apps, CI/CD pipelines, and cloud concepts.</p>
+    </div>
+  </section>
 
+  <!-- President’s Message -->
+  <section class="president-message">
+    <h2>President's Message</h2>
+    <div class="president-container">
+      <img src="images/president.jpg" alt="President Photo">
+      <div class="message">
+        <p>Welcome to Online IT Academy. Our mission is to empower students with practical IT skills 
+           that lead to real careers. Together, we learn, build, and grow.</p>
+        <p><strong>- Your Name, President</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
   <section class="testimonials">
-  <h2>What Our Students Say</h2>
-  <div class="testimonial">
-    <p>"The Python course helped me land my first job in data science!"</p>
-    <span>- Ayesha, Data Analyst</span>
-  </div>
-  <div class="testimonial">
-    <p>"The web development bootcamp was practical and project-based. Highly recommend!"</p>
-    <span>- Ali, Frontend Developer</span>
-  </div>
-</section>
-<section class="cta">
-  <h2>Ready to Start Learning?</h2>
-  <p>Join thousands of students building their IT careers with us.</p>
-  <a class="btn" href="contact.html">Get Started</a>
-</section>
-<section class="blog">
-  <h2>Latest Resources</h2>
+    <h2>What Our Students Say</h2>
+    <div class="testimonial">
+      <p>"The Python course helped me land my first job in data science!"</p>
+      <span>- Ayesha, Data Analyst</span>
+    </div>
+    <div class="testimonial">
+      <p>"The web development bootcamp was practical and project-based. Highly recommend!"</p>
+      <span>- Ali, Frontend Developer</span>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Ready to Start Learning?</h2>
+    <p>Join thousands of students building their IT careers with us.</p>
+    <a class="btn" href="contact.html">Get Started</a>
+  </section>
+
+  <!-- Latest Resources -->
   <section class="blog">
-  <h2>Latest Resources</h2>
-  <article>
-    <h3>Top 5 Tips to Learn Python Fast</h3>
-    <p>Discover strategies to master Python in weeks...</p>
-    <a href="blog/python-tips.html">Read More</a>
-  </article>
-  <article>
-    <h3>Why DevOps Skills Are in Demand</h3>
-    <p>Learn how DevOps can boost your career...</p>
-    <a href="blog/devops-demand.html">Read More</a>
-  </article>
-  <article>
-    <h3>Free Git Cheat Sheet</h3>
-    <p>Download our printable Git commands reference...</p>
-    <a href="resources/git-cheatsheet.pdf">Download</a>
-  </article>
-</section>
+    <h2>Latest Resources</h2>
+    <article>
+      <h3>Top 5 Tips to Learn Python Fast</h3>
+      <p>Discover strategies to master Python in weeks...</p>
+      <a href="blog/python-tips.html">Read More</a>
+    </article>
+    <article>
+      <h3>Why DevOps Skills Are in Demand</h3>
+      <p>Learn how DevOps can boost your career...</p>
+      <a href="blog/devops-demand.html">Read More</a>
+    </article>
+    <article>
+      <h3>Free Git Cheat Sheet</h3>
+      <p>Download our printable Git commands reference...</p>
+      <a href="resources/git-cheatsheet.pdf">Download</a>
+    </article>
+  </section>
 
-  <article>
-    <h3>Top 5 Tips to Learn Python Fast</h3>
-    <p>Discover strategies to master Python in weeks...</p>
-    <a href="blog/python-tips.html">Read More</a>
-  </article>
-  <article>
-    <h3>Why DevOps Skills Are in Demand</h3>
-    <p>Learn how DevOps can boost your career...</p>
-    <a href="blog/devops-demand.html">Read More</a>
-  </article>
-</section>
-<section class="contact-form">
-  <h2>Contact Us</h2>
-  <form action="submit_form.php" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How do I enroll in a course?</summary>
+      <p>Click on "Courses" in the navigation bar and choose your desired program.</p>
+    </details>
+    <details>
+      <summary>Do you offer certificates?</summary>
+      <p>Yes, all our courses come with completion certificates recognized by industry partners.</p>
+    </details>
+    <details>
+      <summary>Are classes live or recorded?</summary>
+      <p>We offer both live interactive sessions and recorded lessons for flexible learning.</p>
+    </details>
+  </section>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+  <!-- Newsletter Signup -->
+  <section class="newsletter">
+    <h2>Stay Updated</h2>
+    <p>Subscribe to our newsletter for the latest resources and course updates.</p>
+    <form action="subscribe.php" method="post">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
 
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" required></textarea>
+  <!-- Contact Form -->
+  <section class="contact-form">
+    <h2>Contact Us</h2>
+    <form action="submit_form.php" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
 
-    <button type="submit">Send Message</button>
-  </form>
-</section>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <p>© Online IT Academy - Teach. Learn. Build.</p>
+</footer>
+
 <footer class="site-footer">
   <p>© Online IT Academy - Teach. Learn. Build.</p>
 </footer>
