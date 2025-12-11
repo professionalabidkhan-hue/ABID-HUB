@@ -4,82 +4,85 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abid Khan's E-Learning Hub</title>
-  <meta name="description" content="Abid Khan's E-Learning Hub - online tutorials, courses and resources for IT, data science, cloud and business skills." />
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --accent:#0b63d3;
-      --muted:#6b7280;
-      --bg:#f7fafc;
-      --card:#ffffff;
-      --radius:12px;
-      --max-width:1200px;
-      --gap:18px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    :root {
+      --accent: #0b63d3;
+      --muted: #6b7280;
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --radius: 12px;
+      --max-width: 1200px;
+      --gap: 20px;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    html,body{height:100%;margin:0;background:var(--bg);color:#111827}
+    html, body {height:100%; margin:0; background:var(--bg); color:#111827; scroll-behavior:smooth;}
     .container{max-width:var(--max-width);margin:36px auto;padding:24px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:56px;width:56px;border-radius:8px;object-fit:cover;box-shadow:0 6px 18px rgba(2,6,23,0.08)}
-    .brand h1{font-size:1.125rem;margin:0}
-    nav ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
-    nav a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:8px;font-weight:600}
-    nav a.active, nav a:hover{background:#e6f0ff;color:var(--accent)}
-    .actions{display:flex;gap:8px;align-items:center}
-    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    .btn.secondary{background:#eef2ff;color:var(--accent);border:1px solid rgba(11,99,211,0.08)}
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center}
-    .hero-card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(15,23,42,0.04)}
-    .hero h2{margin:0 0 12px 0;font-size:1.6rem}
-    .hero p{margin:0;color:var(--muted)}
-    .search{margin-top:18px;display:flex;gap:8px}
-    .search input{flex:1;padding:12px;border-radius:10px;border:1px solid #e6e9ef}
-    .search button{padding:12px 16px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:700}
+    
+    header {display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    .brand {display:flex; align-items:center; gap:12px;}
+    .brand img {height:56px; width:56px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(0,0,0,0.08); transition: transform 0.3s;}
+    .brand img:hover {transform: scale(1.05);}
+    .brand h1 {font-size:1.25rem; margin:0;}
+    nav ul {display:flex; gap:16px; list-style:none; padding:0; margin:0; flex-wrap:wrap;}
+    nav a {text-decoration:none; color:var(--muted); padding:8px 14px; border-radius:8px; font-weight:600; transition: all 0.3s;}
+    nav a.active, nav a:hover {background:var(--accent); color:#fff;}
+    .actions {display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .btn {background:var(--accent); color:#fff; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:600; transition: all 0.3s;}
+    .btn:hover {background:#094ca2;}
+    .btn.secondary {background:#eef2ff; color:var(--accent); border:1px solid rgba(11,99,211,0.15);}
+    .btn.secondary:hover {background:#d6e4ff;}
+
+    /* Hero */
+    .hero {display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; margin-top:28px; gap:28px; padding:28px; border-radius:var(--radius); background:linear-gradient(135deg, #eef6ff, #f7fafc); box-shadow:0 8px 28px rgba(0,0,0,0.05);}
+    .hero-text {flex:1; min-width:280px;}
+    .hero h2 {margin:0 0 14px 0; font-size:1.8rem;}
+    .hero p {margin:0 0 20px 0; color:var(--muted);}
+    .search {display:flex; gap:10px; margin-bottom:20px;}
+    .search input {flex:1; padding:14px; border-radius:12px; border:1px solid #e6e9ef;}
+    .search button {padding:14px 18px; border-radius:12px; border:0; background:var(--accent); color:#fff; font-weight:700; cursor:pointer; transition: all 0.3s;}
+    .search button:hover {background:#094ca2;}
+
+    /* Card hover effect */
+    .card {background:var(--card); padding:20px; border-radius:var(--radius); box-shadow:0 6px 20px rgba(0,0,0,0.03); transition: all 0.3s;}
+    .card:hover {transform: translateY(-5px); box-shadow:0 12px 28px rgba(0,0,0,0.08);}
+    .card h3 {margin:0 0 10px 0; font-size:1.1rem;}
+    .card p {margin:0; color:var(--muted); font-size:0.95rem;}
+    .card small {display:block; margin-top:12px; color:var(--muted);}
 
     /* Courses grid */
-    .section{margin-top:32px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.04)}
-    .card h3{margin:0 0 8px 0;font-size:1.05rem}
-    .card p{margin:0;color:var(--muted);font-size:0.95rem}
-    .card small{display:block;margin-top:12px;color:var(--muted)}
+    .section {margin-top:40px;}
+    .grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;}
 
-    /* Contact and footer */
-    .two-col{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
-    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:8px}
-    form button{margin-top:10px;padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:700}
+    /* Contact */
+    .two-col {display:grid; grid-template-columns:1fr 420px; gap:20px; align-items:start;}
+    form input, form textarea {width:100%; padding:12px; border-radius:10px; border:1px solid #e6e9ef; margin-top:8px;}
+    form button {margin-top:12px; padding:12px 18px; border-radius:10px; border:0; background:var(--accent); color:#fff; font-weight:700; cursor:pointer;}
+    form button:hover {background:#094ca2;}
 
-    footer{margin-top:36px;padding:18px 0;color:var(--muted);font-size:0.9rem;text-align:center}
+    footer {margin-top:36px; padding:18px 0; color:var(--muted); font-size:0.9rem; text-align:center;}
 
-    /* floating corner image */
-    .corner-img{
-      position:fixed;width:84px;height:84px;border-radius:10px;object-fit:cover;box-shadow:0 8px 20px rgba(2,6,23,0.12);z-index:999;
-      border:3px solid rgba(255,255,255,0.9);
-      background:#fff;
-    }
-    .corner-bottom-left{bottom:18px;left:18px}
+    /* Bottom-left corner image */
+    .corner-img {position:fixed; width:100px; height:100px; border-radius:14px; object-fit:cover; box-shadow:0 10px 25px rgba(0,0,0,0.15); z-index:999; border:3px solid rgba(255,255,255,0.9); transition: all 0.3s; cursor:pointer;}
+    .corner-img:hover {transform: scale(1.1);}
+    .corner-bottom-left {bottom:18px; left:18px;}
 
-    /* responsive adjustments */
     @media (max-width:920px){
-      .hero,.two-col{grid-template-columns:1fr}
-      .brand img{height:48px;width:48px}
-      .corner-img{width:72px;height:72px}
+      .hero, .two-col {flex-direction:column;}
+      .brand img {height:48px; width:48px;}
+      .corner-img {width:80px; height:80px;}
     }
   </style>
 </head>
 <body>
   <!-- Only bottom-left corner image -->
-  <img class="corner-img corner-bottom-left"src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png"  alt="Abid Khan" />
-
-     
-
+  <img class="corner-img corner-bottom-left" src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png"  alt="Abid Khan" /> alt="Abid Khan" />
 
   <div class="container">
     <header>
       <div class="brand">
-   
+        <img src="ABID KHAN.jpg" alt="Abid Khan" />
         <div>
           <h1>Abid Khan's E-Learning Hub</h1>
           <div style="color:var(--muted);font-size:0.9rem">Online tutorials for IT, data science, cloud, and business</div>
@@ -103,9 +106,8 @@
       </div>
     </header>
 
-    <!-- hero -->
     <section class="hero">
-      <div class="hero-card">
+      <div class="hero-text">
         <h2>Practical, industry-focused IT training</h2>
         <p>Hands-on courses in Web Development, Cybersecurity, Data Science, Cloud Computing, and Business Skills. Learn with real projects and deploy to GitHub and Heroku.</p>
 
@@ -114,22 +116,21 @@
           <button type="button">Search</button>
         </div>
 
-        <div style="margin-top:18px;display:flex;gap:10px">
+        <div style="display:flex;gap:12px; flex-wrap:wrap;">
           <a class="btn" href="#courses">Explore Courses</a>
           <a class="btn secondary" href="#tutorials">Browse Tutorials</a>
         </div>
       </div>
 
-      <aside style="background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 22px rgba(15,23,42,0.04)">
-        <h3 style="margin:0 0 8px 0">Featured program</h3>
-        <p style="color:var(--muted);margin:0 0 12px 0">Full stack web development bootcamp with React and Node.js. Deploy live projects to GitHub Pages and Heroku.</p>
+      <aside class="card">
+        <h3>Featured program</h3>
+        <p style="color:var(--muted)">Full stack web development bootcamp with React and Node.js. Deploy live projects to GitHub Pages and Heroku.</p>
         <a class="btn" href="#signup">Enroll now</a>
       </aside>
     </section>
 
-    <!-- courses -->
     <section id="courses" class="section">
-      <h2 style="margin:0 0 12px 0">Popular courses</h2>
+      <h2>Popular courses</h2>
       <div class="grid">
         <article class="card">
           <h3>Web & Software Development</h3>
@@ -156,75 +157,9 @@
         </article>
       </div>
     </section>
-
-    <!-- tutorials + contact -->
-    <section id="tutorials" class="section">
-      <h2 style="margin:0 0 12px 0">Latest tutorials</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Deploy React App to GitHub Pages</h3>
-          <p>Step-by-step deployment and routing considerations for single page apps.</p>
-        </article>
-        <article class="card">
-          <h3>Build REST APIs with Node.js</h3>
-          <p>Express, routing, authentication and connecting to a database.</p>
-        </article>
-        <article class="card">
-          <h3>Intro to SQL for Data Analysis</h3>
-          <p>Practical queries, joins and aggregations used in analytics tasks.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2 style="margin:0 0 12px 0">Contact</h2>
-      <div class="two-col">
-        <div class="card">
-          <p style="margin:0 0 8px 0">For course inquiries, partnerships, or trainer profiles contact Abid Khan</p>
-          <p style="color:var(--muted);margin:0 0 18px 0">Email: info@abidkhan.com • Phone: +92 300 0000000</p>
-
-          <h3 style="margin-top:12px">About this institute</h3>
-          <p style="color:var(--muted);margin:0">Abid Khan's E-Learning Hub provides project-driven training focused on practical outcomes and real deployment experience.</p>
-        </div>
-
-        <form class="card" action="#" method="post" onsubmit="event.preventDefault();alert('Message sent');">
-          <label for="name">Your name</label>
-          <input id="name" name="name" required />
-
-          <label for="email" style="margin-top:8px">Email</label>
-          <input id="email" name="email" type="email" required />
-
-          <label for="message" style="margin-top:8px">Message</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-
-          <button type="submit">Send message</button>
-        </form>
-      </div>
-    </section>
-
-    <!-- dashboard -->
-    <section id="dashboard" class="section">
-      <h2 style="margin:0 0 12px 0">Student dashboard</h2>
-      <div class="card" style="display:flex;justify-content:space-between;align-items:center">
-        <div>
-          <h3 style="margin:0">Access your courses</h3>
-          <p style="margin:6px 0;color:var(--muted)">Login to view enrolled courses, track progress and download resources.</p>
-        </div>
-        <div style="display:flex;gap:8px">
-          <a class="btn" href="#login">Go to dashboard</a>
-          <a class="btn secondary" href="#signup">Create account</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div>© <strong>Abid Khan</strong> — Abid Khan's E-Learning Hub</div>
-      <div style="margin-top:6px;color:var(--muted)">Built with practical courses and real project deployments</div>
-    </footer>
   </div>
 
   <script>
-    // small script to mark nav active on click for demo
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', e => {
         document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
