@@ -6,72 +6,92 @@
 <title>Online IT Academy</title>
 <link rel="stylesheet" href="style.css">
   <style>
-.container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.section {
-  flex: 1 1 300px; /* flexible width with minimum size */
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-@media (max-width: 768px) {
-  .section {
-    flex: 1 1 100%; /* stack sections vertically */
-  }
-}
-.section {
-  padding: 2rem;
-  font-size: 1.2em;
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
-
- /* General reset and base styles */
+/* Base styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
 }
 
-section {
-  padding: 2rem;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-/* Headings */
-h2 {
+/* Header */
+.site-header {
+  background: #0077cc;
+  color: #fff;
+  padding: 1rem;
   text-align: center;
-  margin-bottom: 1rem;
 }
 
-/* Testimonials */
-.testimonials {
+.site-header nav {
+  margin-top: 0.5rem;
+}
+
+.site-header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+.site-header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #f1f1f1;
+}
+
+.hero .btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #0077cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Features section */
+.features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  padding: 2rem;
 }
 
-.testimonial {
-  background: #f9f9f9;
+.features .card {
+  background: #fafafa;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Call to Action */
+/* Testimonials */
+.testimonials {
+  padding: 2rem;
+  background: #f9f9f9;
+}
+
+.testimonials h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.testimonial {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-left: 4px solid #0077cc;
+  background: #fff;
+}
+
+/* CTA */
 .cta {
   text-align: center;
   background: #0077cc;
   color: #fff;
   padding: 3rem 2rem;
-  border-radius: 8px;
 }
 
 .cta .btn {
@@ -81,24 +101,28 @@ h2 {
   background: #fff;
   color: #0077cc;
   text-decoration: none;
-  font-weight: bold;
   border-radius: 4px;
 }
 
-/* Blog Section */
+/* Blog */
 .blog {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  padding: 2rem;
 }
 
 .blog article {
-  background: #f1f1f1;
+  background: #fafafa;
   padding: 1rem;
   border-radius: 8px;
 }
 
-/* Contact Form */
+/* Contact form */
+.contact-form {
+  padding: 2rem;
+}
+
 .contact-form form {
   display: flex;
   flex-direction: column;
@@ -121,13 +145,23 @@ h2 {
   cursor: pointer;
 }
 
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #333;
+  color: #fff;
+}
+
 /* Responsive tweaks */
 @media (max-width: 768px) {
-  section {
-    padding: 1.5rem;
+  .site-header nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .cta {
+  .hero {
     padding: 2rem 1rem;
   }
 
@@ -141,10 +175,12 @@ h2 {
     font-size: 0.95rem;
   }
 
-  .cta .btn {
+  .cta .btn,
+  .hero .btn {
     width: 100%;
   }
 }
+
    
   </style>
 </head>
