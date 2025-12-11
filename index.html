@@ -180,6 +180,32 @@ body {
     width: 100%;
   }
 }
+/* Sticky header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* keeps it above other elements */
+  background: #0077cc;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Navigation links */
+.site-header nav {
+  margin-top: 0.5rem;
+}
+
+.site-header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+.site-header nav a:hover {
+  text-decoration: underline;
+}
 
    
   </style>
@@ -271,14 +297,10 @@ body {
     <button type="submit">Send Message</button>
   </form>
 </section>
-
 </main>
-
-
 <footer class="site-footer">
   <p>© Online IT Academy - Teach. Learn. Build.</p>
 </footer>
-
 <script src="script.js"></script>
 </body>
 </html>
