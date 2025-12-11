@@ -1,355 +1,239 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online IT Academy</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abid Khan's E-Learning Hub</title>
+  <meta name="description" content="Abid Khan's E-Learning Hub - online tutorials, courses and resources for IT, data science, cloud and business skills." />
+
   <style>
-/* Base styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-}
+    :root{
+      --accent:#0b63d3;
+      --muted:#6b7280;
+      --bg:#f7fafc;
+      --card:#ffffff;
+      --radius:12px;
+      --max-width:1200px;
+      --gap:18px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
 
-/* Header */
-.site-header {
-  background: #0077cc;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
+    html,body{height:100%;margin:0;background:var(--bg);color:#111827}
+    .container{max-width:var(--max-width);margin:36px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:56px;border-radius:8px;object-fit:cover;box-shadow:0 6px 18px rgba(2,6,23,0.08)}
+    .brand h1{font-size:1.125rem;margin:0}
+    nav ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
+    nav a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a.active, nav a:hover{background:#e6f0ff;color:var(--accent)}
+    .actions{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn.secondary{background:#eef2ff;color:var(--accent);border:1px solid rgba(11,99,211,0.08)}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:28px;align-items:center}
+    .hero-card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(15,23,42,0.04)}
+    .hero h2{margin:0 0 12px 0;font-size:1.6rem}
+    .hero p{margin:0;color:var(--muted)}
+    .search{margin-top:18px;display:flex;gap:8px}
+    .search input{flex:1;padding:12px;border-radius:10px;border:1px solid #e6e9ef}
+    .search button{padding:12px 16px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:700}
 
-.site-header nav {
-  margin-top: 0.5rem;
-}
+    /* Courses grid */
+    .section{margin-top:32px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.04)}
+    .card h3{margin:0 0 8px 0;font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
+    .card small{display:block;margin-top:12px;color:var(--muted)}
 
-.site-header nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
-}
+    /* Contact and footer */
+    .two-col{display:grid;grid-template-columns:1fr 420px;gap:18px;align-items:start}
+    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:8px}
+    form button{margin-top:10px;padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:700}
 
-.site-header nav a:hover {
-  text-decoration: underline;
-}
+    footer{margin-top:36px;padding:18px 0;color:var(--muted);font-size:0.9rem;text-align:center}
 
-/* Hero section */
-.hero {
-  text-align: center;
-  padding: 3rem 2rem;
-  background: #f1f1f1;
-}
+    /* floating corner images */
+    .corner-img{
+      position:fixed;width:84px;height:84px;border-radius:10px;object-fit:cover;box-shadow:0 8px 20px rgba(2,6,23,0.12);z-index:999;
+      border:3px solid rgba(255,255,255,0.9);
+      background:#fff;
+    }
+    .corner-top-left{top:18px;left:18px}
+    .corner-top-right{top:18px;right:18px}
+    .corner-bottom-left{bottom:18px;left:18px}
+    .corner-bottom-right{bottom:18px;right:18px}
 
-.hero .btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: #0077cc;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-/* Features section */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-.features .card {
-  background: #fafafa;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* Testimonials */
-.testimonials {
-  padding: 2rem;
-  background: #f9f9f9;
-}
-
-.testimonials h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.testimonial {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-left: 4px solid #0077cc;
-  background: #fff;
-}
-
-/* CTA */
-.cta {
-  text-align: center;
-  background: #0077cc;
-  color: #fff;
-  padding: 3rem 2rem;
-}
-
-.cta .btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: #fff;
-  color: #0077cc;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-/* Blog */
-.blog {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-.blog article {
-  background: #fafafa;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-/* Contact form */
-.contact-form {
-  padding: 2rem;
-}
-
-.contact-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contact-form input,
-.contact-form textarea,
-.contact-form button {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.contact-form button {
-  background: #0077cc;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-/* Footer */
-.site-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #333;
-  color: #fff;
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .site-header nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .hero {
-    padding: 2rem 1rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 0.95rem;
-  }
-
-  .cta .btn,
-  .hero .btn {
-    width: 100%;
-  }
-}
-/* Sticky header */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* keeps it above other elements */
-  background: #0077cc;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-
-/* Navigation links */
-.site-header nav {
-  margin-top: 0.5rem;
-}
-
-.site-header nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
-}
-
-.site-header nav a:hover {
-  text-decoration: underline;
-}
-
-   
+    /* responsive adjustments */
+    @media (max-width:920px){
+      .hero,.two-col{grid-template-columns:1fr}
+      .brand img{height:48px;width:48px}
+      .corner-img{width:72px;height:72px}
+    }
   </style>
 </head>
 <body>
-<header class="site-header">
-  <h1>Online IT Academy</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="courses.html">Courses</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <!-- Four corner images using same source. Update src if file name differs -->
+  <img class="corner-img corner-top-left" src="ABID KHAN.jpg" alt="Abid Khan" />
+  <img class="corner-img corner-top-right" src="ABID KHAN.jpg" alt="Abid Khan" />
+  <img class="corner-img corner-bottom-left" src="ABID KHAN.jpg" alt="Abid Khan" />
+  <img class="corner-img corner-bottom-right" src="ABID KHAN.jpg" alt="Abid Khan" />
 
-<main class="container">
-  <!-- Hero -->
-  <section class="hero">
-    <h2>Learn practical IT skills — from zero to pro</h2>
-    <p>Join live classes, watch recorded lessons, and build real projects.</p>
-    <a class="btn" href="courses.html">See Courses</a>
-  </section>
-
-  <!-- Features -->
-  <section class="features">
-    <div class="card">
-      <h3>Web Development</h3>
-      <p>HTML, CSS, JavaScript, React and backend fundamentals.</p>
-    </div>
-    <div class="card">
-      <h3>Python Programming</h3>
-      <p>From basics to data science and automation.</p>
-    </div>
-    <div class="card">
-      <h3>DevOps & Cloud</h3>
-      <p>Deploy apps, CI/CD pipelines, and cloud concepts.</p>
-    </div>
-  </section>
-
-  <!-- President’s Message -->
-  <section class="president-message">
-    <h2>President's Message</h2>
-    <div class="president-container">
-      <img src="images/president.jpg" alt="President Photo">
-      <div class="message">
-        <p>Welcome to Online IT Academy. Our mission is to empower students with practical IT skills 
-           that lead to real careers. Together, we learn, build, and grow.</p>
-        <p><strong>- Your Name, President</strong></p>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="ABID KHAN.jpg" alt="Abid Khan" />
+        <div>
+          <h1>Abid Khan's E-Learning Hub</h1>
+          <div style="color:var(--muted);font-size:0.9rem">Online tutorials for IT, data science, cloud, and business</div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <h2>What Our Students Say</h2>
-    <div class="testimonial">
-      <p>"The Python course helped me land my first job in data science!"</p>
-      <span>- Ayesha, Data Analyst</span>
-    </div>
-    <div class="testimonial">
-      <p>"The web development bootcamp was practical and project-based. Highly recommend!"</p>
-      <span>- Ali, Frontend Developer</span>
-    </div>
-  </section>
+      <nav>
+        <ul>
+          <li><a class="active" href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#tutorials">Tutorials</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#dashboard">Student Dashboard</a></li>
+        </ul>
+      </nav>
 
-  <!-- Call to Action -->
-  <section class="cta">
-    <h2>Ready to Start Learning?</h2>
-    <p>Join thousands of students building their IT careers with us.</p>
-    <a class="btn" href="contact.html">Get Started</a>
-  </section>
+      <div class="actions">
+        <a href="#signup" class="btn secondary">Sign up</a>
+        <a href="#login" class="btn">Log in</a>
+      </div>
+    </header>
 
-  <!-- Latest Resources -->
-  <section class="blog">
-    <h2>Latest Resources</h2>
-    <article>
-      <h3>Top 5 Tips to Learn Python Fast</h3>
-      <p>Discover strategies to master Python in weeks...</p>
-      <a href="blog/python-tips.html">Read More</a>
-    </article>
-    <article>
-      <h3>Why DevOps Skills Are in Demand</h3>
-      <p>Learn how DevOps can boost your career...</p>
-      <a href="blog/devops-demand.html">Read More</a>
-    </article>
-    <article>
-      <h3>Free Git Cheat Sheet</h3>
-      <p>Download our printable Git commands reference...</p>
-      <a href="resources/git-cheatsheet.pdf">Download</a>
-    </article>
-  </section>
+    <!-- hero -->
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Practical, industry-focused IT training</h2>
+        <p>Hands-on courses in Web Development, Cybersecurity, Data Science, Cloud Computing, and Business Skills. Learn with real projects and deploy to GitHub and Heroku.</p>
 
-  <!-- FAQ -->
-  <section class="faq">
-    <h2>Frequently Asked Questions</h2>
-    <details>
-      <summary>How do I enroll in a course?</summary>
-      <p>Click on "Courses" in the navigation bar and choose your desired program.</p>
-    </details>
-    <details>
-      <summary>Do you offer certificates?</summary>
-      <p>Yes, all our courses come with completion certificates recognized by industry partners.</p>
-    </details>
-    <details>
-      <summary>Are classes live or recorded?</summary>
-      <p>We offer both live interactive sessions and recorded lessons for flexible learning.</p>
-    </details>
-  </section>
+        <div class="search" role="search">
+          <input type="search" placeholder="Search courses, tutorials or blog posts" aria-label="Search courses" />
+          <button type="button">Search</button>
+        </div>
 
-  <!-- Newsletter Signup -->
-  <section class="newsletter">
-    <h2>Stay Updated</h2>
-    <p>Subscribe to our newsletter for the latest resources and course updates.</p>
-    <form action="subscribe.php" method="post">
-      <input type="email" name="email" placeholder="Enter your email" required>
-      <button type="submit">Subscribe</button>
-    </form>
-  </section>
+        <div style="margin-top:18px;display:flex;gap:10px">
+          <a class="btn" href="#courses">Explore Courses</a>
+          <a class="btn secondary" href="#tutorials">Browse Tutorials</a>
+        </div>
+      </div>
 
-  <!-- Contact Form -->
-  <section class="contact-form">
-    <h2>Contact Us</h2>
-    <form action="submit_form.php" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
+      <aside style="background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 22px rgba(15,23,42,0.04)">
+        <h3 style="margin:0 0 8px 0">Featured program</h3>
+        <p style="color:var(--muted);margin:0 0 12px 0">Full stack web development bootcamp with React and Node.js. Deploy live projects to GitHub Pages and Heroku.</p>
+        <a class="btn" href="#signup">Enroll now</a>
+      </aside>
+    </section>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
+    <!-- courses -->
+    <section id="courses" class="section">
+      <h2 style="margin:0 0 12px 0">Popular courses</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Web & Software Development</h3>
+          <p>React, Node.js, HTML, CSS, JavaScript, Git and deployment workflows.</p>
+          <small>Duration 8 weeks • Beginner to advanced</small>
+        </article>
 
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" required></textarea>
+        <article class="card">
+          <h3>Data Science & Analytics</h3>
+          <p>Python, pandas, visualization, machine learning basics, hands-on projects.</p>
+          <small>Duration 10 weeks • Practical projects</small>
+        </article>
 
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-</main>
+        <article class="card">
+          <h3>Cloud Computing</h3>
+          <p>AWS fundamentals, serverless concepts, deploying applications to cloud providers.</p>
+          <small>Duration 6 weeks • Labs included</small>
+        </article>
 
-<footer class="site-footer">
-  <p>© Online IT Academy - Teach. Learn. Build.</p>
-</footer>
+        <article class="card">
+          <h3>Cybersecurity Essentials</h3>
+          <p>Security fundamentals, best practices, secure coding, basic pentesting exercises.</p>
+          <small>Duration 6 weeks • Lab environment</small>
+        </article>
+      </div>
+    </section>
 
-<footer class="site-footer">
-  <p>© Online IT Academy - Teach. Learn. Build.</p>
-</footer>
-<script src="script.js"></script>
+    <!-- tutorials + contact -->
+    <section id="tutorials" class="section">
+      <h2 style="margin:0 0 12px 0">Latest tutorials</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Deploy React App to GitHub Pages</h3>
+          <p>Step-by-step deployment and routing considerations for single page apps.</p>
+        </article>
+        <article class="card">
+          <h3>Build REST APIs with Node.js</h3>
+          <p>Express, routing, authentication and connecting to a database.</p>
+        </article>
+        <article class="card">
+          <h3>Intro to SQL for Data Analysis</h3>
+          <p>Practical queries, joins and aggregations used in analytics tasks.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 style="margin:0 0 12px 0">Contact</h2>
+      <div class="two-col">
+        <div class="card">
+          <p style="margin:0 0 8px 0">For course inquiries, partnerships, or trainer profiles contact Abid Khan</p>
+          <p style="color:var(--muted);margin:0 0 18px 0">Email: info@abidkhan.com • Phone: +92 300 0000000</p>
+
+          <h3 style="margin-top:12px">About this institute</h3>
+          <p style="color:var(--muted);margin:0">Abid Khan's E-Learning Hub provides project-driven training focused on practical outcomes and real deployment experience.</p>
+        </div>
+
+        <form class="card" action="#" method="post" onsubmit="event.preventDefault();alert('Message sent');">
+          <label for="name">Your name</label>
+          <input id="name" name="name" required />
+
+          <label for="email" style="margin-top:8px">Email</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="message" style="margin-top:8px">Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+
+          <button type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- dashboard -->
+    <section id="dashboard" class="section">
+      <h2 style="margin:0 0 12px 0">Student dashboard</h2>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h3 style="margin:0">Access your courses</h3>
+          <p style="margin:6px 0;color:var(--muted)">Login to view enrolled courses, track progress and download resources.</p>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="btn" href="#login">Go to dashboard</a>
+          <a class="btn secondary" href="#signup">Create account</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <strong>Abid Khan</strong> — Abid Khan's E-Learning Hub</div>
+      <div style="margin-top:6px;color:var(--muted)">Built with practical courses and real project deployments</div>
+    </footer>
+  </div>
+
+  <script>
+    // small script to mark nav active on click for demo
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
