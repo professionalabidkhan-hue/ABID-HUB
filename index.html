@@ -21,10 +21,6 @@
     .container{max-width:var(--max-width);margin:36px auto;padding:24px}
     
     header {display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
-    .brand {display:flex; align-items:center; gap:12px;}
-    .brand img {height:56px; width:56px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(0,0,0,0.08); transition: transform 0.3s;}
-    .brand img:hover {transform: scale(1.05);}
-    .brand h1 {font-size:1.25rem; margin:0;}
     nav ul {display:flex; gap:16px; list-style:none; padding:0; margin:0; flex-wrap:wrap;}
     nav a {text-decoration:none; color:var(--muted); padding:8px 14px; border-radius:8px; font-weight:600; transition: all 0.3s;}
     nav a.active, nav a:hover {background:var(--accent); color:#fff;}
@@ -70,25 +66,16 @@
 
     @media (max-width:920px){
       .hero, .two-col {flex-direction:column;}
-      .brand img {height:48px; width:48px;}
       .corner-img {width:80px; height:80px;}
     }
   </style>
 </head>
 <body>
   <!-- Only bottom-left corner image -->
-  <img class="corner-img corner-bottom-left" src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png"  alt="Abid Khan" /> alt="Abid Khan" />
+  <img class="corner-img corner-bottom-left" src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" />
 
   <div class="container">
     <header>
-      <div class="brand">
-        <img src="ABID KHAN.jpg" alt="Abid Khan" />
-        <div>
-          <h1>Abid Khan's E-Learning Hub</h1>
-          <div style="color:var(--muted);font-size:0.9rem">Online tutorials for IT, data science, cloud, and business</div>
-        </div>
-      </div>
-
       <nav>
         <ul>
           <li><a class="active" href="#home">Home</a></li>
@@ -101,7 +88,7 @@
       </nav>
 
       <div class="actions">
-        <a href="signup,html" class="btn secondary">Sign up</a>
+        <a href="signup.html" class="btn secondary">Sign up</a>
         <a href="signin.html" class="btn">Log in</a>
       </div>
     </header>
