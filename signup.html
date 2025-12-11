@@ -26,11 +26,11 @@
   h2{margin:0 0 20px 0; font-size:1.5rem;}
   p{color:var(--muted); margin-bottom:20px;}
   
-  input{
+  input, select{
     width:100%; padding:12px 14px; margin-bottom:16px; border-radius:10px; border:1px solid #e6e9ef; font-size:1rem;
     transition: all 0.3s;
   }
-  input:focus{border-color:var(--accent); outline:none; box-shadow:0 0 6px rgba(11,99,211,0.2);}
+  input:focus, select:focus{border-color:var(--accent); outline:none; box-shadow:0 0 6px rgba(11,99,211,0.2);}
   
   .btn{width:100%; padding:14px; border-radius:12px; border:0; background:var(--accent); color:#fff; font-weight:600; font-size:1rem; cursor:pointer; transition: all 0.3s;}
   .btn:hover{background:#094ca2;}
@@ -40,6 +40,8 @@
   
   .footer-text{margin-top:12px; font-size:0.9rem; color:var(--muted);}
   .footer-text a{color:var(--accent); text-decoration:none;}
+  
+  label{display:block; margin-bottom:8px; font-size:0.95rem; color:var(--muted);}
 </style>
 </head>
 <body>
@@ -47,13 +49,23 @@
 <div class="form-card">
   <img src="ABID KHAN.jpg" alt="Abid Khan" />
   <h2>Create Account</h2>
-  <p>Join Abid Khan's E-Learning Hub and start learning today!</p>
+  <p>Join Abid Khan's E-Learning Hub and start your journey!</p>
+
   <form action="#" method="post" onsubmit="event.preventDefault(); alert('Account created');">
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email Address" required>
-    <input type="password" placeholder="Password" required>
+    <input type="text" placeholder="Full Name" name="name" required>
+    <input type="email" placeholder="Email Address" name="email" required>
+    <input type="password" placeholder="Password" name="password" required>
+
+    <!-- Role selection -->
+    <label for="role">I want to:</label>
+    <select name="role" id="role" required>
+      <option value="student" selected>Learn (Student)</option>
+      <option value="trainer">Teach (Trainer)</option>
+    </select>
+
     <button type="submit" class="btn">Sign Up</button>
   </form>
+
   <div class="footer-text">
     Already have an account? <a href="signin.html">Sign In</a>
   </div>
