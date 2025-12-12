@@ -1,320 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog - Abid Khan's E-Learning Hub</title>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #f5f5f5;
-        transition: background 0.3s, color 0.3s;
-    }
-
-    body.dark {
-        background: #1c1c1c;
-        color: #e0e0e0;
-    }
-
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 20px;
-        background: #2c3e50;
-        color: white;
-    }
-
-    header .logo {
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    header img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        margin-left: 15px;
-    }
-
-    nav ul {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        list-style: none;
-    }
-
-    nav ul li {
-        margin-left: 20px;
-    }
-
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-    h1 {
-        text-align: center;
-        margin-top: 25px;
-        color: #2c3e50;
-    }
-
-    /* Filters + Search */
-    .controls {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 20px;
-        flex-wrap: wrap;
-    }
-
-    .controls input, .controls select {
-        padding: 10px;
-        width: 250px;
-        border-radius: 6px;
-        border: 1px solid #aaa;
-        font-size: 14px;
-    }
-
-    /* Featured Post */
-    .featured {
-        width: 90%;
-        margin: 20px auto;
-        padding: 20px;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .featured img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-
-    .featured h2 {
-        margin-top: 15px;
-        font-size: 24px;
-        color: #2c3e50;
-    }
-
-    /* Blog Cards Layout */
-    #blog-posts {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-        gap: 20px;
-    }
-
-    .post-card {
-        width: 300px;
-        background: white;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        transition: 0.2s;
-    }
-
-    .post-card:hover {
-        transform: translateY(-7px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-
-    .post-card img {
-        width: 100%;
-        height: 170px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .post-card h3 {
-        color: #2c3e50;
-    }
-
-    .read-more {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 8px 12px;
-        background: #2c3e50;
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-    }
-
-    /* Pagination */
-    .pagination {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 40px;
-        gap: 10px;
-    }
-
-    .pagination button {
-        padding: 8px 15px;
-        border: none;
-        background: #2c3e50;
-        color: white;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    /* Dark mode button */
-    #darkToggle {
-        cursor: pointer;
-        padding: 10px 15px;
-        background: white;
-        color: #2c3e50;
-        border-radius: 6px;
-        border: none;
-        font-weight: bold;
-    }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Blog — Abid Khan's E-Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-    <div class="logo">Abid Khan's E-Learning Hub</div>
-    <div class="right">
-        <button id="darkToggle">Dark Mode</button>
-        <img src="your-photo.jpg">
+  <!-- Navbar (reuse snippet) -->
+  <header class="header">
+    <div class="container inner">
+      <div class="brand">
+        <img src="profile.jpg" alt="Abid Khan">
+        <div>Abid Khan's E-Learning Hub</div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses.html">Courses</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="cheatsheets.html">Cheat Sheets</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+        <button id="themeToggle" style="padding:8px 10px;border-radius:8px;border:none;cursor:pointer">Toggle</button>
+      </nav>
     </div>
-</header>
+  </header>
 
-<h1>Latest Blog Posts</h1>
+  <main class="container">
+    <h1 style="text-align:center;margin-top:18px">Latest Blog Posts</h1>
 
-<!-- Filters & Search -->
-<div class="controls">
-    <input type="text" id="search" placeholder="Search posts...">
-    <select id="categoryFilter">
+    <div class="controls">
+      <input id="searchBox" class="input" type="search" placeholder="Search posts...">
+      <select id="categoryFilter">
         <option value="all">All Categories</option>
-    </select>
-</div>
+      </select>
+      <select id="sortBy">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+    </div>
 
-<!-- Featured Post -->
-<div id="featured" class="featured"></div>
+    <!-- Featured -->
+    <div id="featured" class="featured" style="display:none"></div>
 
-<!-- Blog Posts -->
-<div id="blog-posts">Loading...</div>
+    <!-- Grid -->
+    <section id="gridWrap">
+      <div id="postsGrid" class="grid"></div>
+    </section>
 
-<!-- Pagination -->
-<div class="pagination">
-    <button onclick="prevPage()">Previous</button>
-    <button onclick="nextPage()">Next</button>
-</div>
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+  </main>
 
-<script>
-const FEED_URL = "https://abidkhanelearninghub.blogspot.com/feeds/posts/default?alt=json";
+  <!-- Footer -->
+  <footer class="site-footer">
+    © <span id="year"></span> Abid Khan — Abid Khan's E-Learning Hub • Built with GitHub Pages
+  </footer>
 
-let postsData = [];
-let page = 1;
-const perPage = 6;
+  <script>
+  /* === Configuration === */
+  const FEED_URL = "https://abidkhanelearninghub.blogspot.com/feeds/posts/default?alt=json"; // your feed
+  const POSTS_PER_PAGE = 6;
 
-fetch(FEED_URL)
-    .then(res => res.json())
+  /* === Utility === */
+  const q = s => document.querySelector(s);
+  const bind = (sel, ev, fn) => q(sel).addEventListener(ev, fn);
+
+  /* === State === */
+  let allPosts = [];      // raw feed entries
+  let filtered = [];      // filtered/sorted list
+  let page = 1;
+
+  /* === Fetch feed === */
+  fetch(FEED_URL)
+    .then(r => r.json())
     .then(data => {
-        postsData = data.feed.entry;
-
-        createCategoryList();
-        displayFeatured();
-        displayPosts();
+      allPosts = data.feed && data.feed.entry ? data.feed.entry : [];
+      if(allPosts.length === 0){
+        q('#postsGrid').innerHTML = '<p style="text-align:center">No posts found.</p>'; return;
+      }
+      populateCategories();
+      renderFeatured();
+      applyFilters();
+    })
+    .catch(err => {
+      console.error(err);
+      q('#postsGrid').innerHTML = '<p style="text-align:center;color:var(--muted)">Failed to load posts.</p>';
     });
 
-function createCategoryList() {
-    const catSet = new Set();
-    postsData.forEach(p => {
-        if (p.category) {
-            p.category.forEach(c => catSet.add(c.term));
-        }
+  /* === Helpers to read post data === */
+  function getTitle(p){ return p.title.$t || 'Untitled' }
+  function getLink(p){ return (p.link.find(l=>l.rel==='alternate')||{}).href || '#' }
+  function getContentText(p){ return (p.content && p.content.$t) ? p.content.$t.replace(/<[^>]+>/g,'') : '' }
+  function getSnippet(p,len=150){ const t=getContentText(p).trim(); return (t.length>len)? t.slice(0,len)+'...' : t }
+  function getThumb(p){
+    if(p.media$thumbnail) return p.media$thumbnail.url;
+    // Try extracting first <img> from content
+    const m = (p.content && p.content.$t) ? p.content.$t.match(/<img[^>]+src="([^">]+)"/i) : null;
+    return m ? m[1] : '';
+  }
+  function getCategories(p){ return p.category ? p.category.map(c=>c.term) : [] }
+  function getPublished(p){ return new Date((p.published && p.published.$t) || (p.updated && p.updated.$t) || Date.now()) }
+
+  /* === Render featured post (first post) === */
+  function renderFeatured(){
+    const post = allPosts[0];
+    if(!post) return;
+    const img = getThumb(post);
+    const html = `
+      ${img ? `<img class="media" src="${img}" alt="${getTitle(post)}">` : ''}
+      <div class="body">
+        <h2>${getTitle(post)}</h2>
+        <p>${getSnippet(post,300)}</p>
+        <a class="btn" href="${getLink(post)}" target="_blank">Read full post</a>
+      </div>`;
+    const box = q('#featured');
+    box.innerHTML = html;
+    box.style.display = 'block';
+  }
+
+  /* === Categories === */
+  function populateCategories(){
+    const set = new Set();
+    allPosts.forEach(p => getCategories(p).forEach(c=>set.add(c)));
+    const sel = q('#categoryFilter');
+    set.forEach(cat => {
+      const opt = document.createElement('option'); opt.value = cat; opt.textContent = cat;
+      sel.appendChild(opt);
+    });
+  }
+
+  /* === Filter / search / sort === */
+  bind('#searchBox','input', ()=> { page=1; applyFilters(); });
+  bind('#categoryFilter','change', ()=> { page=1; applyFilters(); });
+  bind('#sortBy','change', ()=> { page=1; applyFilters(); });
+
+  function applyFilters(){
+    const qText = q('#searchBox').value.trim().toLowerCase();
+    const cat = q('#categoryFilter').value;
+    const sort = q('#sortBy').value;
+
+    filtered = allPosts.filter(p=>{
+      const title = getTitle(p).toLowerCase();
+      const body = getContentText(p).toLowerCase();
+      const matchesText = (!qText) || title.includes(qText) || body.includes(qText);
+      const matchesCat = (cat === 'all') || getCategories(p).includes(cat);
+      return matchesText && matchesCat;
     });
 
-    const dropdown = document.getElementById("categoryFilter");
-    catSet.forEach(cat => {
-        let opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
-        dropdown.appendChild(opt);
-    });
-}
+    if(sort === 'newest') filtered.sort((a,b)=> getPublished(b)-getPublished(a));
+    else filtered.sort((a,b)=> getPublished(a)-getPublished(b));
 
-function displayFeatured() {
-    const post = postsData[0];
-    const title = post.title.$t;
-    const link = post.link.find(l => l.rel === "alternate").href;
-    const img = post.media$thumbnail ? post.media$thumbnail.url : "";
-    const snippet = post.content.$t.replace(/<[^>]+>/g, "").slice(0, 200);
+    renderPage();
+    renderPagination();
+  }
 
-    document.getElementById("featured").innerHTML = `
-        ${img ? `<img src="${img}">` : ""}
-        <h2>${title}</h2>
-        <p>${snippet}...</p>
-        <a class="read-more" href="${link}" target="_blank">Read More</a>
-    `;
-}
-
-function displayPosts() {
-    let filtered = postsData;
-
-    const searchText = document.getElementById("search").value.toLowerCase();
-    const category = document.getElementById("categoryFilter").value;
-
-    filtered = filtered.filter(post => {
-        const title = post.title.$t.toLowerCase();
-        const txt = post.content.$t.toLowerCase();
-        let match = (title.includes(searchText) || txt.includes(searchText));
-
-        if (category !== "all") {
-            if (!post.category) return false;
-            const categories = post.category.map(c => c.term);
-            return match && categories.includes(category);
-        }
-
-        return match;
-    });
-
-    const start = (page - 1) * perPage;
-    const sliced = filtered.slice(start, start + perPage);
-
-    const container = document.getElementById("blog-posts");
-    container.innerHTML = "";
-
-    sliced.forEach(post => {
-        const title = post.title.$t;
-        const link = post.link.find(l => l.rel === "alternate").href;
-        const img = post.media$thumbnail ? post.media$thumbnail.url : "";
-        const snippet = post.content.$t.replace(/<[^>]+>/g, "").slice(0, 150);
-
-        container.innerHTML += `
-            <div class="post-card">
-                ${img ? `<img src="${img}">` : ""}
-                <h3>${title}</h3>
-                <p>${snippet}...</p>
-                <a class="read-more" href="${link}" target="_blank">Read More</a>
+  /* === Render page of posts === */
+  function renderPage(){
+    const grid = q('#postsGrid');
+    grid.innerHTML = '';
+    const start = (page-1)*POSTS_PER_PAGE;
+    const pageItems = filtered.slice(start, start + POSTS_PER_PAGE);
+    if(pageItems.length === 0){
+      grid.innerHTML = '<p style="text-align:center;color:var(--muted)">No posts match your search.</p>';
+      return;
+    }
+    pageItems.forEach(p=>{
+      const thumb = getThumb(p);
+      const html = `
+        <article class="card">
+          ${thumb ? `<img class="thumb" src="${thumb}" alt="${getTitle(p)}">` : ''}
+          <div class="content">
+            <h3>${getTitle(p)}</h3>
+            <p>${getSnippet(p,140)}</p>
+            <div class="meta">
+              <small style="color:var(--muted)">${getPublished(p).toLocaleDateString()}</small>
+              <a class="btn" href="${getLink(p)}" target="_blank">Read</a>
             </div>
-        `;
+          </div>
+        </article>`;
+      grid.insertAdjacentHTML('beforeend', html);
     });
-}
+  }
 
-function nextPage() {
-    page++;
-    displayPosts();
-}
+  /* === Pagination UI === */
+  function renderPagination(){
+    const total = Math.ceil(filtered.length / POSTS_PER_PAGE);
+    const wrap = q('#pagination');
+    wrap.innerHTML = '';
+    if(total <= 1) return;
+    for(let i=1;i<=total;i++){
+      const b = document.createElement('button');
+      b.className = 'page-btn' + (i===page ? ' active' : '');
+      b.textContent = i;
+      b.onclick = () => { page=i; renderPage(); renderPagination(); window.scrollTo({top:120,behavior:'smooth'}); }
+      wrap.appendChild(b);
+    }
+  }
 
-function prevPage() {
-    if (page > 1) page--;
-    displayPosts();
-}
+  /* Next/Prev keyboard shortcuts */
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'ArrowRight') { if(page < Math.ceil(filtered.length/POSTS_PER_PAGE)) { page++; renderPage(); renderPagination(); } }
+    if(e.key === 'ArrowLeft') { if(page>1){ page--; renderPage(); renderPagination(); } }
+  });
 
-/* Dark/Light Mode */
-document.getElementById("darkToggle").onclick = function () {
-    document.body.classList.toggle("dark");
-};
-</script>
+  /* Theme toggle */
+  const tbtn = document.getElementById('themeToggle');
+  tbtn.addEventListener('click', ()=> document.body.classList.toggle('dark'));
 
+  /* Footer year */
+  document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
