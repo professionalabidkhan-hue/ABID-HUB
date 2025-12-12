@@ -21,38 +21,30 @@
 <body>
 
 <div class="form-card">
+<div id="signupStep">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+    <img src="ABID_KHAN.jpg" alt="Abid Khan" style="width:80px; height:80px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+    <h2 style="margin:0; font-size:1.5rem;">Create Account</h2>
+  </div>
 
-  <div id="signupStep">
-    <h2>Create Account</h2>
-    <input type="text" id="name" placeholder="Full Name" required>
-    <input type="email" id="email" placeholder="Email Address" required>
-    <input type="password" id="password" placeholder="Password" required>
-    
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="email" id="email" placeholder="Email Address" required>
+  <input type="password" id="password" placeholder="Password" required>
+
   <div style="text-align:left; margin-bottom:16px;">
-  <label style="display:block; margin-bottom:8px;">
-    <input type="radio" name="role" value="student" checked> I want to learn
-  </label>
-  <label style="display:block;">
-    <input type="radio" name="role" value="trainer"> I want to teach
-  </label>
+    <label style="display:block; margin-bottom:8px;">
+      <input type="radio" name="role" value="student" checked> I want to learn
+    </label>
+    <label style="display:block;">
+      <input type="radio" name="role" value="trainer"> I want to teach
+    </label>
+  </div>
+
+  <input type="text" id="phone" placeholder="Phone Number" required>
+  <button class="btn" onclick="sendCode()">Send Verification Code</button>
 </div>
-
-
-    <input type="text" id="phone" placeholder="Phone Number" required>
-    <button class="btn" onclick="sendCode()">Send Verification Code</button>
-  </div>
-
-  <div id="verifyStep" class="hidden">
-    <h2>Verify Phone Number</h2>
-    <p>A 6-digit code was sent to your phone.</p>
-    <input type="text" id="code" placeholder="Enter Verification Code" required>
-    <button class="btn" onclick="verifyCode()">Verify</button>
-  </div>
-
-  <div class="footer-text">
-    Already have an account? <a href="signin.html">Sign In</a>
-  </div>
 </div>
+   
 
 <script>
 const backendURL = "YOUR_APPS_SCRIPT_WEBAPP_URL"; // replace with your Apps Script URL
