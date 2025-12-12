@@ -2,9 +2,6 @@
 function renderCards() {
   container.innerHTML = '';
 
-  // Exclude Abid Khan
-  const filteredUsers = users.filter(user => user.name !== "Abid Khan");
-
   filteredUsers.forEach(user => {
     const username = user.name.replace(/\s/g,'');
     const imgSrc = uploadedImages[username] || user.image;
