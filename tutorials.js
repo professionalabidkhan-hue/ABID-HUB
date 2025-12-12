@@ -1,3 +1,10 @@
+<html>
+<head>
+  <title>AbidKhan_ELearningHub</title>
+</head>
+<body>
+<div class="grid" id="tutorialContainer"></div>
+  </body>
 const tutorials = [
   {
     name: "Web & Software Development",
@@ -107,3 +114,4 @@ function filterByCategory(category) {
 
 // Initial render
 renderTutorials();
+</html>
