@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign Up - Abid Khan's E-Learning Hub</title>
-<style>
+<style>  
   body{font-family: Arial, sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; background:#f7fafc; margin:0;}
   .form-card{background:#fff; padding:40px; border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,0.08); width:100%; max-width:400px; text-align:center;}
   input{width:100%; padding:12px; margin-bottom:16px; border-radius:10px; border:1px solid #ccc; font-size:1rem;}
@@ -28,10 +28,15 @@
     <input type="email" id="email" placeholder="Email Address" required>
     <input type="password" id="password" placeholder="Password" required>
     
-    <div>
-      <label><input type="radio" name="role" value="student" checked> I want to learn</label>
-      <label><input type="radio" name="role" value="trainer"> I want to teach</label>
-    </div>
+  <div style="text-align:left; margin-bottom:16px;">
+  <label style="display:block; margin-bottom:8px;">
+    <input type="radio" name="role" value="student" checked> I want to learn
+  </label>
+  <label style="display:block;">
+    <input type="radio" name="role" value="trainer"> I want to teach
+  </label>
+</div>
+
 
     <input type="text" id="phone" placeholder="Phone Number" required>
     <button class="btn" onclick="sendCode()">Send Verification Code</button>
