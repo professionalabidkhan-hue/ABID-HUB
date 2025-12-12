@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorials - Abid Khan's E-Learning Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #0b63d3;
+    --muted: #6b7280;
+    --bg: #f7fafc;
+    --card: #ffffff;
+    --radius: 12px;
+    --max-width: 1200px;
+    --gap: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body {
+    margin:0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: #111827;
+    scroll-behavior: smooth;
+  }
+
+  .container {max-width: var(--max-width); margin:36px auto; padding:24px;}
+
+  h1, h2 {margin:0 0 20px 0;}
+  h2 {font-size:1.8rem;}
+  p {color: var(--muted); margin-bottom:20px;}
+
+  /* Grid layout for tutorial cards */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--gap);
+  }
+
+  .card {
+    background: var(--card);
+    padding:20px;
+    border-radius: var(--radius);
+    box-shadow:0 6px 20px rgba(0,0,0,0.03);
+    transition: all 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.08);
+  }
+
+  .card img {
+    width:100%;
+    height:140px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom:12px;
+  }
+
+  .card h3 {
+    margin:0 0 10px 0;
+    font-size:1.1rem;
+  }
+
+  .card p {
+    margin:0 0 12px 0;
+    color: var(--muted);
+    font-size:0.95rem;
+  }
+
+  .btn {
+    display:inline-block;
+    padding:10px 16px;
+    border-radius:12px;
+    background: var(--accent);
+    color:#fff;
+    font-weight:600;
+    text-decoration:none;
+    transition: all 0.3s;
+  }
+  .btn:hover {background:#094ca2;}
+
+  @media (max-width:920px){
+    .grid {grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));}
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Tutorials</h1>
+  <p>Explore hands-on tutorials in IT, Web Development, Data Science, Cloud, Cybersecurity, Graphic Design, Digital Marketing, O-Level, A-Level, and Quran.</p>
+
+  <!-- Tutorials Grid -->
+  <div class="grid">
+    <!-- Web & Software Development -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Web+Development" alt="Web Development">
+      <h3>Web & Software Development</h3>
+      <p>React, Node.js, HTML, CSS, JavaScript, Git, and deployment workflows.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Data Science & Analytics -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Data+Science" alt="Data Science">
+      <h3>Data Science & Analytics</h3>
+      <p>Python, pandas, visualization, machine learning basics, hands-on projects.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Cloud Computing -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Cloud+Computing" alt="Cloud Computing">
+      <h3>Cloud Computing</h3>
+      <p>AWS fundamentals, serverless concepts, deploying applications to cloud providers.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Cybersecurity -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Cybersecurity" alt="Cybersecurity">
+      <h3>Cybersecurity Essentials</h3>
+      <p>Security fundamentals, best practices, secure coding, basic pentesting exercises.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Graphic Designing -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Graphic+Design" alt="Graphic Designing">
+      <h3>Graphic Designing</h3>
+      <p>Corel Draw, Adobe Illustrator, Photoshop, InDesign, Canva tutorials.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Digital Marketing -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Digital+Marketing" alt="Digital Marketing">
+      <h3>Digital Marketing</h3>
+      <p>SEO, social media marketing, content creation, and ad campaigns.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Quran Tutorials -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Quran" alt="Quran Tutorials">
+      <h3>Quran Tutorials</h3>
+      <p>Learn Holy Quran with proper recitation, tajweed, and interpretation.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- O-Level Subjects -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=O-Level" alt="O-Level">
+      <h3>O-Level Subjects</h3>
+      <p>Mathematics, Physics, Chemistry, Biology, Computer Science tutorials online.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- A-Level Subjects -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=A-Level" alt="A-Level">
+      <h3>A-Level Subjects</h3>
+      <p>Mathematics, Physics, Chemistry, Biology, Computer Science, Economics, Accounting.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- Architect Software -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=Architect+Software" alt="Architect Software">
+      <h3>Architect Software</h3>
+      <p>AutoCAD, Revit, 3ds Max, Maya tutorials for architecture and design projects.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+
+    <!-- WordPress Web & App Development -->
+    <div class="card">
+      <img src="https://via.placeholder.com/300x140?text=WordPress" alt="WordPress">
+      <h3>WordPress Web & App Development</h3>
+      <p>Build websites and apps using WordPress with themes, plugins, and deployment.</p>
+      <a class="btn" href="#">View Tutorial</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
