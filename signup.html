@@ -3,143 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign Up - Abid Khan's E-Learning Hub</title>
+<title>Sign Up - E-Learning Hub</title>
 <style>
-  <style>
-/* Responsive dropdown styling */
-select {
-  width: 100%;
-  max-width: 300px; /* Adjust max width as needed */
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  background-color: white;
-  font-size: 1rem;
-  color: #1f2937;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-select:focus {
-  border-color: #0b63d3;
-  box-shadow: 0 0 5px rgba(11, 99, 211, 0.5);
-}
-
-/* Make dropdown responsive on smaller screens */
-@media (max-width: 500px) {
-  select {
-    max-width: 100%;
-    font-size: 0.95rem;
-    padding: 8px 12px;
+  /* Base body and card styling */
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f7fafc;
+    margin: 0;
   }
-}
-</style>
 
-  /* Base select style */
-#category-select {
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid #e6e9ef;
-  background-color: #fff;
-  color: #111827;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  transition: all 0.3s;
-  appearance: none; /* removes default arrow for custom styling if needed */
-}
+  .form-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
 
-/* Hover effect */
-#category-select:hover {
-  border-color: var(--accent);
-  box-shadow: 0 2px 6px rgba(11, 99, 211, 0.2);
-}
+  h2 { margin: 0; font-size: 1.5rem; }
 
-/* Focus effect */
-#category-select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(11, 99, 211, 0.2);
-}
+  input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: all 0.3s;
+  }
 
-/* Optional: custom arrow */
-#category-select {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 5 5-5H0z' fill='%236b7280'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 10px 5px;
-}
+  input:focus, select:focus {
+    border-color: #0b63d3;
+    box-shadow: 0 0 6px rgba(11,99,211,0.2);
+  }
 
-  body{font-family: Arial, sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; background:#f7fafc; margin:0;}
-  .form-card{background:#fff; padding:40px; border-radius:12px; box-shadow:0 12px 28px rgba(0,0,0,0.08); width:100%; max-width:400px; text-align:center;}
-  input{width:100%; padding:12px; margin-bottom:16px; border-radius:10px; border:1px solid #ccc; font-size:1rem;}
-  input:focus{border-color:#0b63d3; outline:none; box-shadow:0 0 6px rgba(11,99,211,0.2);}
-  .btn{width:100%; padding:14px; border-radius:12px; border:0; background:#0b63d3; color:#fff; font-weight:600; font-size:1rem; cursor:pointer;}
-  .btn:hover{background:#094ca2;}
-  .secondary{background:#eef2ff; color:#0b63d3; border:1px solid rgba(11,99,211,0.2);}
-  .secondary:hover{background:#d6e4ff;}
-  .hidden{display:none;}
-  .footer-text{margin-top:12px; font-size:0.9rem; color:#555;}
-  .footer-text a{color:#0b63d3; text-decoration:none;}
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 0;
+    background: #0b63d3;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .btn:hover { background: #094ca2; }
+
+  .secondary {
+    background: #eef2ff;
+    color: #0b63d3;
+    border: 1px solid rgba(11,99,211,0.2);
+  }
+
+  .secondary:hover { background: #d6e4ff; }
+
+  .hidden { display: none; }
+
+  .footer-text {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .footer-text a { color: #0b63d3; text-decoration: none; }
+
+  /* Responsive dropdown styling */
+  #category-select {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid #e6e9ef;
+    background-color: #fff;
+    color: #111827;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 5 5-5H0z' fill='%236b7280'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px 5px;
+  }
+
+  #category-select:hover {
+    border-color: #0b63d3;
+    box-shadow: 0 2px 6px rgba(11, 99, 211, 0.2);
+  }
+
+  #category-select:focus {
+    outline: none;
+    border-color: #0b63d3;
+    box-shadow: 0 0 0 2px rgba(11, 99, 211, 0.2);
+  }
+
+  @media (max-width: 500px) {
+    #category-select {
+      font-size: 0.95rem;
+      padding: 8px 12px;
+    }
+  }
 </style>
 </head>
 <body>
 
 <div class="form-card">
-<div id="signupStep">
-  <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID KHAN.png" 
-         alt="Abid Khan" 
-         style="width:80px; height:80px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
-    <h2 style="margin:0; font-size:1.5rem;">Create Account</h2>
+  <div id="signupStep">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+      <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
+           alt="Brand Logo" 
+           style="width:80px; height:80px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+      <h2>Create Account</h2>
+    </div>
+
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <!-- Role selection dropdown -->
+    <div style="margin-bottom:16px; text-align:left;">
+      <label for="role" style="font-weight:600; margin-bottom:4px; display:block;">Select Role</label>
+      <select id="role">
+        <option value="student">I want to learn</option>
+        <option value="trainer">I want to teach</option>
+      </select>
+    </div>
+
+    <!-- Category selection dropdown -->
+    <div style="margin-bottom:16px; text-align:left;">
+      <label for="category-select" style="font-weight:600; margin-bottom:4px; display:block;">Category</label>
+      <select id="category-select" onchange="filterByCategory(this.value)">
+        <option value="All">All Courses</option>
+        <option value="IT">IT & Web Development</option>
+        <option value="Data Science">Data Science</option>
+        <option value="Cloud">Cloud Computing</option>
+        <option value="Cybersecurity">Cybersecurity</option>
+        <option value="Design">Graphic & Architect Design</option>
+        <option value="Marketing">Digital Marketing</option>
+        <option value="Quran">Quran</option>
+        <option value="O-Level">O-Level</option>
+        <option value="A-Level">A-Level</option>
+      </select>
+    </div>
+
+    <input type="text" id="phone" placeholder="Phone Number" required>
+    <button class="btn" onclick="sendCode()">Send Verification Code</button>
   </div>
-
-  <!-- Existing input fields -->
-  <input type="text" id="name" placeholder="Full Name" required>
-  <input type="email" id="email" placeholder="Email Address" required>
-  <input type="password" id="password" placeholder="Password" required>
-
- <!-- Role selection dropdown -->
-<div style="margin-bottom:16px; text-align:left;">
-  <label for="role" style="font-weight:600; margin-bottom:4px; display:block;">Select Role</label>
-  <select id="role" style="width:100%; padding:12px; border-radius:10px; border:1px solid #ccc; font-size:1rem;">
-    <option value="student">I want to learn</option>
-    <option value="trainer">I want to teach</option>
-  </select>
-  <label for="category-select" style="font-weight:600; margin-right:8px;">Category:</
-  <select id="category-select" onchange="filterByCategory(this.value)">
-  <option value="All">All Courses</option>
-  <option value="IT">IT & Web Development</option>
-  <option value="Data Science">Data Science</option>
-  <option value="Cloud">Cloud Computing</option>
-  <option value="Cybersecurity">Cybersecurity</option>
-  <option value="Design">Graphic & Architect Design</option>
-  <option value="Marketing">Digital Marketing</option>
-  <option value="Quran">Quran</option>
-  <option value="O-Level">O-Level</option>
-  <option value="A-Level">A-Level</option>
-</select>
-
-</div>
-
-  <input type="text" id="phone" placeholder="Phone Number" required>
-  <button class="btn" onclick="sendCode()">Send Verification Code</button>
-</div>
-
-
 </div>
 
 <script>
 const backendURL = "YOUR_APPS_SCRIPT_WEBAPP_URL"; // replace with your Apps Script URL
 
-// Step 1: Send verification code
 function sendCode() {
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const phone = document.getElementById("phone").value;
-  const role = document.querySelector('input[name="role"]:checked').value;
+  const role = document.getElementById("role").value;
 
   fetch(backendURL, {
     method: "POST",
@@ -148,7 +177,6 @@ function sendCode() {
   .then(res => res.json())
   .then(data => {
     if(data.message === "Sign Up successful") {
-      // Send verification code
       fetch(backendURL, {
         method: "POST",
         body: JSON.stringify({ action: "sendVerificationCode", email, phone })
@@ -157,7 +185,6 @@ function sendCode() {
       .then(resData => {
         alert("Verification code sent to your phone!");
         document.getElementById("signupStep").classList.add("hidden");
-        document.getElementById("verifyStep").classList.remove("hidden");
       });
     } else {
       alert(data.message);
@@ -165,24 +192,9 @@ function sendCode() {
   });
 }
 
-// Step 2: Verify code
-function verifyCode() {
-  const email = document.getElementById("email").value;
-  const enteredCode = document.getElementById("code").value;
-
-  fetch(backendURL, {
-    method: "POST",
-    body: JSON.stringify({ action: "verifyCode", email, enteredCode })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if(data.success) {
-      alert("Phone number verified! Account creation complete.");
-      window.location.href = "signin.html"; // redirect after success
-    } else {
-      alert("Incorrect code, try again.");
-    }
-  });
+function filterByCategory(value) {
+  console.log("Selected category:", value);
+  // Implement course filtering logic here
 }
 </script>
 
