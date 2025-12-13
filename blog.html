@@ -9,14 +9,12 @@
 <body>
 
   <!-- Navbar -->
-  <header class="header">
-    <nav class="nav">
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+  <header class="abid-header">
+    <nav class="abid-nav" aria-label="Main navigation">
+      <button class="abid-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </button>
-      <div class="nav-links" id="navLinks">
+      <div class="abid-nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="courses.html">Courses</a>
@@ -57,8 +55,8 @@
   </main>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    © <span id="year"></span> Abid Khan — Abid Khan's E-Learning Hub • Built with GitHub Pages
+  <footer class="abid-footer">
+    © <span id="year"></span> Abid Khan — Distinctive Learning Hub
   </footer>
 
   <!-- Blogger JSONP handler -->
@@ -94,6 +92,7 @@
         ${getThumb(post) ? `<img class="media" src="${getThumb(post)}" alt="${getTitle(post)}">` : ''}
         <div class="body">
           <h2>${getTitle(post)}</h2>
+          <p><em>${getPublished(post).toLocaleDateString()}</em></p>
           <p>${getContentText(post).slice(0,200)}...</p>
           <a class="btn" href="${getLink(post)}" target="_blank">Read full post</a>
         </div>`;
