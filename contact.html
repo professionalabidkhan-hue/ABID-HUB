@@ -1,24 +1,37 @@
-<html>
- <head>
-<title>Contact Us->Abid Khan's E-Learning Hub</title>
-<link type="text/css" rel="stylesheet" href="contact.css">
-   
- </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Abid Khan's E-Learning Hub</title>
+  <style>
+    /* ------------------------------
+       GLOBAL STYLES
+    ------------------------------ */
+    
+  </style>
+</head>
 <body>
-<main class="contact-page">
-  <div class="contact-card">
-    <h2>Contact Us</h2>
 
-    <p>Email: <a href="mailto:info@onlineitacademy.example">info@onlineitacademy.example</a></p>
-    <p>WhatsApp: <a href="https://wa.me/00000000000">Message us</a></p>
+  <!-- Corner Image -->
+  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
 
-    <form onsubmit="alert('This is a demo form — connect your backend to send messages.'); return false;">
-      <label>Name<br><input required name="name"></label>
-      <label>Email<br><input type="email" required name="email"></label>
-      <label>Message<br><textarea required name="message"></textarea></label>
-      <button class="btn" type="submit">Send</button>
-    </form>
-  </div>
-</main>
+  <!-- Contact Page -->
+  <main class="contact-page">
+    <div class="contact-card">
+      <h2>Contact Us</h2>
+
+      <p>Email: <a href="mailto:info@onlineitacademy.example">info@onlineitacademy.example</a></p>
+      <p>WhatsApp: <a href="https://wa.me/00000000000">Message us</a></p>
+
+      <form onsubmit="alert('This is a demo form — connect your backend to send messages.'); return false;">
+        <label>Name<br><input required name="name" placeholder="Your Name"></label>
+        <label>Email<br><input type="email" required name="email" placeholder="Your Email"></label>
+        <label>Message<br><textarea required name="message" placeholder="Your Message"></textarea></label>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+  </main>
+
 </body>
 </html>
