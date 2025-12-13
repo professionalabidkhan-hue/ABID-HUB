@@ -1,0 +1,109 @@
+/* ------------------------------
+   CONTACT PAGE WRAPPER
+------------------------------ */
+.contact-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1a73e8, #4f8df5, #7ab3ff);
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ------------------------------
+   CONTACT CARD
+------------------------------ */
+.contact-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ------------------------------
+   HEADINGS
+------------------------------ */
+.contact-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #0d47a1;
+}
+
+/* ------------------------------
+   FORM ELEMENTS
+------------------------------ */
+.contact-card label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #1a73e8;
+  margin-top: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: #0d47a1;
+  box-shadow: 0 0 8px rgba(26,115,232,0.4);
+}
+
+.contact-card textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* ------------------------------
+   BUTTON
+------------------------------ */
+.contact-card .btn {
+  width: 100%;
+  padding: 12px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.contact-card .btn:hover {
+  background: #0d47a1;
+}
+
+/* ------------------------------
+   CONTACT LINKS
+------------------------------ */
+.contact-links {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.contact-links a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
