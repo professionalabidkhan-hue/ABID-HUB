@@ -312,24 +312,51 @@
     </article>
   </div>
 </section>
-
-<footer>
-  &copy; 2025 Abid Khan's E-Learning Hub. All rights reserved.
+<!-- Footer -->
+<footer class="abid-footer">
+  © <span id="year"></span> Abid Khan — Distinctive Learning Hub
 </footer>
+
 <script>
   // Highlight based on URL
   const current = window.location.pathname.split("/").pop();
-  document.querySelectorAll("nav a").forEach(link => {
-    if(link.getAttribute("href") === current){
+  document.querySelectorAll(".abid-nav a").forEach(link => {
+    // Highlight the link if it matches the current page
+    if (link.getAttribute("href") === current) {
       link.classList.add("active");
     }
     // Also handle click events
     link.addEventListener("click", e => {
-      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+      document.querySelectorAll(".abid-nav a").forEach(a => a.classList.remove("active"));
       e.currentTarget.classList.add("active");
     });
   });
+
+  // Footer year update
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Hamburger toggle
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+      hamburger.classList.toggle("open");
+    });
+  }
+
+  // Dark mode toggle
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  }
 </script>
+</body>
+</html>
+
+
 
 
 </body>
