@@ -60,152 +60,166 @@
   </footer>
 
   <!-- ✅ Your Blogger feed script -->
-  <script>
-    const FEED_URL = "https://abidkhanelearninghub.blogspot.com/feeds/posts/default?alt=json";
-    const POSTS_PER_PAGE = 6;
+  /* === Configuration === */
+const FEED_URL = "https://abidkhanelearninghub.blogspot.com/feeds/posts/default?alt=json";
+const POSTS_PER_PAGE = 6;
 
-    const q = s => document.querySelector(s);
-    const bind = (sel, ev, fn) => q(sel).addEventListener(ev, fn);
+/* === Utility === */
+const q = s => document.querySelector(s);
+const bind = (sel, ev, fn) => q(sel).addEventListener(ev, fn);
 
-    let allPosts = [];
-    let filtered = [];
-    let page = 1;
+/* === State === */
+let allPosts = [];
+let filtered = [];
+let page = 1;
 
-    fetch(FEED_URL)
-      .then(r => r.json())
-      .then(data => {
-        allPosts = data.feed && data.feed.entry ? data.feed.entry : [];
-        if(allPosts.length === 0){
-          q('#postsGrid').innerHTML = '<p class="muted">No posts found.</p>'; return;
-        }
-        populateCategories();
-        renderFeatured();
-        applyFilters();
-      })
-      .catch(err => {
-        console.error(err);
-        q('#postsGrid').innerHTML = '<p class="muted">Failed to load posts.</p>';
-      });
-
-    function getTitle(p){ return p.title.$t || 'Untitled' }
-    function getLink(p){ return (p.link.find(l=>l.rel==='alternate')||{}).href || '#' }
-    function getContentText(p){ return (p.content && p.content.$t) ? p.content.$t.replace(/<[^>]+>/g,'') : '' }
-    function getSnippet(p,len=150){ const t=getContentText(p).trim(); return (t.length>len)? t.slice(0,len)+'...' : t }
-    function getThumb(p){
-      if(p.media$thumbnail) return p.media$thumbnail.url;
-      const m = (p.content && p.content.$t) ? p.content.$t.match(/<img[^>]+src="([^">]+)"/i) : null;
-      return m ? m[1] : '';
+/* === Fetch Blogger feed === */
+fetch(FEED_URL)
+  .then(r => r.json())
+  .then(data => {
+    allPosts = data.feed && data.feed.entry ? data.feed.entry : [];
+    if(allPosts.length === 0){
+      q('#postsGrid').innerHTML = '<p class="muted">No posts found.</p>'; return;
     }
-    function getCategories(p){ return p.category ? p.category.map(c=>c.term) : [] }
-    function getPublished(p){ return new Date((p.published && p.published.$t) || (p.updated && p.updated.$t) || Date.now()) }
-
-    function renderFeatured(){
-      const post = allPosts[0];
-      if(!post) return;
-      const img = getThumb(post);
-      const html = `
-        ${img ? `<img class="media" src="${img}" alt="${getTitle(post)}">` : ''}
-        <div class="body">
-          <h2>${getTitle(post)}</h2>
-          <p>${getSnippet(post,300)}</p>
-          <a class="btn" href="${getLink(post)}" target="_blank">Read full post</a>
-        </div>`;
-      const box = q('#featured');
-      box.innerHTML = html;
-      box.style.display = 'block';
-    }
-
-    function populateCategories(){
-      const set = new Set();
-      allPosts.forEach(p => getCategories(p).forEach(c=>set.add(c)));
-      const sel = q('#categoryFilter');
-      set.forEach(cat => {
-        const opt = document.createElement('option'); opt.value = cat; opt.textContent = cat;
-        sel.appendChild(opt);
-      });
-    }
-
-    bind('#searchBox','input', ()=> { page=1; applyFilters(); });
-    bind('#categoryFilter','change', ()=> { page=1; applyFilters(); });
-    bind('#sortBy','change', ()=> { page=1; applyFilters(); });
-
-    function applyFilters(){
-      const qText = q('#searchBox').value.trim().toLowerCase();
-      const cat = q('#categoryFilter').value;
-      const sort = q('#sortBy').value;
-
-      filtered = allPosts.filter(p=>{
-        const title = getTitle(p).toLowerCase();
-        const body = getContentText(p).toLowerCase();
-        const matchesText = (!qText) || title.includes(qText) || body.includes(qText);
-        const matchesCat = (cat === 'all') || getCategories(p).includes(cat);
-        return matchesText && matchesCat;
-      });
-
-      if(sort === 'newest') filtered.sort((a,b)=> getPublished(b)-getPublished(a));
-      else filtered.sort((a,b)=> getPublished(a)-getPublished(b));
-
-      renderPage();
-      renderPagination();
-    }
-
-    function renderPage(){
-      const grid = q('#postsGrid');
-      grid.innerHTML = '';
-      const start = (page-1)*POSTS_PER_PAGE;
-      const pageItems = filtered.slice(start, start + POSTS_PER_PAGE);
-      if(pageItems.length === 0){
-        grid.innerHTML = '<p class="muted">No posts match your search.</p>';
-        return;
-      }
-      pageItems.forEach(p=>{
-        const thumb = getThumb(p);
-        const html = `
-          <article class="card">
-            ${thumb ? `<img class="thumb" src="${thumb}" alt="${getTitle(p)}">` : ''}
-            <div class="content">
-              <h3>${getTitle(p)}</h3>
-              <p>${getSnippet(p,140)}</p>
-              <div class="meta">
-                <small class="muted">${getPublished(p).toLocaleDateString()}</small>
-                <a class="btn" href="${getLink(p)}" target="_blank">Read</a>
-              </div>
-            </div>
-          </article>`;
-        grid.insertAdjacentHTML('beforeend', html);
-      });
-    }
-
-    function renderPagination(){
-      const total = Math.ceil(filtered.length / POSTS_PER_PAGE);
-      const wrap = q('#pagination');
-      wrap.innerHTML = '';
-      if(total <= 1) return;
-      for(let i=1;i<=total;i++){
-        const b = document.createElement('button');
-        b.className = 'page-btn' + (i===page ? ' active' : '');
-        b.textContent = i;
-        b.onclick = () => { page=i; renderPage(); renderPagination(); window.scrollTo({top:120,behavior:'smooth'}); }
-        wrap.appendChild(b);
-      }
-    }
-
-    document.addEventListener('keydown', e=>{
-      if(e.key === 'ArrowRight') { if(page < Math.ceil(filtered.length/POSTS_PER_PAGE)) { page++; renderPage(); renderPagination(); } }
-      if(e.key === 'ArrowLeft') { if(page>1){ page--; renderPage(); renderPagination(); } }
-    });
-
-    document.getElementById('themeToggle').addEventListener('click', ()=> document.body.classList.toggle('dark'));
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script>
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
-
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('show');
+    populateCategories();
+    renderFeatured();
+    applyFilters();
+  })
+  .catch(err => {
+    console.error(err);
+    q('#postsGrid').innerHTML = '<p class="muted">Failed to load posts.</p>';
   });
-</script>
+
+/* === Helpers to read post data === */
+function getTitle(p){ return p.title.$t || 'Untitled' }
+function getLink(p){ return (p.link.find(l=>l.rel==='alternate')||{}).href || '#' }
+function getContentText(p){ return (p.content && p.content.$t) ? p.content.$t.replace(/<[^>]+>/g,'') : '' }
+function getSnippet(p,len=150){ const t=getContentText(p).trim(); return (t.length>len)? t.slice(0,len)+'...' : t }
+function getThumb(p){
+  if(p.media$thumbnail) return p.media$thumbnail.url;
+  const m = (p.content && p.content.$t) ? p.content.$t.match(/<img[^>]+src="([^">]+)"/i) : null;
+  return m ? m[1] : '';
+}
+function getCategories(p){ return p.category ? p.category.map(c=>c.term) : [] }
+function getPublished(p){ return new Date((p.published && p.published.$t) || (p.updated && p.updated.$t) || Date.now()) }
+
+/* === Render featured post === */
+function renderFeatured(){
+  const post = allPosts[0];
+  if(!post) return;
+  const img = getThumb(post);
+  const html = `
+    ${img ? `<img class="media" src="${img}" alt="${getTitle(post)}">` : ''}
+    <div class="body">
+      <h2>${getTitle(post)}</h2>
+      <p>${getSnippet(post,300)}</p>
+      <a class="btn" href="${getLink(post)}" target="_blank">Read full post</a>
+    </div>`;
+  const box = q('#featured');
+  box.innerHTML = html;
+  box.style.display = 'block';
+}
+
+/* === Categories === */
+function populateCategories(){
+  const set = new Set();
+  allPosts.forEach(p => getCategories(p).forEach(c=>set.add(c)));
+  const sel = q('#categoryFilter');
+  set.forEach(cat => {
+    const opt = document.createElement('option'); opt.value = cat; opt.textContent = cat;
+    sel.appendChild(opt);
+  });
+}
+
+/* === Filter / search / sort === */
+bind('#searchBox','input', ()=> { page=1; applyFilters(); });
+bind('#categoryFilter','change', ()=> { page=1; applyFilters(); });
+bind('#sortBy','change', ()=> { page=1; applyFilters(); });
+
+function applyFilters(){
+  const qText = q('#searchBox').value.trim().toLowerCase();
+  const cat = q('#categoryFilter').value;
+  const sort = q('#sortBy').value;
+
+  filtered = allPosts.filter(p=>{
+    const title = getTitle(p).toLowerCase();
+    const body = getContentText(p).toLowerCase();
+    const matchesText = (!qText) || title.includes(qText) || body.includes(qText);
+    const matchesCat = (cat === 'all') || getCategories(p).includes(cat);
+    return matchesText && matchesCat;
+  });
+
+  if(sort === 'newest') filtered.sort((a,b)=> getPublished(b)-getPublished(a));
+  else filtered.sort((a,b)=> getPublished(a)-getPublished(b));
+
+  renderPage();
+  renderPagination();
+}
+
+/* === Render page of posts === */
+function renderPage(){
+  const grid = q('#postsGrid');
+  grid.innerHTML = '';
+  const start = (page-1)*POSTS_PER_PAGE;
+  const pageItems = filtered.slice(start, start + POSTS_PER_PAGE);
+  if(pageItems.length === 0){
+    grid.innerHTML = '<p class="muted">No posts match your search.</p>';
+    return;
+  }
+  pageItems.forEach(p=>{
+    const thumb = getThumb(p);
+    const html = `
+      <article class="card">
+        ${thumb ? `<img class="thumb" src="${thumb}" alt="${getTitle(p)}">` : ''}
+        <div class="content">
+          <h3>${getTitle(p)}</h3>
+          <p>${getSnippet(p,140)}</p>
+          <div class="meta">
+            <small class="muted">${getPublished(p).toLocaleDateString()}</small>
+            <a class="btn" href="${getLink(p)}" target="_blank">Read</a>
+          </div>
+        </div>
+      </article>`;
+    grid.insertAdjacentHTML('beforeend', html);
+  });
+}
+
+/* === Pagination UI === */
+function renderPagination(){
+  const total = Math.ceil(filtered.length / POSTS_PER_PAGE);
+  const wrap = q('#pagination');
+  wrap.innerHTML = '';
+  if(total <= 1) return;
+  for(let i=1;i<=total;i++){
+    const b = document.createElement('button');
+    b.className = 'page-btn' + (i===page ? ' active' : '');
+    b.textContent = i;
+    b.onclick = () => { page=i; renderPage(); renderPagination(); window.scrollTo({top:120,behavior:'smooth'}); }
+    wrap.appendChild(b);
+  }
+}
+
+/* === Keyboard shortcuts for pagination === */
+document.addEventListener('keydown', e=>{
+  if(e.key === 'ArrowRight') { if(page < Math.ceil(filtered.length/POSTS_PER_PAGE)) { page++; renderPage(); renderPagination(); } }
+  if(e.key === 'ArrowLeft') { if(page>1){ page--; renderPage(); renderPagination(); } }
+});
+
+/* === Theme toggle === */
+document.getElementById('themeToggle').addEventListener('click', ()=> document.body.classList.toggle('dark'));
+
+/* === Footer year === */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* === Hamburger menu toggle === */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+  // Optional: animate hamburger into "X"
+  hamburger.classList.toggle('open');
+});
 
 </body>
 </html>
