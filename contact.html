@@ -12,17 +12,40 @@
   </style>
 </head>
 <body>
- <!-- Corner Image -->
+
+  <!-- Corner Image: always visible -->
   <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
 
-  <!-- Contact Page -->
-  <main class="contact-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Abid Khan's E-Learning Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+          <!-- Link to Contact Section -->
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Profile" class="profile-img">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard cards here -->
+  <h1>Dashboard - Trainers & Students</h1>
+  <div id="cardContainer"></div>
+
+  <!-- Contact Section -->
+  <main id="contact" class="contact-page">
     <div class="contact-card">
       <h2>Contact Us</h2>
-
       <p>Email: <a href="mailto:info@onlineitacademy.example">info@onlineitacademy.example</a></p>
       <p>WhatsApp: <a href="https://wa.me/00000000000">Message us</a></p>
-
       <form onsubmit="alert('This is a demo form — connect your backend to send messages.'); return false;">
         <label>Name<br><input required name="name" placeholder="Your Name"></label>
         <label>Email<br><input type="email" required name="email" placeholder="Your Email"></label>
@@ -33,6 +56,8 @@
   </main>
 
 </body>
+
+
 </html>
   
 
