@@ -63,39 +63,119 @@
 
   <!-- Blogger JSONP handler -->
   <script>
-    function handleFeed(data) {
-      const posts = data.feed.entry || [];
-      const grid = document.getElementById("postsGrid");
-      grid.innerHTML = "";
+    let allPosts = [];
+    let filtered = [];
+    let page = 1;
+    const POSTS_PER_PAGE = 6;
 
-      if (posts.length === 0) {
-        grid.innerHTML = "<p class='muted'>No posts found.</p>";
+    function handleFeed(data) {
+      allPosts = data.feed.entry || [];
+      if (allPosts.length === 0) {
+        document.getElementById("postsGrid").innerHTML = "<p class='muted'>No posts found.</p>";
         return;
       }
-
-      posts.forEach(post => {
-        const title = post.title.$t;
-        const link = post.link.find(l => l.rel === "alternate").href;
-        const published = new Date(post.published.$t).toLocaleDateString();
-        const summary = post.summary ? post.summary.$t : "";
-        const thumb = post.media$thumbnail ? post.media$thumbnail.url : "";
-
-        const html = `
-          <article class="card">
-            ${thumb ? `<img class="thumb" src="${thumb}" alt="${title}">` : ""}
-            <div class="content">
-              <h3><a href="${link}" target="_blank">${title}</a></h3>
-              <small class="muted">${published}</small>
-              <p>${summary}</p>
-            </div>
-          </article>
-        `;
-        grid.insertAdjacentHTML("beforeend", html);
-      });
-
-      // Update year in footer
+      populateCategories();
+      renderFeatured();
+      applyFilters();
       document.getElementById('year').textContent = new Date().getFullYear();
     }
+
+    function getTitle(p){ return p.title.$t || 'Untitled'; }
+    function getLink(p){ return (p.link.find(l=>l.rel==='alternate')||{}).href || '#'; }
+    function getContentText(p){ return (p.summary && p.summary.$t) ? p.summary.$t : ''; }
+    function getThumb(p){ return p.media$thumbnail ? p.media$thumbnail.url : ''; }
+    function getCategories(p){ return p.category ? p.category.map(c=>c.term) : []; }
+    function getPublished(p){ return new Date(p.published.$t); }
+
+    function renderFeatured(){
+      const post = allPosts[0];
+      if(!post) return;
+      const html = `
+        ${getThumb(post) ? `<img class="media" src="${getThumb(post)}" alt="${getTitle(post)}">` : ''}
+        <div class="body">
+          <h2>${getTitle(post)}</h2>
+          <p>${getContentText(post).slice(0,200)}...</p>
+          <a class="btn" href="${getLink(post)}" target="_blank">Read full post</a>
+        </div>`;
+      const box = document.getElementById('featured');
+      box.innerHTML = html;
+      box.style.display = 'block';
+    }
+
+    function populateCategories(){
+      const set = new Set();
+      allPosts.forEach(p => getCategories(p).forEach(c=>set.add(c)));
+      const sel = document.getElementById('categoryFilter');
+      set.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        sel.appendChild(opt);
+      });
+    }
+
+    function applyFilters(){
+      const qText = document.getElementById('searchBox').value.trim().toLowerCase();
+      const cat = document.getElementById('categoryFilter').value;
+      const sort = document.getElementById('sortBy').value;
+
+      filtered = allPosts.filter(p=>{
+        const title = getTitle(p).toLowerCase();
+        const body = getContentText(p).toLowerCase();
+        const matchesText = (!qText) || title.includes(qText) || body.includes(qText);
+        const matchesCat = (cat === 'all') || getCategories(p).includes(cat);
+        return matchesText && matchesCat;
+      });
+
+      if(sort === 'newest') filtered.sort((a,b)=> getPublished(b)-getPublished(a));
+      else filtered.sort((a,b)=> getPublished(a)-getPublished(b));
+
+      renderPage();
+      renderPagination();
+    }
+
+    function renderPage(){
+      const grid = document.getElementById('postsGrid');
+      grid.innerHTML = '';
+      const start = (page-1)*POSTS_PER_PAGE;
+      const pageItems = filtered.slice(start, start + POSTS_PER_PAGE);
+      if(pageItems.length === 0){
+        grid.innerHTML = '<p class="muted">No posts match your search.</p>';
+        return;
+      }
+      pageItems.forEach(p=>{
+        const html = `
+          <article class="card">
+            ${getThumb(p) ? `<img class="thumb" src="${getThumb(p)}" alt="${getTitle(p)}">` : ''}
+            <div class="content">
+              <h3>${getTitle(p)}</h3>
+              <small class="muted">${getPublished(p).toLocaleDateString()}</small>
+              <p>${getContentText(p).slice(0,140)}...</p>
+              <a class="btn" href="${getLink(p)}" target="_blank">Read</a>
+            </div>
+          </article>`;
+        grid.insertAdjacentHTML('beforeend', html);
+      });
+    }
+
+    function renderPagination(){
+      const total = Math.ceil(filtered.length / POSTS_PER_PAGE);
+      const wrap = document.getElementById('pagination');
+      wrap.innerHTML = '';
+      if(total <= 1) return;
+      for(let i=1;i<=total;i++){
+        const b = document.createElement('button');
+        b.className = 'page-btn' + (i===page ? ' active' : '');
+        b.textContent = i;
+        b.onclick = () => { page=i; renderPage(); renderPagination(); window.scrollTo({top:120,behavior:'smooth'}); }
+        wrap.appendChild(b);
+      }
+    }
+
+    // Bind controls
+    document.getElementById('searchBox').addEventListener('input', ()=> { page=1; applyFilters(); });
+    document.getElementById('categoryFilter').addEventListener('change', ()=> { page=1; applyFilters(); });
+    document.getElementById('sortBy').addEventListener('change', ()=> { page=1; applyFilters(); });
 
     // Hamburger toggle
     const hamburger = document.getElementById('hamburger');
