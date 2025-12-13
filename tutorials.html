@@ -224,7 +224,75 @@ select {
   text-decoration: none;
   transition: 0.3s;
 }
+.site-footer {
+  background: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+  font-family: 'Inter', sans-serif;
+}
 
+.footer-container h3 {
+  color: #111827;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.footer-whatsapp {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.footer-whatsapp input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  width: 220px;
+  font-size: 1rem;
+}
+
+.footer-whatsapp button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #0b63d3;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.footer-whatsapp button:hover {
+  background: #094ca2;
+}
+
+.footer-text {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-top: 16px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .footer-whatsapp {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-whatsapp input {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .footer-whatsapp button {
+    width: 100%;
+    max-width: 250px;
+  }
+}
 .btn:hover {
   background: var(--accent-dark);
 }
@@ -320,28 +388,56 @@ select {
     <!-- Cards injected by tutorials.js -->
   </div>
 </div>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <h3>Get in Touch on WhatsApp</h3>
 
+    <!-- WhatsApp Alias Input -->
+    <div class="footer-whatsapp">
+      <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)">
+      <button id="footerWhatsappBtn">Message on WhatsApp</button>
+    </div>
+
+    <p class="footer-text">
+      © 2025 Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+    </p>
+  </div>
+</footer>
 <script src="tutorials.js" defer></script>
 <script>
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
+  // ---------------- NAVBAR HAMBURGER TOGGLE ----------------
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-});
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
 
-// WhatsApp alias system
-const numberMap = {
-  "1111-1111111": "923497469638",
-  "2222-2222222": "923497469638"
-};
+  // ---------------- WHATSAPP ALIAS SYSTEM ----------------
+  const numberMap = {
+    "1111-1111111": "923497469638",
+    "2222-2222222": "923497469638"
+  };
 
-function openWhatsApp() {
-  const input = document.getElementById('numberInput').value.trim();
-  const actualNumber = numberMap[input] || input; // fallback if number not mapped
-  const url = `https://wa.me/${actualNumber.replace(/[^0-9]/g,'')}`;
-  window.open(url, "_blank");
-}
+  // Function for main content input
+  function openWhatsApp() {
+    const input = document.getElementById('numberInput').value.trim();
+    const actualNumber = numberMap[input] || input; // fallback if number not mapped
+    const url = `https://wa.me/${actualNumber.replace(/[^0-9]/g,'')}`;
+    window.open(url, "_blank");
+  }
+
+  // Footer WhatsApp button
+  const footerBtn = document.getElementById('footerWhatsappBtn');
+  if (footerBtn) {
+    footerBtn.addEventListener('click', () => {
+      const input = document.getElementById('footerNumberInput').value.trim();
+      const actualNumber = numberMap[input] || input;
+      const url = `https://wa.me/${actualNumber.replace(/[^0-9]/g,'')}`;
+      window.open(url, "_blank");
+    });
+  }
 </script>
 
 </body>
