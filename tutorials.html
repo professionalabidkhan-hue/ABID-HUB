@@ -8,16 +8,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* Example with AbidKhan prefix */
+/* Glossy Navbar */
+.abidkhan-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.65)
+    ),
+    url("https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png") center/cover no-repeat;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  border-bottom: 2px solid rgba(11, 99, 211, 0.4);
+}
+
 .abidkhan-nav-container {
-  max-width: var(--max-width);
+  max-width: 1200px;
   margin: auto;
   padding: 0 20px;
-  height: 64px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.abidkhan-nav-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0b63d3;
+  text-decoration: none;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.abidkhan-nav-links a {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.abidkhan-nav-links a:hover {
+  color: #0b63d3;
+  text-shadow: 0 1px 4px rgba(11,99,211,0.4);
+}
+
 
 .abidkhan-card {
   background: var(--card);
@@ -36,10 +71,11 @@
 </head>
 
 <body>
-<nav>
+<nav class="abidkhan-navbar">
   <div class="abidkhan-nav-container">
     <div class="abidkhan-nav-left">
-      <img src="..." alt="Abid Khan" class="abidkhan-corner-img">
+      <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png"
+           alt="Abid Khan" class="abidkhan-corner-img">
       <a href="index.html" class="abidkhan-nav-brand">Abid Khan's E-Learning Hub</a>
     </div>
 
@@ -53,6 +89,7 @@
     </div>
   </div>
 </nav>
+
 
 <div class="abidkhan-container">
   <h1>Tutorials</h1>
