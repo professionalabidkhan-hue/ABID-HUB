@@ -266,6 +266,44 @@
 </div>
 
 </div>
+<footer style="background:#ffffff; padding:30px 20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
+  <h3 style="margin-bottom:12px; color:#111827;">Get in Touch on WhatsApp</h3>
+
+  <!-- WhatsApp Alias Input -->
+  <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)" 
+         style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; width:220px; margin-bottom:12px;">
+<button id="footerWhatsappBtn" style="padding:10px 20px; border-radius:999px; background:#0b63d3; color:#fff; font-weight:600; border:none; cursor:pointer; transition:0.3s;">
+    Message on WhatsApp
+</button>
+  <!-- Footer text with alias numbers -->
+  <p style="margin-top:16px; color:#6b7280;">
+    © 2025 Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+  </p>
+</footer>
+<script>
+  const footerNumberMap = {
+    "1111-1111111": "923497469638",
+    "2222-2222222": "923497469638"
+  };
+
+  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+    const input = document.getElementById('footerNumberInput').value.trim();
+    const actualNumber = footerNumberMap[input] || input;
+
+    const cleaned = actualNumber.replace(/[^0-9]/g, '');
+
+    // ✅ Pre-filled message with your name
+    const message = encodeURIComponent("Abid Khan");
+
+    // ✅ Open API WhatsApp page instead of wa.me
+    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+
+    window.open(url, "_blank");
+  });
+</script>
+
+
+
 
 
   <!-- Scripts: place before closing body -->
