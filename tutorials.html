@@ -158,7 +158,83 @@
       <p>Blogging, copywriting, and storytelling to engage audiences.</p>
       <a class="abidkhan-btn" href="#">Start learning</a>
     </div>
-
     <!-- Academic Subjects -->
     <div class="abidkhan-card">
-      <img
+      <img src="https://images.unsplash.com/photo-1509228468518-9f2d3f0b6fbb?q=80&w=800&auto=format&fit=crop" alt="Math">
+      <h3>Mathematics</h3>
+      <p>Algebra, geometry, calculus, and problem-solving strategies for O-Level and A-Level students.</p>
+      <a class="abidkhan-btn" href="#">Start learning</a>
+    </div>
+
+    <div class="abidkhan-card">
+      <img src="https://images.unsplash.com/photo-1581090700227-4c4f7e3b7f3d?q=80&w=800&auto=format&fit=crop" alt="Chemistry">
+      <h3>Chemistry</h3>
+      <p>Explore organic, inorganic, and physical chemistry with lab concepts and exam preparation.</p>
+      <a class="abidkhan-btn" href="#">Start learning</a>
+    </div>
+
+    <div class="abidkhan-card">
+      <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=800&auto=format&fit=crop" alt="Biology">
+      <h3>Biology</h3>
+      <p>Cell biology, genetics, ecology, and human anatomy explained with diagrams and practice questions.</p>
+      <a class="abidkhan-btn" href="#">Start learning</a>
+    </div>
+
+    <div class="abidkhan-card">
+      <img src="https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?q=80&w=800&auto=format&fit=crop" alt="Physics">
+      <h3>Physics</h3>
+      <p>Mechanics, electricity, waves, and modern physics concepts with real-world applications.</p>
+      <a class="abidkhan-btn" href="#">Start learning</a>
+    </div>
+
+    <div class="abidkhan-card">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Computer Science">
+      <h3>Computer Science</h3>
+      <p>Programming, algorithms, databases, and theory of computation for academic and practical learning.</p>
+      <a class="abidkhan-btn" href="#">Start learning</a>
+    </div>
+
+  </div> <!-- end of abidkhan-grid -->
+</div> <!-- end of abidkhan-container -->
+
+
+ <!-- Footer text with alias numbers -->
+  <p style="margin-top:16px; color:#6b7280;">
+    © 2025 Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+  </p>
+</footer>
+<script>
+  const footerNumberMap = {
+    "1111-1111111": "923497469638",
+    "2222-2222222": "923497469638"
+  };
+
+  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+    const input = document.getElementById('footerNumberInput').value.trim();
+    const actualNumber = footerNumberMap[input] || input;
+
+    const cleaned = actualNumber.replace(/[^0-9]/g, '');
+
+    // ✅ Pre-filled message with your name
+    const message = encodeURIComponent("Abid Khan");
+
+    // ✅ Open API WhatsApp page instead of wa.me
+    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+
+    window.open(url, "_blank");
+  });
+</script>
+
+
+<script>
+  // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>
+</body>
+</html>
+
+
