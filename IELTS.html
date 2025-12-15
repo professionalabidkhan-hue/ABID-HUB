@@ -127,32 +127,77 @@ body {
 
 /* ================================
    Responsive Navbar
-================================== */
+/* Navbar container */
+nav {
+  background: linear-gradient(90deg, #7c3aed, #22d3ee);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.nav-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+/* Links */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #f9fafb;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 28px;
+  width: 26px;
   height: 20px;
-  background: none;
-  border: none;
   cursor: pointer;
-  padding: 0;
 }
-.hamburger .bar {
+
+.hamburger div {
   height: 3px;
   width: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  background: #fff;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
+
+/* Mobile styles */
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links {
     position: absolute;
     top: 64px;
     right: -240px;
-    background: var(--bg);
+    background: #0f172a;
     flex-direction: column;
     align-items: flex-start;
     width: 220px;
@@ -164,13 +209,18 @@ body {
   .nav-links.show { right: 0; }
   .nav-links a { width: 100%; padding: 10px; }
 }
-.hamburger.open .bar:nth-child(1) {
+
+/* Hamburger animation when open */
+.hamburger.open div:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
-.hamburger.open .bar:nth-child(2) { opacity: 0; }
-.hamburger.open .bar:nth-child(3) {
+.hamburger.open div:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open div:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
+
 
 /* ================================
    Responsive Layout Adjustments
@@ -194,25 +244,21 @@ body {
 <body>
   <!-- Header with responsive navbar -->
   <header class="site-header">
-    <nav class="nav">
-      <a class="brand" href="#">IELTS by <span class="brand-accent">ABIDKHAN</span></a>
-      
-      <!-- Hamburger icon -->
-      <button id="hamburger" class="hamburger" aria-label="Toggle menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <!-- Navigation links -->
-      <ul id="navLinks" class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#unique">Unique Content</a></li>
-        <li><a href="#sections">Skills</a></li>
-        <li><a href="#resources">Resources</a></li>
-        <li><a href="#footer">Contact</a></li>
-      </ul>
-    </nav>
+<!-- Navbar -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">Abid Khan's E-Learning Hub</a>
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
     <div class="signature-wrap">
       <div id="signature" class="signature">ABIDKHAN</div>
     </div>
