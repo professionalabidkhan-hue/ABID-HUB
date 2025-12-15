@@ -69,25 +69,34 @@ nav {
   /* Hamburger */
   .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
   .hamburger div { width:25px; height:3px; background:#fff; transition:all 0.3s; }
-
-  @media(max-width:768px){
-    .nav-links {
-      position:absolute;
-      top:60px;
-      left:0;
-      right:0;
-      flex-direction:column;
-      align-items:center;
-      gap:15px;
-      padding:15px 0;
-      background: rgba(0,0,0,0.85);
-      max-height:0;
-      overflow:hidden;
-      transition:max-height 0.3s ease-in-out;
-    }
-    .nav-links.show { max-height:300px; }
-    .hamburger { display:flex; }
+   NAVBAR MOBILE / TABLET
+------------------------------ */
+@media(max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    background: rgba(0,0,0,0.85);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    z-index: 998;
   }
+
+  /* Show menu when hamburger clicked */
+  .nav-links.show {
+    max-height: 500px;  /* enough for all links */
+  }
+
+  .hamburger { display: flex; }
+}
+ 
+  
 
   /* ------------------------------
      MAIN CONTENT
@@ -141,6 +150,22 @@ nav {
 @media (max-width: 768px) {
   .course-list {
     grid-template-columns: 1fr; /* one card per row */
+  }
+}
+      CARDS BUTTON FIX
+------------------------------ */
+@media(max-width: 768px) {
+  .course {
+    height: auto;           /* allow content to expand */
+    padding: 15px;
+  }
+  .course img {
+    height: 150px;          /* maintain uniform image height */
+  }
+  .btn {
+    display: inline-block;  /* ensure button is visible */
+    width: 90%;             /* optional: make button wider on mobile */
+    margin: 10px auto 0;
   }
 }
   /* ------------------------------
@@ -332,58 +357,20 @@ footer {
   </p>
 </footer>
 
+
+</body>
 <script>
-  // WhatsApp alias mapping
-  const footerNumberMap = {
-    "1111-1111111": "923497469638",
-    "2222-2222222": "923497469638"
-  };
-
-  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
-    const input = document.getElementById('footerNumberInput').value.trim();
-    const actualNumber = footerNumberMap[input] || input;
-
-    const cleaned = actualNumber.replace(/[^0-9]/g, '');
-    const message = encodeURIComponent("Abid Khan");
-
-    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
-    window.open(url, "_blank");
-  });
-
-  // Highlight active nav link
-  const current = window.location.pathname.split("/").pop();
-  document.querySelectorAll(".abid-nav a").forEach(link => {
-    if (link.getAttribute("href") === current) {
-      link.classList.add("active");
-    }
-    link.addEventListener("click", e => {
-      document.querySelectorAll(".abid-nav a").forEach(a => a.classList.remove("active"));
-      e.currentTarget.classList.add("active");
-    });
-  });
-
-  // Footer year update
-  document.getElementById("year").textContent = new Date().getFullYear();
-
   // Hamburger toggle
   const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("navLinks");
+  const navLinks = document.getElementById("nav-links"); // ✅ matches HTML
+
   if (hamburger && navLinks) {
     hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-      hamburger.classList.toggle("open");
-    });
-  }
-
-  // Dark mode toggle
-  const themeToggle = document.getElementById("themeToggle");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
+      navLinks.classList.toggle("show"); // toggles visibility
+      hamburger.classList.toggle("open"); // optional: for animation
     });
   }
 </script>
-</body>
 
 
 </html>
