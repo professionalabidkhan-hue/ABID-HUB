@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses - Abid Khan's E-Learning Hub</title> 
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png">
+<!-- keep your CSS exactly as you wrote -->
+<style>
+  /* ------------------------------
+       GLOBAL STYLES
+    ------------------------------ */
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body {
+      background: url("https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png") center/cover no-repeat fixed;
+      color: #fff;
+      min-height:100vh;
+      position: relative;
+    }
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      z-index: -1;
+    }
+
+    /* ------------------------------
+       CORNER LOGO
+    ------------------------------ */
+    .corner-img {
+      position: fixed;
+      top:20px;
+      left:20px;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      border:2px solid #4fc3f7;
+      box-shadow:0 0 12px rgba(79,195,247,0.8);
+      z-index: 1000;
+    }
+
+    /* ------------------------------
+       NAVBAR
+    ------------------------------ */
+    nav {
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top:0;
+      z-index: 999;
+      padding: 0 20px;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      height:60px;
+    }
+    .nav-brand { font-weight:700; font-size:1.4rem; color:#4fc3f7; text-shadow:0 0 8px rgba(79,195,247,0.8);}
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:#fff; font-weight:500; transition:0.3s; }
+    .nav-links a:hover { color:#4fc3f7; text-shadow:0 0 6px rgba(79,195,247,0.8); }
+
+    /* Hamburger */
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .hamburger div { width:25px; height:3px; background:#fff; transition:all 0.3s; }
+
+    /* NAVBAR MOBILE / TABLET ------------------------------ */
+    @media(max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+        background: rgba(0,0,0,0.85);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        z-index: 998;
+      }
+      .nav-links.show {
+        max-height: 500px;
+      }
+      .hamburger { display: flex; }
+    }
+
+    /* ------------------------------
+       MAIN CONTENT
+    ------------------------------ */
+    main { max-width:1200px; margin:80px auto 50px auto; padding:20px; text-align:center; }
+    main h2 { font-size:2rem; margin-bottom:20px; text-shadow:0 0 8px rgba(79,195,247,0.8);}
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+   @media(max-width:500px){
+      main { margin-top:100px; padding:10px; }
+    }
+   /* ------------------------------
+       FOOTER
+    ------------------------------ */
+    footer {
+      text-align:center;
+      padding:20px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      color:#fff;
+      border-top:1px solid rgba(255,255,255,0.2);
+    }
+  <body>
+<img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID KHAN.png" alt="Abid Khan" class="corner-img">
+
+<!-- Navbar -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="nav-brand">Abid Khan's E-Learning Hub</a>
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+  
+<!-- Footer -->
+<footer style="background:#ffffff; padding:30px 20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
+  <h3 style="margin-bottom:12px; color:#111827;">Get in Touch on WhatsApp</h3>
+
+  <!-- WhatsApp Alias Input -->
+  <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)" 
+         style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; width:220px; margin-bottom:12px;">
+  
+  <button id="footerWhatsappBtn" style="padding:10px 20px; border-radius:999px; background:#0b63d3; color:#fff; font-weight:600; border:none; cursor:pointer; transition:0.3s;">
+    Message on WhatsApp
+  </button>
+
+  <!-- Footer text with alias numbers -->
+  <p style="margin-top:16px; color:#6b7280;">
+    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 
+  </p>
+</footer>
+</body>
+<script>
+  // Hamburger toggle
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links"); // ✅ matches HTML
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show"); // toggles visibility
+      hamburger.classList.toggle("open"); // optional: for animation
+    });
+  }
+</script>
+  </html>
+  
