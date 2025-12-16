@@ -355,62 +355,54 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <h3 style="margin-bottom:12px; color:#111827;">Get in touch on WhatsApp</h3>
-    <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 03xx-xxxxxxx)"/>
-    <button id="footerWhatsappBtn" class="btn">Message on WhatsApp</button>
-    <p style="margin-top:12px;">
-      © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp
-    </p>
-  </footer>
+<footer style="background:#ffffff; padding:30px 20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
+  <h3 style="margin-bottom:12px; color:#111827;">Get in Touch on WhatsApp</h3>
 
-  <script>
-    // Navbar hamburger toggle
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-    if (hamburger && navLinks) {
-      hamburger.addEventListener("click", () => {
-        const expanded = hamburger.getAttribute("aria-expanded") === "true";
-        hamburger.setAttribute("aria-expanded", String(!expanded));
-        hamburger.classList.toggle("open");
-        navLinks.classList.toggle("show");
-      });
-    }
+  <!-- WhatsApp Alias Input -->
+  <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)" 
+         style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; width:220px; margin-bottom:12px;">
+  <button id="footerWhatsappBtn" style="padding:10px 20px; border-radius:999px; background:#0b63d3; color:#fff; font-weight:600; border:none; cursor:pointer; transition:0.3s;">
+    Message on WhatsApp
+  </button>
 
-    // Footer Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+  <!-- Footer text with alias numbers -->
+  <p style="margin-top:16px; color:#6b7280;">
+    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+  </p>
+</footer>
+<script>
+  // --- Branding Lock ---
+  const siteTitle = document.querySelector('.nav-title')?.textContent.trim();
+  const siteLogo = document.querySelector('.nav-logo')?.getAttribute('src');
 
-    // Smooth scroll to enroll
-    function scrollToEnroll(){
-      const el = document.getElementById("enroll");
-      if (!el) return;
-      el.scrollIntoView({behavior:"smooth", block:"center"});
-    }
+  const allowedTitle = "Abid Khan's E-Learning Hub";
+  const allowedLogo = "https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png";
 
-    // WhatsApp launcher
-    document.getElementById("footerWhatsappBtn").addEventListener("click", () => {
-      const input = document.getElementById("footerNumberInput");
-      const raw = (input.value || "").trim();
+  if (siteTitle === allowedTitle && siteLogo === allowedLogo) {
+    // WhatsApp button functionality
+    const footerNumberMap = {
+      "1111-1111111": "923497469638",
+      "2222-2222222": "923497469638"
+    };
 
-      if (!raw){
-        alert("Please enter your WhatsApp number.");
-        return;
-      }
-
-      // Basic normalization for PK numbers: remove spaces/dashes
-      let num = raw.replace(/[\s-]/g, "");
-      // If number starts with 0, convert to +92 format; else assume already international
-      if (num.startsWith("0")) {
-        num = "+92" + num.slice(1);
-      } else if (!num.startsWith("+")) {
-        // Try to prepend +92 if user typed local without leading 0
-        num = "+92" + num;
-      }
-
-      const message = encodeURIComponent("Hello, I’m interested in the TOEFL course.");
-      const url = `https://wa.me/${num.replace(/\+/g,"")}?text=${message}`;
+    document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+      const input = document.getElementById('footerNumberInput').value.trim();
+      const actualNumber = footerNumberMap[input] || input;
+      const cleaned = actualNumber.replace(/[^0-9]/g, '');
+      // ✅ Add USA flag emoji 🇺🇸 in the message
+      const message = encodeURIComponent("🇺🇸 Assalam O Alaikum, I am reaching out to express my interest in the TOEFL course offered by Abid Khan's E-Learning Hub.");
+      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
       window.open(url, "_blank");
     });
+
+    // Footer year update
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+  } else {
+    console.error("⚠️ Script blocked: Unauthorized site name or logo detected.");
+    alert("This script is locked to Abid Khan's E-Learning Hub and cannot run elsewhere.");
+  }
+
   </script>
 </body>
 </html>
