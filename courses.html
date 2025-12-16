@@ -478,7 +478,7 @@
     const input = document.getElementById('footerNumberInput').value.trim();
     const actualNumber = footerNumberMap[input] || input;
     const cleaned = actualNumber.replace(/[^0-9]/g, '');
-    const message = encodeURIComponent("Abid Khan");
+    const message = encodeURIComponent("ABID KHAN");
     const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
     window.open(url, "_blank");
   });
