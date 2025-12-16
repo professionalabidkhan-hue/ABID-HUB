@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python for Beginners - Abid Khan's E-Learning Hub</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Corner Logo -->
+  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">Abid Khan's E-Learning Hub</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="python.html">Python</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h2>Python for Beginners</h2>
+    <img src="images/python-course.jpg" alt="Python Course">
+  </header>
+
+  <!-- Main -->
+  <main>
+    <h1>Master Python Fundamentals, Scripting & Mini Projects</h1>
+    <p>Kickstart your coding journey with Python. Learn syntax, problem-solving, and build small projects to strengthen your skills. Classes are conducted online via Zoom, Google Classroom, or Microsoft Teams.</p>
+
+    <div class="grid">
+      <div class="card">
+        <img src="images/python-basics.jpg" alt="Python Basics">
+        <h3>Python Basics</h3>
+        <p>Understand variables, data types, and control structures.</p>
+      </div>
+      <div class="card">
+        <img src="images/python-scripting.jpg" alt="Python Scripting">
+        <h3>Scripting Essentials</h3>
+        <p>Automate tasks and write reusable scripts.</p>
+      </div>
+      <div class="card">
+        <img src="images/python-projects.jpg" alt="Mini Projects">
+        <h3>Mini Projects</h3>
+        <p>Apply your skills to build calculators, games, and more.</p>
+      </div>
+    </div>
+
+    <section class="fees">
+      <h2>Fee Schedule</h2>
+      <table>
+        <tr>
+          <th>Plan</th><th>Duration</th><th>Fee</th><th>Platform</th>
+        </tr>
+        <tr><td>Beginner</td><td>4 Weeks</td><td>$60</td><td>Zoom</td></tr>
+        <tr><td>Intermediate</td><td>8 Weeks</td><td>$100</td><td>Google Classroom</td></tr>
+        <tr><td>Advanced</td><td>12 Weeks</td><td>$150</td><td>Microsoft Teams</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Get in Touch on WhatsApp</h3>
+    <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)">
+    <button id="footerWhatsappBtn">Message on WhatsApp</button>
+    <p>© <span id="year"></span> Abid Khan's E-Learning Hub</p>
+  </footer>
+
+  <script>
+    // WhatsApp alias mapping
+    const footerNumberMap = {
+      "1111-1111111": "923497469638",
+      "2222-2222222": "923497469638"
+    };
+
+    document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+      const input = document.getElementById('footerNumberInput').value.trim();
+      const actualNumber = footerNumberMap[input] || input;
+      const cleaned = actualNumber.replace(/[^0-9]/g, '');
+      const message = encodeURIComponent("Hello, I am interested in the Python for Beginners course.");
+      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+      window.open(url, "_blank");
+    });
+
+    // Footer year update
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
