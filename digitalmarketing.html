@@ -117,7 +117,7 @@
     const input = document.getElementById('footerNumberInput').value.trim();
     const actualNumber = footerNumberMap[input] || input;
     const cleaned = actualNumber.replace(/[^0-9]/g, '');
-    const message = encodeURIComponent("Hello, I’m interested in your courses.");
+    const message = encodeURIComponent("Assalam O Alaikum, I am reaching out to express my interest in the Digital Marketing course offered by Abid Khan's E-Learning Hub.");
     const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
     window.open(url, "_blank");
   });
