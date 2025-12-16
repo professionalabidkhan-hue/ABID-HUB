@@ -226,7 +226,7 @@
 
   <!-- Footer text with alias numbers -->
   <p style="margin-top:16px; color:#6b7280;">
-    © 2025 Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
   </p>
 </footer>
 
@@ -255,9 +255,12 @@
     window.open(url, "_blank");
   });
 
-  // Footer year update
-  document.getElementById("year")?.textContent = new Date().getFullYear();
+  // ✅ Auto-update footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
+
+
 
 </body>
 </html>
