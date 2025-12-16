@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abid Khan's E-Learning Hub</title>
     <meta name="google-site-verification" content="7ej41YNbWlnZTVXCMaOWZpUYeA81XV5BXlbyo_9GkZs">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     /* Reset & Base */
 * {
@@ -48,55 +50,6 @@ ul {
   top: 0;
   z-index: 1000;
 }
-.abid-nav-list {
-  display: flex;
-  gap: 20px;
-}
-.abid-nav a {
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
-.abid-nav a:hover,
-.abid-nav a.active {
-  background: #0066cc;
-}
-
-/* Mega Menu */
-.dropdown {
-  position: relative;
-}
-.mega-menu-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  color: #333;
-  padding: 20px;
-  width: 600px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.mega-menu:hover .mega-menu-content {
-  display: block;
-}
-.mega-menu-row {
-  display: flex;
-  gap: 20px;
-}
-.mega-menu-col h4 {
-  margin-bottom: 10px;
-  color: #004080;
-}
-.mega-menu-col ul li a {
-  color: #333;
-  display: block;
-  padding: 5px 0;
-}
-.mega-menu-col ul li a:hover {
-  color: #FCFCFC;
-}
 
 /* Buttons */
 .btn {
@@ -119,30 +72,7 @@ ul {
   color: #fff;
 }
 
-/* Hamburger */
-.abid-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-.abid-hamburger span {
-  width: 25px;
-  height: 3px;
-  background: #fff;
-  transition: 0.3s;
-}
-.abid-hamburger.open span:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
-}
-.abid-hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-.abid-hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
-}
+
 
 /* Hero */
 .hero {
@@ -242,7 +172,26 @@ body.dark .card {
 body.dark .footer {
   background: #222;
 }
+    /* Custom Navbar Styling */
+    .navbar {
+      background-color: #f8f9fa; /* light background */
+    }
 
+    /* Highlight Courses tab */
+    .nav-link.courses-btn {
+      font-weight: bold;
+      color: #fff !important;
+      background-color: #0d6efd; /* Bootstrap primary blue */
+      border-radius: 4px;
+      padding: 6px 14px;
+      margin-left: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link.courses-btn:hover {
+      background-color: #084298; /* darker blue on hover */
+      color: #fff !important;
+    }
   </style>
 </head>
 <body>
@@ -251,50 +200,7 @@ body.dark .footer {
 <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID KHAN.png" alt="Abid Khan" class="corner-img">
 
 <header class="abid-header">
-  <nav class="abid-nav" aria-label="Main navigation">
-    <ul class="abid-nav-list">
-      <li><a class="active" href="index.html">🏠 Home</a></li>
-li><a class="active" href="courses.html">📚 Courses</a></li>
-      <!-- Mega Menu -->
-      <li class="dropdown mega-menu">
-        <a href="#">📚 Tutorials</a>
-        <div class="mega-menu-content">
-          <div class="mega-menu-row">
-            <div class="mega-menu-col">
-              <h4>All Courses</h4>
-              <ul>
-                <li><a href="tutorials.html#web-development">Web Development</a></li>
-                <li><a href="tutorials.html#data-science">Data Science</a></li>
-                <li><a href="tutorials.html#cybersecurity">Cybersecurity</a></li>
-                <li><a href="tutorials.html#ai">Artificial Intelligence</a></li>
-                <li><a href="tutorials.html#cloud">Cloud Computing</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-col">
-              <h4>Popular Tutorials</h4>
-              <ul>
-                <li><a href="#">HTML & CSS Basics</a></li>
-                <li><a href="#">Python for Beginners</a></li>
-                <li><a href="#">Ethical Hacking Intro</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-col">
-              <h4>Resources</h4>
-              <ul>
-                <li><a href="#">Cheat Sheets</a></li>
-                <li><a href="#">Video Lessons</a></li>
-                <li><a href="#">Practice Projects</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-
-      <li><a href="blog.html">📰 Blog</a></li>
-      <li><a href="contact.html">✉ Contact</a></li>
-      <li><a href="dashboard.html">📊 Visit</a></li>
-    </ul>
-  </nav>
+<!-- Navbar --> <nav class="navbar navbar-expand-lg"> <div class="container-fluid"> <a class="navbar-brand" href="#">Brand</a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> <div class="collapse navbar-collapse" id="navbarNav"> <ul class="navbar-nav ms-auto"> <!-- Home --> <li class="nav-item"> <a class="nav-link" href="index.html">Home</a> </li> <!-- Courses (highlighted CTA) --> <li class="nav-item"> <a class="nav-link courses-btn" href="courses.html">Courses</a> </li> <!-- Contact --> <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a> </li> </ul> </div> </div> </nav>
 
   <div class="abid-actions">
     <a href="signup.html" class="btn secondary">Sign Up</a>
@@ -484,6 +390,6 @@ li><a class="active" href="courses.html">📚 Courses</a></li>
 
 
 
-
+<!-- Bootstrap JS Bundle --> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
