@@ -114,44 +114,52 @@
       </div>
     </div>
   </div>
+<!-- FOOTER -->
+<footer style="background:#ffffff; padding:30px 20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
+  <h3 style="margin-bottom:12px; color:#111827;">Get in Touch on WhatsApp</h3>
 
-  <footer>
-    © <span id="year"></span> Abid Khan's E-Learning Hub | With the blessings of Allah, striving to be distinguished globally 🌍
-  </footer>
+  <!-- WhatsApp Alias Input -->
+  <input type="text" id="footerNumberInput" placeholder="Enter alias (e.g. 1111-1111111)" 
+         style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; width:220px; margin-bottom:12px;">
+  
+  <button id="footerWhatsappBtn" style="padding:10px 20px; border-radius:999px; background:#0b63d3; color:#fff; font-weight:600; border:none; cursor:pointer; transition:0.3s;">
+    Message on WhatsApp
+  </button>
 
-  <script>
-    // WhatsApp alias mapping
-    const footerNumberMap = {
-      "1111-1111111": "923497469638",
-      "2222-2222222": "923497469638"
-    };
+  <!-- Footer text with alias numbers -->
+  <p style="margin-top:16px; color:#6b7280;">
+    © 2025 Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+  </p>
+</footer>
 
-    // WhatsApp button click
-    document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
-      const name = document.getElementById('footerNameInput').value.trim();
-      const email = document.getElementById('footerEmailInput').value.trim();
-      const messageText = document.getElementById('footerMessageInput').value.trim();
-      const input = document.getElementById('footerNumberInput').value.trim();
+<script>
+  // ✅ All aliases point to your single WhatsApp number
+  const fixedWhatsAppNumber = "923497469638"; // Your actual WhatsApp number
+  const footerNumberMap = {
+    "1111-1111111": fixedWhatsAppNumber,
+    "2222-2222222": fixedWhatsAppNumber
+  };
 
-      const actualNumber = footerNumberMap[input] || input;
-      const cleaned = actualNumber.replace(/[^0-9]/g, '');
+  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+    const input = document.getElementById('footerNumberInput').value.trim();
 
-      if (!cleaned) {
-        alert("Please enter a valid WhatsApp number or alias.");
-        return;
-      }
+    // Always resolve to your fixed number
+    const actualNumber = footerNumberMap[input] || fixedWhatsAppNumber;
 
-      // Build message with blessings
-      const message = encodeURIComponent(
-        `Assalamu Alaikum,\nMy name: ${name}\nEmail: ${email}\nMessage: ${messageText}\n\nWith blessings of Allah,\nAbid Khan`
-      );
+    const cleaned = actualNumber.replace(/[^0-9]/g, '');
 
-      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
-      window.open(url, "_blank");
-    });
+    // ✅ Pre-filled message with your name
+    const message = encodeURIComponent("Assalamu Alaikum, contacting Abid Khan");
 
-    // Footer year update
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    // ✅ Open WhatsApp API link
+    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+
+    window.open(url, "_blank");
+  });
+
+  // Footer year update
+  document.getElementById("year")?.textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
