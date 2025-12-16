@@ -256,48 +256,13 @@
   </nav>
 </header>
 <!-- FOOTER -->
-<footer class="footer">
-  <h3>Get in Touch on WhatsApp</h3>
-
-  <!-- WhatsApp Alias Input -->
-  <input type="text" id="footerNumberInput" placeholder="Enter alias (e.g. 1111-1111111)">
-  
-  <button id="footerWhatsappBtn">
-    Message on WhatsApp
-  </button>
-
-  <!-- Footer text with alias numbers -->
-  <p>
-    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
-  </p>
-</footer>
+<div id="footer-placeholder"></div>
 <script>
-  // ✅ All aliases point to your single WhatsApp number
-  const fixedWhatsAppNumber = "923497469638"; // Your actual WhatsApp number
-  const footerNumberMap = {
-    "1111-1111111": fixedWhatsAppNumber,
-    "2222-2222222": fixedWhatsAppNumber
-  };
-
-  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
-    const input = document.getElementById('footerNumberInput').value.trim();
-
-    // Always resolve to your fixed number
-    const actualNumber = footerNumberMap[input] || fixedWhatsAppNumber;
-
-    const cleaned = actualNumber.replace(/[^0-9]/g, '');
-
-    // ✅ Pre-filled message with your name
-    const message = encodeURIComponent("Assalamu Alaikum, contacting Abid Khan");
-
-    // ✅ Open WhatsApp API link
-    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
-
-    window.open(url, "_blank");
-  });
-
-  // ✅ Auto-update footer year
-  document.getElementById("year").textContent = new Date().getFullYear();
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
 </script>
 
 
