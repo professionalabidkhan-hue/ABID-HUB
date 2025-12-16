@@ -3,1132 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Abid Khan's E-Learning Hub</title>
+  <title>Contact Us | Abid Khan's E-Learning Hub</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-
     body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
       background: url("https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png") center/cover no-repeat fixed;
       color: #fff;
-      min-height: 100vh;
-      scroll-behavior: smooth;
     }
     body::before {
       content:"";
       position:fixed;
       inset:0;
-      background: rgba(0,0,0,0.45);
+      background: rgba(0,0,0,0.55);
       backdrop-filter: blur(6px);
       z-index: -1;
     }
-
-    .abidkhan-corner-img,
-    .abidkhan-profile-img {
-      height: 60px;
-      width: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #0b63d3;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      background: linear-gradient(145deg, #ffffff 0%, #e6e6e6 100%);
-      position: relative;
+    .contact-container {
+      max-width: 800px;
+      margin: 80px auto;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
-    .abidkhan-corner-img::after,
-    .abidkhan-profile-img::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
-      pointer-events: none;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #4fc3f7;
+      text-shadow: 0 0 8px rgba(79,195,247,0.8);
     }
-
-    .corner-img {
-      position: fixed;
-      top:20px;
-      left:20px;
-      width:50px;
-      height:50px;
-      border-radius:50%;
-      border:2px solid #4fc3f7;
-      box-shadow:0 0 12px rgba(79,195,247,0.8);
-      z-index:1000;
-    }
-
-    .abidkhan-navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      padding: 12px 20px;
+    .contact-form {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 15px;
     }
-    .abidkhan-nav-brand {
-      font-size: 1.3rem;
-      font-weight: 700;
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      color: #111;
+    }
+    .contact-form textarea {
+      resize: none;
+    }
+    .contact-form button {
+      background: #0b63d3;
+      color: #fff;
+      font-weight: 600;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contact-form button:hover {
+      background: #4fc3f7;
+      transform: scale(1.05);
+    }
+    .contact-info {
+      margin-top: 30px;
+      text-align: center;
+      color: #e0e0e0;
+    }
+    .contact-info a {
       color: #4fc3f7;
       text-decoration: none;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      font-weight: 600;
     }
-
-    .container {
-      max-width:600px;
-      margin:100px auto 50px auto;
-      padding:20px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,0.2);
-      box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    .qr-code {
+      margin-top: 20px;
     }
-    h1 { text-align:center; margin-bottom:20px; }
-    form { display:flex; flex-direction:column; gap:15px; }
-    input, textarea {
-      padding:10px;
-      border-radius:10px;
-      border:1px solid #ccc;
-      width:100%;
-      font-size:1rem;
-    }
-    button {
-      padding:10px;
-      border:none;
-      border-radius:10px;
-      background:#4fc3f7;
-      color:#000;
-      font-weight:600;
-      cursor:pointer;
-      transition:0.3s;
-    }
-    button:hover { background:#81d4fa; transform:scale(1.05); }
-
     footer {
-      background:#ffffff;
-      padding:30px 20px;
       text-align:center;
-      box-shadow:0 -4px 12px rgba(0,0,0,0.05);
-      color:#111827;
-    }
-    footer h3 { margin-bottom:12px; }
-    footer input {
-      padding:10px 12px;
-      border-radius:8px;
-      border:1px solid #d1d5db;
-      width:220px;
-      margin-bottom:12px;
-    }
-    footer button {
-      padding:10px 20px;
-      border-radius:999px;
-      background:#0b63d3;
+      padding:20px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
       color:#fff;
-      font-weight:600;
-      border:none;
-      cursor:pointer;
-      transition:0.3s;
+      border-top:1px solid rgba(255,255,255,0.2);
+      margin-top: 50px;
     }
-    footer button:hover { background:#094ca2; }
-    footer p { margin-top:16px; color:#6b7280; }
   </style>
 </head>
 <body>
-
-  <!-- Dashboard Profile -->
-  <div class="abidkhan-dashboard-profile" style="text-align:center; margin-top:20px;">
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
-         alt="Abid Khan" class="abidkhan-profile-img">
-    <h2>Welcome, Abid Khan</h2>
-  </div>
-
-  <!-- Corner Logo -->
-  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
-
-  <!-- Navbar -->
-  <nav class="abidkhan-navbar">
-    <a href="index.html" class="abidkhan-nav-brand">Abid Khan's E-Learning Hub</a>
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
-         alt="Abid Khan" class="abidkhan-corner-img">
-  </nav>
-
-  <!-- Main Content -->
-  <main class="container">
-    <h1>Contact Us</h1>
-    <form onsubmit="alert('This is a demo form — connect backend to send messages.'); return false;">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form class="contact-form" id="contactForm">
+      <input type="text" id="footerNameInput" placeholder="Your Name" required>
+      <input type="email" id="footerEmailInput" placeholder="Your Email" required>
+      <textarea id="footerMessageInput" rows="5" placeholder="Your Message" required></textarea>
+      <input type="text" id="footerNumberInput" placeholder="WhatsApp Alias (e.g. 1111-1111111)">
+      
+      <!-- WhatsApp Button -->
+      <button type="button" id="footerWhatsappBtn">Message on WhatsApp</button>
+      
+      <!-- Call Now Button -->
+      <button type="button" onclick="window.location.href='tel:+923497469638'">📞 Call Now</button>
     </form>
-  </main>
 
-  <!-- WhatsApp Footer -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abid Khan's E-Learning Hub</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    <div class="contact-info">
+      <p>Email: <a href="mailto:info@abidkhanhub.com">info@abidkhanhub.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/923497469638">+92 349 7469638</a></p>
+      <p>International Hub: Singapore Learning Centre</p>
 
-    body {
-      background: url("https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png") center/cover no-repeat fixed;
-      color: #fff;
-      min-height: 100vh;
-      scroll-behavior: smooth;
-    }
-    body::before {
-      content:"";
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(6px);
-      z-index: -1;
-    }
-
-    /* ------------------------------
-       DASHBOARD PROFILE IMAGE
-    ------------------------------ */
-    .abidkhan-profile-img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #4fc3f7;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      background: linear-gradient(145deg, #ffffff 0%, #e6e6e6 100%);
-      position: relative;
-    }
-    .abidkhan-profile-img::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
-      pointer-events: none;
-    }
-
-    /* ------------------------------
-       CORNER LOGO (fixed top-left)
-    ------------------------------ */
-    .corner-img {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 2px solid #4fc3f7;
-      box-shadow: 0 0 12px rgba(79,195,247,0.8);
-      z-index: 1000;
-      object-fit: cover;
-    }
-
-    /* ------------------------------
-       NAVBAR
-    ------------------------------ */
-    .abidkhan-navbar {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .abidkhan-nav-brand {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #4fc3f7;
-      text-decoration: none;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    /* Navbar logo on the right */
-    .abidkhan-corner-img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #4fc3f7;
-      box-shadow: 0 0 8px rgba(79,195,247,0.6);
-    }
-
-    /* ------------------------------
-       MAIN CONTENT
-    ------------------------------ */
-    main { max-width:1200px; margin:80px auto 50px auto; padding:20px; text-align:center; }
-    main h2 { font-size:2rem; margin-bottom:20px; text-shadow:0 0 8px rgba(79,195,247,0.8);}
-    .course-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-    .course {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      border-radius:18px;
-      padding:20px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.2);
-      box-shadow:0 8px 25px rgba(0,0,0,0.3);
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .course:hover { transform:translateY(-8px); box-shadow:0 12px 35px rgba(0,0,0,0.45); border-color:#4fc3f7; }
-    .course h3 { margin-bottom:10px; font-size:1.2rem; }
-    .course p { margin-bottom:15px; font-size:0.95rem; color:#e0e0e0; }
-    .btn {
-      padding:10px 18px;
-      border:none;
-      border-radius:10px;
-      background:#4fc3f7;
-      color:#000;
-      font-weight:600;
-      cursor:pointer;
-      transition:0.3s;
-    }
-    .btn:hover { background:#81d4fa; transform:scale(1.05); }
-
-    @media(max-width:500px){
-      main { margin-top:100px; padding:10px; }
-    }
-    @media (max-width: 768px) {
-      .course-list { grid-template-columns: 1fr; }
-    }
-
-    /* CARDS BUTTON FIX ------------------------------ */
-    @media(max-width: 768px) {
-      .course { height: auto; padding: 15px; }
-      .course img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-      .btn {
-        display: block;
-        width: 90%;
-        margin: 10px auto 0;
-      }
-    }
-
-    /* ------------------------------
-       FOOTER
-    ------------------------------ */
-    footer {
-      text-align:center;
-      padding:20px;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      color:#fff;
-      border-top:1px solid rgba(255,255,255,0.2);
-    }
-  </style>
-</head>
-<body>
-  <!-- Dashboard Profile -->
-  <div style="text-align:center; margin-top:20px;">
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
-         alt="Abid Khan" class="abidkhan-profile-img">
-    <h2>Welcome, Abid Khan</h2>
+      <!-- QR Code -->
+      <div class="qr-code">
+        <img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://wa.me/923497469638" alt="WhatsApp QR Code">
+        <p>Scan to connect on WhatsApp</p>
+      </div>
+    </div>
   </div>
 
-  <!-- Corner Logo -->
-  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
+  <footer>
+    © <span id="year"></span> Abid Khan's E-Learning Hub | With the blessings of Allah, striving to be distinguished globally 🌍
+  </footer>
 
-  <!-- Navbar -->
-  <nav class="abidkhan-navbar">
-    <a href="index.html" class="abidkhan-nav-brand">Abid Khan's E-Learning Hub</a>
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
-         alt="Abid Khan" class="abidkhan-corner-img">
-  </nav>
+  <script>
+    // WhatsApp alias mapping
+    const footerNumberMap = {
+      "1111-1111111": "923497469638",
+      "2222-2222222": "923497469638"
+    };
 
+    // WhatsApp button click
+    document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+      const name = document.getElementById('footerNameInput').value.trim();
+      const email = document.getElementById('footerEmailInput').value.trim();
+      const messageText = document.getElementById('footerMessageInput').value.trim();
+      const input = document.getElementById('footerNumberInput').value.trim();
 
-<!-- Main Content -->
-<main>
-  <h2>Our Courses</h2>
-  <div class="course-list">
-<!-- Accounting -->
-<article class="course">
-  <img src="https://blog.readyaccountant.com/uploads/images/202409/image_750x_66d6e94e72f9c.jpg" alt="Accounting" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>Accounting & Finance</h3>
-  <p>Learn QuickBooks, Google Spreadsheets, MS Excel, and SQL for practical accounting and financial management skills.</p>
-  <button class="btn">Enroll Now</button>
-</article>
+      const actualNumber = footerNumberMap[input] || input;
+      const cleaned = actualNumber.replace(/[^0-9]/g, '');
 
-<!-- IELTS Test Preparation -->
-<article class="course">
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240514121359/TOEFL-Preparation-Online.png" alt="IELTS Test" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>IELTS Test Preparation</h3>
-  <p>Prepare for IELTS with expert guidance on Listening, Reading, Writing, and Speaking to achieve your target score.</p>
-   <button class="btn" onclick="window.location.href='https://professionalabidkhan-hue.github.io/ABID-KHAN-/IELTS.html'">Enroll Now</button>
-</article>
-
-<!-- TOEFL Test Preparation -->
-<article class="course">
-  <img src="toefl.html" alt="TOEFL Test" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>TOEFL Test Preparation</h3>
-  <p>Get ready for the TOEFL exam with focused practice in Reading, Listening, Speaking, and Writing sections from expert trainers.</p>
-  <button class="btn" onclick="window.location.href='https://professionalabidkhan-hue.github.io/ABID-KHAN-/toefl.html'">Enroll Now</button>
-
-</article>
-
-    <!-- Web Development -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Web Development" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Web Development</h3>
-      <p>Learn HTML, CSS, JavaScript, and responsive design with real-world projects.</p>
-       <button class="btn" onclick="window.location.href='https://professionalabidkhan-hue.github.io/ABID-KHAN-/website.html'">Enroll Now</button>
-
-
-
-    </article>
-
-    <!-- Python for Beginners -->
-    <article class="course">
-      <img src="https://media.licdn.com/dms/image/v2/D4D12AQEDUrAPDgLYww/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1693654710587?e=2147483647&v=beta&t=koqXdM8u5yZx8NKiDmUhIfXW0SvPMRhvGZLctQgffpI" alt="Python" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Python for Beginners</h3>
-      <p>Master Python fundamentals, scripting, and mini projects to kickstart coding skills.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- WordPress & Hosting -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=800&auto=format&fit=crop" alt="WordPress" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>WordPress & Hosting</h3>
-      <p>Build and customize websites, manage hosting, and optimize performance with WordPress CMS.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Data Science -->
-    <article class="course">
-      <img src="https://stl.tech/wp-content/uploads/2022/12/data-science22.jpg" alt="Data Science" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Data Science Basics</h3>
-      <p>Start with Python, Pandas, and visualization foundations for data-driven insights.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Digital Marketing -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=800&auto=format&fit=crop" alt="Digital Marketing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Digital Marketing</h3>
-      <p>Learn SEO, social media strategies, Google Ads, and content marketing to grow online presence.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Graphic Design -->
-    <article class="course">
-      <img src="https://www.swismax.com/_imgs/blogs/71044_python-external-blog-image-1.jpg" alt="Graphic Design" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Graphic Designing</h3>
-      <p>Master Photoshop, Illustrator, and creative design principles for digital and print media.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Mobile Repairing -->
-    <article class="course">
-      <img src="https://www.diyfixtool.com/cdn/shop/articles/05qOG26wzVLHG2nlWpelvCF-1..v1683302270_jpg_JPEG_1600x900_71.png?v=1701080915&width=900" alt="Mobile Repairing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Mobile Repairing</h3>
-      <p>Hands-on training in smartphone hardware, software troubleshooting, and repair techniques.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Freelancing -->
-    <article class="course">
-      <img src="https://cdn.prod.website-files.com/6476d5da6421f487199abe68/6569cc92948f3c6141f5eccb_CD3WGGIyrlAFPaObipqyPFwhdEimvuPNjMmvJmXhrIzW4FZW846pOkpPQ-D7XBcxzWC_YCo3aJd7pqFd6_B5gS-S1tr90Y2GYcHv9k2Nn5fAtXAd2RkslAa4IQkejQC5mMu8kSn_Fb1dp_Jso8UrdvM.png" alt="Freelancing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Freelancing</h3>
-      <p>Discover platforms like Upwork and Fiverr, build profiles, and learn skills to earn independently.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Content Writing -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=800&auto=format&fit=crop" alt="Content Writing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Content Writing</h3>
-      <p>Develop writing skills for blogs, copywriting, and storytelling to engage audiences effectively.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
- 
-    <!-- Software Development -->
-    <article class="course">
-      <img src="https://datarob.com/content/images/size/w1000/2019/08/SDLC-stages.png" alt="Software Development" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Software Development</h3>
-      <p>Design, build, and maintain software applications with modern programming practices and tools.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Data Science -->
-    <article class="course">
-      <img src="https://api.careers.fresenius.com/images/3cba469c-79f7-41bf-981f-ac84a5de8130?w=1536&h=630" alt="Data Science" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Data Science</h3>
-      <p>Explore data analysis, visualization, and predictive modeling using Python, R, and SQL.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Artificial Intelligence -->
-    <article class="course">
-      <img src="https://ric.edu.pk/wp-content/uploads/2024/11/artificial-intelligence.jpg" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Artificial Intelligence</h3>
-      <p>Learn machine learning, deep learning, and AI applications for solving real-world problems.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Data Analyst -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Data Analyst" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Data Analyst</h3>
-      <p>Develop skills in data cleaning, visualization, and reporting to uncover actionable insights.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Introduction to Data Science -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Introduction to Data Science" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Introduction to Data Science</h3>
-      <p>Get started with the basics of data collection, analysis, and visualization techniques.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Machine Learning -->
-    <article class="course">
-      <img src="https://atriainnovation.com/uploads/2023/11/portada-9-900x743-c-center.jpg" alt="Machine Learning" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Machine Learning</h3>
-      <p>Build predictive models and algorithms using supervised and unsupervised learning methods.</p> <br>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Networking -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Networking" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Networking</h3>
-      <p>Understand network design, protocols, and troubleshooting for secure and efficient communication.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-       <!-- General Awareness Courses -->
-<article class="course">
-  <img src="https://sbskills.co.uk/wp-content/uploads/2023/10/managing-safely.jpg" alt="IOSH Managing Safely">
-  <h3>IOSH Managing Safely</h3>
-  <p>Gain essential knowledge in occupational safety and health management for all workplaces.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://www.oshaoutreachcourses.com/blog/wp-content/uploads/2022/07/work-safety-concept-chart-with-keywords-and-icons-on-white-background.jpg_s1024x1024wisk20ciEfYllk2PCvpGan4xphG5IW_0GK533M9CseXUImNpXg-1.jpg" alt="OSHA Training">
-  <h3>OSHA Training</h3>
-  <p>Learn workplace safety standards, compliance, and risk management techniques.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Specialized Fields -->
-<article class="course">
-  <img src="https://www.asafetyp.co.uk/wp-content/uploads/2021/05/Nebosh-Fire-Cert-Photo.jpg" alt="NEBOSH Fire">
-  <h3>NEBOSH Fire Safety</h3>
-  <p>Understand fire safety management, risk assessment, and prevention measures.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://training.noiaa.com/wp-content/uploads/2019/01/NEBOSH-International-Oil-and-Gas-Certificate-NOIAA-1024x587.jpg" alt="NEBOSH Oil & Gas">
-  <h3>NEBOSH Oil & Gas</h3>
-  <p>Master safety standards and risk management practices specific to the oil and gas industry.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://greenwgroup.ae/wp-content/uploads/2021/01/What-is-NEBOSH-PSM-1024x561.jpg" alt="NEBOSH Process Safety">
-  <h3>NEBOSH Process Safety</h3>
-  <p>Learn hazard identification, risk assessment, and process safety management techniques.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Advanced Certifications -->
-<article class="course">
-  <img src="data:image/jpeg;base64,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" alt="CSP Certification">
-  <h3>CSP Certification</h3>
-  <p>Certified Safety Professional course for advanced occupational safety expertise.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://www.clicksafety.com/media/catalog/product/s/p/span_asp_main.jpg?optimize=high&bg-color=255,255,255&height=427&width=640&canvas=640:427" alt="ASP Certification">
-  <h3>ASP Certification</h3>
-  <p>Associate Safety Professional certification for safety management and risk control.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Specific Skills -->
-<article class="course">
-  <img src="https://cdn.prod.website-files.com/647888ca92d03e3fca3f1ea0/647888ca92d03e3fca3f23a9_First%2520aid%2520kit%2520box%2520with%2520medical%2520equipment%2520and%2520medications%2520for%2520emergency-p-800.jpeg" alt="First Aid">
-  <h3>First Aid</h3>
-  <p>Practical first aid skills for emergencies in the workplace or daily life.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/1272/cached.offlinehbpl.hbpl.co.uk/news/ISH/4952_Lloyd20Register20Korea2008820copy_0_14_1126_2000.jpg" alt="Confined Spaces">
-  <h3>Confined Spaces</h3>
-  <p>Learn safety protocols and procedures for working in confined spaces.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://www.csltraining.com/wp-content/uploads/2024/01/iso-27001-auditor-1024x576.jpg" alt="ISO Lead Auditing">
-  <h3>ISO Lead Auditing</h3>
-  <p>Develop skills to perform ISO management system audits effectively.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-<!-- O Level -->
-<article class="course">
-  <img src="https://www.webinfotechgov.com/wp-content/uploads/2018/02/o-level-benefits-800x800.jpg" alt="O Level" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>O Level Courses</h3>
-  <p>Comprehensive O Level subjects guidance with expert online tutors for Science, Math, and English.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- A Level -->
-<article class="course">
-  <img src="https://www.21kschool.com/ae/wp-content/uploads/sites/10/2023/06/A-Level-Curriculum-and-Subject-Syllabi.png" alt="A Level" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>A Level Courses</h3>
-  <p>Advanced A Level courses with expert mentorship in Physics, Chemistry, Math, and Computer Science.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Special Math Online Experts Trainers -->
-<article class="course">
-  <img src="https://www.educatorstechnology.com/wp-content/uploads/2023/05/Online-Math-Tutoring-1.png" alt="Special Math Online Experts" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>Special Math Online Experts</h3>
-  <p>Get guidance from top online math experts for competitive exams, Olympiads, and advanced problem-solving.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-</main>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abid Khan's E-Learning Hub</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-
-    body {
-      background: url("https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png") center/cover no-repeat fixed;
-      color: #fff;
-      min-height: 100vh;
-      scroll-behavior: smooth;
-    }
-    body::before {
-      content:"";
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(6px);
-      z-index: -1;
-    }
-
-    /* ------------------------------
-       DASHBOARD PROFILE IMAGE
-    ------------------------------ */
-    .abidkhan-profile-img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #4fc3f7;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      background: linear-gradient(145deg, #ffffff 0%, #e6e6e6 100%);
-      position: relative;
-    }
-    .abidkhan-profile-img::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      height: 100%; width: 100%;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
-      pointer-events: none;
-    }
-
-    /* ------------------------------
-       CORNER LOGO (fixed top-left)
-    ------------------------------ */
-    .corner-img {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 2px solid #4fc3f7;
-      box-shadow: 0 0 12px rgba(79,195,247,0.8);
-      z-index: 1000;
-      object-fit: cover;
-    }
-
-    /* ------------------------------
-       NAVBAR
-    ------------------------------ */
-    .abidkhan-navbar {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px);
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .abidkhan-nav-brand {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #4fc3f7;
-      text-decoration: none;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    /* Navbar logo on the right */
-    .abidkhan-corner-img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #4fc3f7;
-      box-shadow: 0 0 8px rgba(79,195,247,0.6);
-    }
-
-    /* ------------------------------
-       MAIN CONTENT
-    ------------------------------ */
-    main { max-width:1200px; margin:80px auto 50px auto; padding:20px; text-align:center; }
-    main h2 { font-size:2rem; margin-bottom:20px; text-shadow:0 0 8px rgba(79,195,247,0.8);}
-    .course-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-    .course {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      border-radius:18px;
-      padding:20px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,0.2);
-      box-shadow:0 8px 25px rgba(0,0,0,0.3);
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .course:hover { transform:translateY(-8px); box-shadow:0 12px 35px rgba(0,0,0,0.45); border-color:#4fc3f7; }
-    .course h3 { margin-bottom:10px; font-size:1.2rem; }
-    .course p { margin-bottom:15px; font-size:0.95rem; color:#e0e0e0; }
-    .btn {
-      padding:10px 18px;
-      border:none;
-      border-radius:10px;
-      background:#4fc3f7;
-      color:#000;
-      font-weight:600;
-      cursor:pointer;
-      transition:0.3s;
-    }
-    .btn:hover { background:#81d4fa; transform:scale(1.05); }
-
-    @media(max-width:500px){
-      main { margin-top:100px; padding:10px; }
-    }
-    @media (max-width: 768px) {
-      .course-list { grid-template-columns: 1fr; }
-    }
-
-    /* CARDS BUTTON FIX ------------------------------ */
-    @media(max-width: 768px) {
-      .course { height: auto; padding: 15px; }
-      .course img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 10px;
+      if (!cleaned) {
+        alert("Please enter a valid WhatsApp number or alias.");
+        return;
       }
-      .btn {
-        display: block;
-        width: 90%;
-        margin: 10px auto 0;
-      }
-    }
 
-    /* ------------------------------
-       FOOTER
-    ------------------------------ */
-    footer {
-      text-align:center;
-      padding:20px;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      color:#fff;
-      border-top:1px solid rgba(255,255,255,0.2);
-    }
-  </style>
-</head>
-<body>
-  <!-- Dashboard Profile -->
-  <div style="text-align:center; margin-top:20px;">
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
-         alt="Abid Khan" class="abidkhan-profile-img">
-    <h2>Welcome, Abid Khan</h2>
-  </div>
+      // Build message with blessings
+      const message = encodeURIComponent(
+        `Assalamu Alaikum,\nMy name: ${name}\nEmail: ${email}\nMessage: ${messageText}\n\nWith blessings of Allah,\nAbid Khan`
+      );
 
-  <!-- Corner Logo -->
-  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
-
-  <!-- Navbar -->
-  <nav class="abidkhan-navbar">
-    <a href="index.html" class="abidkhan-nav-brand">Abid Khan's E-Learning Hub</a>
-    <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
-         alt="Abid Khan" class="abidkhan-corner-img">
-  </nav>
-
-
-<!-- Main Content -->
-<main>
-  <h2>Our Courses</h2>
-  <div class="course-list">
-<!-- Accounting -->
-<article class="course">
-  <img src="https://blog.readyaccountant.com/uploads/images/202409/image_750x_66d6e94e72f9c.jpg" alt="Accounting" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>Accounting & Finance</h3>
-  <p>Learn QuickBooks, Google Spreadsheets, MS Excel, and SQL for practical accounting and financial management skills.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- IELTS Test Preparation -->
-<article class="course">
-  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240514121359/TOEFL-Preparation-Online.png" alt="IELTS Test" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>IELTS Test Preparation</h3>
-  <p>Prepare for IELTS with expert guidance on Listening, Reading, Writing, and Speaking to achieve your target score.</p>
-   <button class="btn" onclick="window.location.href='https://professionalabidkhan-hue.github.io/ABID-KHAN-/IELTS.html'">Enroll Now</button>
-</article>
-
-<!-- TOEFL Test Preparation -->
-<article class="course">
-  <img src="toefl.html" alt="TOEFL Test" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>TOEFL Test Preparation</h3>
-  <p>Get ready for the TOEFL exam with focused practice in Reading, Listening, Speaking, and Writing sections from expert trainers.</p>
-  <button class="btn" onclick="window.location.href='https://professionalabidkhan-hue.github.io/ABID-KHAN-/toefl.html'">Enroll Now</button>
-
-</article>
-
-    <!-- Web Development -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Web Development" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Web Development</h3>
-      <p>Learn HTML, CSS, JavaScript, and responsive design with real-world projects.</p>
-       <button class="btn" onclick="window.location.href='https://professionalabidkhan-hue.github.io/ABID-KHAN-/website.html'">Enroll Now</button>
-
-
-
-    </article>
-
-    <!-- Python for Beginners -->
-    <article class="course">
-      <img src="https://media.licdn.com/dms/image/v2/D4D12AQEDUrAPDgLYww/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1693654710587?e=2147483647&v=beta&t=koqXdM8u5yZx8NKiDmUhIfXW0SvPMRhvGZLctQgffpI" alt="Python" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Python for Beginners</h3>
-      <p>Master Python fundamentals, scripting, and mini projects to kickstart coding skills.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- WordPress & Hosting -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?q=80&w=800&auto=format&fit=crop" alt="WordPress" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>WordPress & Hosting</h3>
-      <p>Build and customize websites, manage hosting, and optimize performance with WordPress CMS.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Data Science -->
-    <article class="course">
-      <img src="https://stl.tech/wp-content/uploads/2022/12/data-science22.jpg" alt="Data Science" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Data Science Basics</h3>
-      <p>Start with Python, Pandas, and visualization foundations for data-driven insights.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Digital Marketing -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=800&auto=format&fit=crop" alt="Digital Marketing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Digital Marketing</h3>
-      <p>Learn SEO, social media strategies, Google Ads, and content marketing to grow online presence.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Graphic Design -->
-    <article class="course">
-      <img src="https://www.swismax.com/_imgs/blogs/71044_python-external-blog-image-1.jpg" alt="Graphic Design" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Graphic Designing</h3>
-      <p>Master Photoshop, Illustrator, and creative design principles for digital and print media.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Mobile Repairing -->
-    <article class="course">
-      <img src="https://www.diyfixtool.com/cdn/shop/articles/05qOG26wzVLHG2nlWpelvCF-1..v1683302270_jpg_JPEG_1600x900_71.png?v=1701080915&width=900" alt="Mobile Repairing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Mobile Repairing</h3>
-      <p>Hands-on training in smartphone hardware, software troubleshooting, and repair techniques.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Freelancing -->
-    <article class="course">
-      <img src="https://cdn.prod.website-files.com/6476d5da6421f487199abe68/6569cc92948f3c6141f5eccb_CD3WGGIyrlAFPaObipqyPFwhdEimvuPNjMmvJmXhrIzW4FZW846pOkpPQ-D7XBcxzWC_YCo3aJd7pqFd6_B5gS-S1tr90Y2GYcHv9k2Nn5fAtXAd2RkslAa4IQkejQC5mMu8kSn_Fb1dp_Jso8UrdvM.png" alt="Freelancing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Freelancing</h3>
-      <p>Discover platforms like Upwork and Fiverr, build profiles, and learn skills to earn independently.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Content Writing -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=800&auto=format&fit=crop" alt="Content Writing" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Content Writing</h3>
-      <p>Develop writing skills for blogs, copywriting, and storytelling to engage audiences effectively.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
- 
-    <!-- Software Development -->
-    <article class="course">
-      <img src="https://datarob.com/content/images/size/w1000/2019/08/SDLC-stages.png" alt="Software Development" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Software Development</h3>
-      <p>Design, build, and maintain software applications with modern programming practices and tools.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Data Science -->
-    <article class="course">
-      <img src="https://api.careers.fresenius.com/images/3cba469c-79f7-41bf-981f-ac84a5de8130?w=1536&h=630" alt="Data Science" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Data Science</h3>
-      <p>Explore data analysis, visualization, and predictive modeling using Python, R, and SQL.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Artificial Intelligence -->
-    <article class="course">
-      <img src="https://ric.edu.pk/wp-content/uploads/2024/11/artificial-intelligence.jpg" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Artificial Intelligence</h3>
-      <p>Learn machine learning, deep learning, and AI applications for solving real-world problems.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Data Analyst -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Data Analyst" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Data Analyst</h3>
-      <p>Develop skills in data cleaning, visualization, and reporting to uncover actionable insights.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Introduction to Data Science -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" alt="Introduction to Data Science" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Introduction to Data Science</h3>
-      <p>Get started with the basics of data collection, analysis, and visualization techniques.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Machine Learning -->
-    <article class="course">
-      <img src="https://atriainnovation.com/uploads/2023/11/portada-9-900x743-c-center.jpg" alt="Machine Learning" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Machine Learning</h3>
-      <p>Build predictive models and algorithms using supervised and unsupervised learning methods.</p> <br>
-      <button class="btn">Enroll Now</button>
-    </article>
-
-    <!-- Networking -->
-    <article class="course">
-      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Networking" style="width:100%; border-radius:12px; margin-bottom:15px;">
-      <h3>Networking</h3>
-      <p>Understand network design, protocols, and troubleshooting for secure and efficient communication.</p>
-      <button class="btn">Enroll Now</button>
-    </article>
-       <!-- General Awareness Courses -->
-<article class="course">
-  <img src="https://sbskills.co.uk/wp-content/uploads/2023/10/managing-safely.jpg" alt="IOSH Managing Safely">
-  <h3>IOSH Managing Safely</h3>
-  <p>Gain essential knowledge in occupational safety and health management for all workplaces.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://www.oshaoutreachcourses.com/blog/wp-content/uploads/2022/07/work-safety-concept-chart-with-keywords-and-icons-on-white-background.jpg_s1024x1024wisk20ciEfYllk2PCvpGan4xphG5IW_0GK533M9CseXUImNpXg-1.jpg" alt="OSHA Training">
-  <h3>OSHA Training</h3>
-  <p>Learn workplace safety standards, compliance, and risk management techniques.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Specialized Fields -->
-<article class="course">
-  <img src="https://www.asafetyp.co.uk/wp-content/uploads/2021/05/Nebosh-Fire-Cert-Photo.jpg" alt="NEBOSH Fire">
-  <h3>NEBOSH Fire Safety</h3>
-  <p>Understand fire safety management, risk assessment, and prevention measures.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://training.noiaa.com/wp-content/uploads/2019/01/NEBOSH-International-Oil-and-Gas-Certificate-NOIAA-1024x587.jpg" alt="NEBOSH Oil & Gas">
-  <h3>NEBOSH Oil & Gas</h3>
-  <p>Master safety standards and risk management practices specific to the oil and gas industry.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://greenwgroup.ae/wp-content/uploads/2021/01/What-is-NEBOSH-PSM-1024x561.jpg" alt="NEBOSH Process Safety">
-  <h3>NEBOSH Process Safety</h3>
-  <p>Learn hazard identification, risk assessment, and process safety management techniques.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Advanced Certifications -->
-<article class="course">
-  <img src="data:image/jpeg;base64,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" alt="CSP Certification">
-  <h3>CSP Certification</h3>
-  <p>Certified Safety Professional course for advanced occupational safety expertise.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://www.clicksafety.com/media/catalog/product/s/p/span_asp_main.jpg?optimize=high&bg-color=255,255,255&height=427&width=640&canvas=640:427" alt="ASP Certification">
-  <h3>ASP Certification</h3>
-  <p>Associate Safety Professional certification for safety management and risk control.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Specific Skills -->
-<article class="course">
-  <img src="https://cdn.prod.website-files.com/647888ca92d03e3fca3f1ea0/647888ca92d03e3fca3f23a9_First%2520aid%2520kit%2520box%2520with%2520medical%2520equipment%2520and%2520medications%2520for%2520emergency-p-800.jpeg" alt="First Aid">
-  <h3>First Aid</h3>
-  <p>Practical first aid skills for emergencies in the workplace or daily life.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/1272/cached.offlinehbpl.hbpl.co.uk/news/ISH/4952_Lloyd20Register20Korea2008820copy_0_14_1126_2000.jpg" alt="Confined Spaces">
-  <h3>Confined Spaces</h3>
-  <p>Learn safety protocols and procedures for working in confined spaces.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<article class="course">
-  <img src="https://www.csltraining.com/wp-content/uploads/2024/01/iso-27001-auditor-1024x576.jpg" alt="ISO Lead Auditing">
-  <h3>ISO Lead Auditing</h3>
-  <p>Develop skills to perform ISO management system audits effectively.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-<!-- O Level -->
-<article class="course">
-  <img src="https://www.webinfotechgov.com/wp-content/uploads/2018/02/o-level-benefits-800x800.jpg" alt="O Level" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>O Level Courses</h3>
-  <p>Comprehensive O Level subjects guidance with expert online tutors for Science, Math, and English.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- A Level -->
-<article class="course">
-  <img src="https://www.21kschool.com/ae/wp-content/uploads/sites/10/2023/06/A-Level-Curriculum-and-Subject-Syllabi.png" alt="A Level" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>A Level Courses</h3>
-  <p>Advanced A Level courses with expert mentorship in Physics, Chemistry, Math, and Computer Science.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-
-<!-- Special Math Online Experts Trainers -->
-<article class="course">
-  <img src="https://www.educatorstechnology.com/wp-content/uploads/2023/05/Online-Math-Tutoring-1.png" alt="Special Math Online Experts" style="width:100%; border-radius:12px; margin-bottom:15px;">
-  <h3>Special Math Online Experts</h3>
-  <p>Get guidance from top online math experts for competitive exams, Olympiads, and advanced problem-solving.</p>
-  <button class="btn">Enroll Now</button>
-</article>
-</main>
-<!-- FOOTER -->
-<footer style="background:#ffffff; padding:30px 20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
-  <h3 style="margin-bottom:12px; color:#111827;">Get in Touch on WhatsApp</h3>
-
-  <!-- WhatsApp Alias Input -->
-  <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)" 
-         style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; width:220px; margin-bottom:12px;">
-  <button id="footerWhatsappBtn" style="padding:10px 20px; border-radius:999px; background:#0b63d3; color:#fff; font-weight:600; border:none; cursor:pointer; transition:0.3s;">
-    Message on WhatsApp
-  </button>
-
-  <!-- Footer text with alias numbers -->
-  <p style="margin-top:16px; color:#6b7280;">
-    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
-  </p>
-</footer>
-
-<script>
-  const footerNumberMap = {
-    "1111-1111111": "923497469638",
-    "2222-2222222": "923497469638"
-  };
-
-  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
-    const input = document.getElementById('footerNumberInput').value.trim();
-    const actualNumber = footerNumberMap[input] || input;
-    const cleaned = actualNumber.replace(/[^0-9]/g, '');
-    const message = encodeURIComponent("Abid Khan");
-    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
-    window.open(url, "_blank");
-  });
-
-  // Footer year update
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Highlight based on URL
-  const current = window.location.pathname.split("/").pop();
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    if (link.getAttribute("href") === current) {
-      link.classList.add("active");
-    }
-    link.addEventListener("click", e => {
-      document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
-      e.currentTarget.classList.add("active");
+      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+      window.open(url, "_blank");
     });
-  });
 
-  // Hamburger toggle
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-  if (hamburger && navLinks) {
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-      hamburger.classList.toggle("open");
-    });
-  }
-
-  // Dark mode toggle
-  const themeToggle = document.getElementById("themeToggle");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-    });
-  }
-</script>
-
-
-  
-
+    // Footer year update
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
-
-
-</html>
-
