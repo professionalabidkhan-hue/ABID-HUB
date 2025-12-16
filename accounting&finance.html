@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accounting & Finance Training | Abid Khan's E-Learning Hub</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; margin:0; background:#f9fafb; color:#111827; }
+    .corner-img { position:fixed; top:12px; left:12px; width:60px; }
+    nav { background:#111827; color:#fff; padding:12px 24px; }
+    .nav-container { display:flex; justify-content:space-between; align-items:center; }
+    .nav-brand { font-weight:700; color:#fff; text-decoration:none; }
+    .nav-links { display:flex; gap:16px; }
+    .nav-links a { color:#fff; text-decoration:none; font-weight:600; }
+    .hero { padding:60px 24px; text-align:center; background:#e0f2fe; }
+    .hero h1 { font-size:2rem; margin-bottom:12px; }
+    .hero p { font-size:1.1rem; max-width:600px; margin:auto; }
+    .form-container { max-width:800px; margin:40px auto; background:#fff; padding:24px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .form-container h2 { margin-bottom:16px; }
+    .form-grid { display:grid; gap:16px; }
+    @media(min-width:640px){ .form-grid.cols-2{ grid-template-columns:1fr 1fr; } }
+    label { font-weight:600; margin-bottom:4px; display:block; }
+    input, select, textarea { width:100%; padding:8px; border:1px solid #d1d5db; border-radius:6px; }
+    button { background:#2563eb; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:600; }
+    button:hover { background:#1e40af; }
+    .platforms { max-width:900px; margin:40px auto; text-align:center; }
+    .platforms h2 { margin-bottom:20px; }
+    .platform-grid { display:grid; gap:20px; }
+    @media(min-width:640px){ .platform-grid{ grid-template-columns:repeat(3,1fr); } }
+    .platform-card { background:#fff; padding:20px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .platform-card h3 { margin-bottom:10px; }
+    footer { background:#f3f4f6; padding:24px; text-align:center; margin-top:40px; }
+    footer input { padding:8px; border:1px solid #d1d5db; border-radius:6px; }
+    footer .btn { margin-left:8px; }
+    /* Smooth transition for theme changes */
+body, footer, nav, input, button {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Default light mode */
+body {
+  background: #f9fafb;
+  color: #111827;
+} footer {
+  background: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+}  
+footer h3 {
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+footer p {
+  margin-top: 16px;
+  color: #6b7280;
+}
+
+footer input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  width: 220px;
+  margin-bottom: 12px;
+}
+
+footer button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* WhatsApp button */
+#footerWhatsappBtn {
+  background: #0b63d3;
+  color: #fff;
+}
+
+/* Dark mode toggle button */
+#themeToggle {
+  background: #111827;
+  color: #fff;
+  margin-top: 20px;
+}
+
+/* Dark mode styles */
+body.dark {
+  background: #111827;
+  color: #f9fafb;
+}
+
+body.dark footer {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+body.dark footer p {
+  color: #d1d5db;
+}
+
+body.dark input {
+  background: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.dark button {
+  background: #2563eb;
+  color: #fff;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Corner Logo -->
+  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png"
+       alt="Abid Khan" class="corner-img">
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">Abid Khan's E-Learning Hub</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Accounting & Finance Training</h1>
+    <p>Learn professional accounting and finance skills with live sessions on Zoom, Google Classroom, and Microsoft Teams. Enroll today and start your journey toward financial expertise.</p>
+  </section>
+
+  <!-- Accounting & Finance Form -->
+  <div class="form-container">
+    <h2>Enrollment Form</h2>
+    <form id="financeForm">
+      <div class="form-grid cols-2">
+        <div>
+          <label for="entryType">Entry Type</label>
+          <select id="entryType" required>
+            <option value="">Select</option>
+            <option>Invoice</option>
+            <option>Expense</option>
+            <option>Payment</option>
+          </select>
+        </div>
+        <div>
+          <label for="invoiceNo">Invoice / Ref No.</label>
+          <input type="text" id="invoiceNo" placeholder="INV-001" required />
+        </div>
+        <div>
+          <label for="date">Date</label>
+          <input type="date" id="date" required />
+        </div>
+        <div>
+          <label for="vendor">Vendor / Client</label>
+          <input type="text" id="vendor" placeholder="Ali Traders" />
+        </div>
+        <div>
+          <label for="amount">Amount (PKR)</label>
+          <input type="number" id="amount" min="0" step="0.01" required />
+        </div>
+        <div>
+          <label for="status">Status</label>
+          <select id="status" required>
+            <option value="">Select</option>
+            <option>Pending</option>
+            <option>Paid</option>
+            <option>Overdue</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="notes">Notes</label>
+        <textarea id="notes" rows="3"></textarea>
+      </div>
+      <button type="submit">Save Entry</button>
+    </form>
+  </div>
+
+  <!-- Platforms Section -->
+  <section class="platforms">
+    <h2>Join Our Classes On</h2>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h3>Zoom</h3>
+        <p>Interactive live sessions with screen sharing and breakout rooms.</p>
+        <button onclick="window.open('https://zoom.us','_blank')">Join Zoom</button>
+      </div>
+      <div class="platform-card">
+        <h3>Google Classroom</h3>
+        <p>Organized assignments, resources, and recorded lectures.</p>
+        <button onclick="window.open('https://classroom.google.com','_blank')">Go to Classroom</button>
+      </div>
+      <div class="platform-card">
+        <h3>Microsoft Teams</h3>
+        <p>Collaborative learning with chat, video, and shared files.</p>
+        <button onclick="window.open('https://teams.microsoft.com','_blank')">Open Teams</button>
+      </div>
+    </div>
+  </section>
+<!-- Classes Schedule -->
+<section class="section" id="schedule">
+  <h2>Classes Schedule</h2>
+  <p class="muted">Live interactive sessions are conducted multiple times a week across Zoom, Google Classroom, and Microsoft Teams. Choose the slot that fits your routine.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Time (PKT)</th>
+          <th>Platform</th>
+          <th>Focus Area</th>
+          <th>Instructor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monday</td>
+          <td>6:00 PM – 7:30 PM</td>
+          <td>Zoom</td>
+          <td>Reading strategies & practice</td>
+          <td>Abid Khan</td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td>6:00 PM – 7:30 PM</td>
+          <td>Google Classroom</td>
+          <td>Listening drills & comprehension</td>
+          <td>Abid Khan</td>
+        </tr>
+        <tr>
+          <td>Friday</td>
+          <td>6:00 PM – 7:30 PM</td>
+          <td>Microsoft Teams</td>
+          <td>Speaking templates & fluency</td>
+          <td>Abid Khan</td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>4:00 PM – 6:00 PM</td>
+          <td>Zoom</td>
+          <td>Writing practice + mock test review</td>
+          <td>Abid Khan</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cta" style="margin-top:20px">
+    <p>All sessions are recorded and shared for later review. Flexible rescheduling available for busy learners.</p>
+    <button class="btn" onclick="scrollToEnroll()">Reserve Your Slot</button>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer style="background:#ffffff; padding:30px 20px; text-align:center; box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
+  <h3 style="margin-bottom:12px; color:#111827;">Get in Touch on WhatsApp</h3>
+
+  <!-- WhatsApp Alias Input -->
+  <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)" 
+         style="padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; width:220px; margin-bottom:12px;">
+  <button id="footerWhatsappBtn" style="padding:10px 20px; border-radius:999px; background:#0b63d3; color:#fff; font-weight:600; border:none; cursor:pointer; transition:0.3s;">
+    Message on WhatsApp
+  </button>
+
+  <!-- Footer text with alias numbers -->
+  <p style="margin-top:16px; color:#6b7280;">
+    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
+  </p>
+</footer>
+<script>
+  // WhatsApp alias mapping
+  const footerNumberMap = {
+    "1111-1111111": "923497469638",
+    "2222-2222222": "923497469638"
+  };
+
+  // WhatsApp button functionality
+  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+    const input = document.getElementById('footerNumberInput').value.trim();
+    const actualNumber = footerNumberMap[input] || input;
+    const cleaned = actualNumber.replace(/[^0-9]/g, '');
+    const message = encodeURIComponent("Assalam O Alaikum, I am reaching out to express my interest in the Accounting & Finance course offered by Abid Khan's E-Learning Hub.");
+    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+    window.open(url, "_blank");
+  });
+
+  // Footer year update
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Highlight active nav link
+  const current = window.location.pathname.split("/").pop();
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+    link.addEventListener("click", e => {
+      document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
+      e.currentTarget.classList.add("active");
+    });
+  });
+
+  // Hamburger toggle
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+      hamburger.classList.toggle("open");
+    });
+  }
+
+  // Dark mode toggle (optional)
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  }
+</script>
+
+</body>
+</html>
+
