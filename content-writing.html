@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Writing - Abid Khan's E-Learning Hub</title>
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Corner Logo -->
+  <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" alt="Abid Khan" class="corner-img">
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">Abid Khan's E-Learning Hub</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="python.html">Python</a>
+        <a href="content-writing.html">Content Writing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h2>Content Writing Course</h2>
+    <img src="images/content-writing.jpg" alt="Content Writing">
+  </header>
+
+  <!-- Main -->
+  <main>
+    <h1>Develop Writing Skills for Blogs, Copywriting & Storytelling</h1>
+    <p>Learn how to craft engaging content that connects with audiences. This course covers blog writing, persuasive copywriting, and storytelling techniques to help you communicate effectively across digital platforms.</p>
+
+    <div class="grid">
+      <div class="card">
+        <img src="images/blog-writing.jpg" alt="Blog Writing">
+        <h3>Blog Writing</h3>
+        <p>Master structuring posts, SEO basics, and audience engagement.</p>
+      </div>
+      <div class="card">
+        <img src="images/copywriting.jpg" alt="Copywriting">
+        <h3>Copywriting</h3>
+        <p>Learn persuasive writing for ads, landing pages, and social media.</p>
+      </div>
+      <div class="card">
+        <img src="images/storytelling.jpg" alt="Storytelling">
+        <h3>Storytelling</h3>
+        <p>Develop narratives that captivate and build emotional connection.</p>
+      </div>
+    </div>
+
+    <section class="fees">
+      <h2>Fee Schedule</h2>
+      <table>
+        <tr>
+          <th>Plan</th><th>Duration</th><th>Fee</th><th>Platform</th>
+        </tr>
+        <tr><td>Beginner</td><td>4 Weeks</td><td>$70</td><td>Zoom</td></tr>
+        <tr><td>Intermediate</td><td>8 Weeks</td><td>$120</td><td>Google Classroom</td></tr>
+        <tr><td>Advanced</td><td>12 Weeks</td><td>$180</td><td>Microsoft Teams</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Get in Touch on WhatsApp</h3>
+    <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)">
+    <button id="footerWhatsappBtn">Message on WhatsApp</button>
+    <p>© <span id="year"></span> Abid Khan's E-Learning Hub</p>
+  </footer>
+
+  <script>
+    // WhatsApp alias mapping
+    const footerNumberMap = {
+      "1111-1111111": "923497469638",
+      "2222-2222222": "923497469638"
+    };
+
+    document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+      const input = document.getElementById('footerNumberInput').value.trim();
+      const actualNumber = footerNumberMap[input] || input;
+      const cleaned = actualNumber.replace(/[^0-9]/g, '');
+      const message = encodeURIComponent("Hello, I am interested in the Content Writing course.");
+      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+      window.open(url, "_blank");
+    });
+
+    // Footer year update
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
