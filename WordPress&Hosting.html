@@ -184,74 +184,38 @@
     Message on WhatsApp
   </button>
 
-  <!-- Footer text with alias numbers -->
-  <p style="margin-top:16px; color:#6b7280;">
-    © <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222
-  </p>
-</footer>
-
+<div id="footer-placeholder"></div>
 <script>
-  // --- Branding Lock ---
-  const siteTitle = document.querySelector('.nav-title')?.textContent.trim();
-  const siteLogo = document.querySelector('.nav-logo')?.getAttribute('src');
-
-  const allowedTitle = "Abid Khan's E-Learning Hub";
-  const allowedLogo = "https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png";
-
-  if (siteTitle === allowedTitle && siteLogo === allowedLogo) {
-    // WhatsApp button functionality
-    const footerNumberMap = {
-      "1111-1111111": "923497469638",
-      "2222-2222222": "923497469638"
-    };
-
-    document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
-      const input = document.getElementById('footerNumberInput').value.trim();
-      const actualNumber = footerNumberMap[input] || input;
-      const cleaned = actualNumber.replace(/[^0-9]/g, '');
-      const message = encodeURIComponent("Assalam O Alaikum, I am reaching out to express my interest in the WordPress & Hosting course offered by Abid Khan's E-Learning Hub.");
-      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
-      window.open(url, "_blank");
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
     });
-
-    // Footer year update
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Highlight active nav link
-    const current = window.location.pathname.split("/").pop();
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      if (link.getAttribute("href") === current) {
-        link.classList.add("active");
-      }
-      link.addEventListener("click", e => {
-        document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-      });
+</script>
+<script>
+  // Highlight active nav link
+  const current = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+    link.addEventListener("click", e => {
+      document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
+      e.currentTarget.classList.add("active");
     });
+  });
 
-    // Hamburger toggle
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("nav-links");
-    if (hamburger && navLinks) {
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-        hamburger.classList.toggle("open");
-      });
-    }
-
-    // Dark mode toggle
-    const themeToggle = document.getElementById("themeToggle");
-    if (themeToggle) {
-      themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-      });
-    }
-
-  } else {
-    console.error("⚠️ Script blocked: Unauthorized site name or logo detected.");
-    alert("This script is locked to Abid Khan's E-Learning Hub and cannot run elsewhere.");
+  // Hamburger toggle
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+      hamburger.classList.toggle("open");
+    });
   }
 </script>
+
 
 
 
