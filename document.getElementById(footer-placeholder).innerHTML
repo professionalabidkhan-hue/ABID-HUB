@@ -1,0 +1,1 @@
+fetch("footer.html").then(r==d);
