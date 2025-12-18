@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - E-Learning Hub</title>
+<style>
+  /* Base body and card styling */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f7fafc;
+  margin: 0;
+  padding: 20px; /* small padding for mobile */
+}
+
+/* Card container */
+.form-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin: auto;
+}
+
+/* Headings */
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Inputs and selects */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  outline: none;
+  transition: all 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #0b63d3;
+  box-shadow: 0 0 6px rgba(11,99,211,0.2);
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 0;
+  background: #0b63d3;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover { background: #094ca2; }
+
+.secondary {
+  background: #eef2ff;
+  color: #0b63d3;
+  border: 1px solid rgba(11,99,211,0.2);
+}
+
+.secondary:hover { background: #d6e4ff; }
+
+.hidden { display: none; }
+
+/* Footer text */
+.footer-text {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-text a {
+  color: #0b63d3;
+  text-decoration: none;
+}
+
+/* Responsive dropdown styling */
+#category-select {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #e6e9ef;
+  background-color: #fff;
+  color: #111827;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 5 5-5H0z' fill='%236b7280'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px 5px;
+}
+
+#category-select:hover {
+  border-color: #0b63d3;
+  box-shadow: 0 2px 6px rgba(11, 99, 211, 0.2);
+}
+
+#category-select:focus {
+  outline: none;
+  border-color: #0b63d3;
+  box-shadow: 0 0 0 2px rgba(11, 99, 211, 0.2);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .form-card {
+    max-width: 500px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-card {
+    max-width: 90%;
+    padding: 25px;
+  }
+  h2 { font-size: 1.3rem; }
+}
+
+@media (max-width: 500px) {
+  .form-card {
+    max-width: 100%;
+    padding: 20px;
+  }
+  input, select {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+  #category-select {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+}
+
+ </style>
+</head>
+<body>
+
+<div class="form-card">
+  <div id="signupStep">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+      <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
+           alt="Brand Logo" 
+           style="width:80px; height:80px; border-radius:12px; object-fit:cover; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+      <h2>Create Account</h2>
+    </div>
+
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <!-- Role selection dropdown -->
+    <div style="margin-bottom:16px; text-align:left;">
+      <label for="role" style="font-weight:600; margin-bottom:4px; display:block;">Select Role</label>
+      <select id="role">
+        <option value="student">I want to learn</option>
+        <option value="trainer">I want to teach</option>
+      </select>
+    </div>
+
+    <!-- Category selection dropdown -->
+    <div style="margin-bottom:16px; text-align:left;">
+      <label for="category-select" style="font-weight:600; margin-bottom:4px; display:block;">Category</label>
+      <select id="category-select" onchange="filterByCategory(this.value)">
+        <option value="All">All Courses</option>
+        <option value="IT">IT & Web Development</option>
+        <option value="Data Science">Data Science</option>
+        <option value="Cloud">Cloud Computing</option>
+        <option value="Cybersecurity">Cybersecurity</option>
+        <option value="Design">Graphic & Architect Design</option>
+        <option value="Marketing">Digital Marketing</option>
+        <option value="O-Level">O-Level</option>
+        <option value="A-Level">A-Level</option>
+      </select>
+    </div>
+
+    <input type="text" id="phone" placeholder="Phone Number" required>
+    <button class="btn" onclick="sendCode()">Send Verification Code</button>
+  </div>
+</div>
+
+<script>
+const backendURL = "YOUR_APPS_SCRIPT_WEBAPP_URL"; // replace with your Apps Script URL
+
+function sendCode() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const phone = document.getElementById("phone").value;
+  const role = document.getElementById("role").value;
+
+  fetch(backendURL, {
+    method: "POST",
+    body: JSON.stringify({ action: "signUp", name, email, password, phone, role })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.message === "Sign Up successful") {
+      fetch(backendURL, {
+        method: "POST",
+        body: JSON.stringify({ action: "sendVerificationCode", email, phone })
+      })
+      .then(res => res.json())
+      .then(resData => {
+        alert("Verification code sent to your phone!");
+        document.getElementById("signupStep").classList.add("hidden");
+      });
+    } else {
+      alert(data.message);
+    }
+  });
+}
+
+function filterByCategory(value) {
+  console.log("Selected category:", value);
+  // Implement course filtering logic here
+}
+</script>
+
+</body>
+</html>

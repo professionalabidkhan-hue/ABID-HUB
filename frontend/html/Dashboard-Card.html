@@ -1,0 +1,49 @@
+<div class="card-container" id="cardContainer">
+  <!-- Cards will be injected dynamically -->
+</div>
+
+<script>
+const users = [
+  {
+    name: "Student Example",
+    title: "Student",
+    image: "images/student-placeholder.jpg",
+    profileUrl: "student-example.html"
+  }
+];
+
+const container = document.getElementById("cardContainer");
+
+users.forEach(user => {
+  const card = document.createElement("div");
+  card.className = "card";
+
+  card.innerHTML = `
+    <img src="${user.image}" alt="${user.name}" id="img-${user.name.replace(/\s/g,'')}">
+    <div class="card-content">
+      <h3>${user.name}</h3>
+      <p>${user.title}</p>
+      <button onclick="window.location.href='${user.profileUrl}'">Visit Profile</button>
+      <input type="file" accept="image/*" onchange="uploadImage(event, '${user.name.replace(/\s/g,'')}')">
+    </div>
+  `;
+
+  container.appendChild(card);
+});
+
+// Function to handle image upload
+function uploadImage(event, username) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    // Update the image in the card
+    document.getElementById(`img-${username}`).src = e.target.result;
+
+    // TODO: Send the image to your backend for storage
+    console.log(`Image for ${username} ready to upload`);
+  };
+  reader.readAsDataURL(file);
+}
+</script>

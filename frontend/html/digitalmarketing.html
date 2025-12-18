@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abid Khan's E-Learning Hub</title>
+  <style>
+    body {margin:0;font-family:Arial, sans-serif;background:#f9fafb;color:#111827;}
+    a {text-decoration:none;color:inherit;}
+
+    /* Navbar */
+    header {background:#0b63d3;color:#fff;position:sticky;top:0;z-index:999;}
+    .navbar {display:flex;justify-content:space-between;align-items:center;padding:12px 20px;}
+    .nav-left {display:flex;align-items:center;}
+    .nav-logo {width:40px;height:40px;border-radius:50%;margin-right:10px;border:2px solid #4fc3f7;}
+    .nav-title {font-weight:700;}
+    .nav-links {display:flex;gap:20px;}
+    .nav-links a {color:#fff;font-weight:600;}
+    .nav-links a.active {border-bottom:2px solid #fff;}
+    .nav-toggle {display:none;background:none;border:none;font-size:24px;color:#fff;cursor:pointer;}
+
+    @media(max-width:768px){
+      .nav-links{display:none;flex-direction:column;background:#0b63d3;
+        position:absolute;top:60px;right:20px;padding:10px;border-radius:8px;}
+      .nav-links.show{display:flex;}
+      .nav-toggle{display:block;}
+    }
+
+    /* Hero */
+    .hero {padding:40px 20px;text-align:center;background:#eef5ff;}
+    .hero h1 {font-size:clamp(28px,4vw,40px);margin:0 0 10px;}
+    .hero p {color:#6b7280;max-width:700px;margin:0 auto;}
+
+    /* Section */
+    .section {max-width:1100px;margin:0 auto;padding:36px 20px;}
+    .grid {display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+    .card {background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.04);}
+    .card h3 {margin:0 0 8px;font-size:18px;}
+    .card p {margin:0;color:#6b7280;}
+
+    /* Footer */
+    footer {background:#ffffff;padding:30px 20px;text-align:center;
+      box-shadow:0 -4px 12px rgba(0,0,0,0.05);}
+    footer input {padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;width:220px;margin-bottom:12px;}
+    footer button {padding:10px 20px;border-radius:999px;background:#0b63d3;color:#fff;font-weight:600;border:none;cursor:pointer;}
+    footer p {margin-top:16px;color:#6b7280;}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" 
+           alt="Abid Khan" class="nav-logo">
+      <span class="nav-title">Abid Khan's E-Learning Hub</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle">&#9776;</button>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Welcome to Abid Khan's Hub</h1>
+  <p>Empowering learners worldwide with TOEFL, Digital Marketing, and professional growth strategies.</p>
+</section>
+
+<!-- Example Section -->
+<section class="section">
+  <h2>Our Focus Areas</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>TOEFL Preparation</h3>
+      <p>Structured guidance to achieve high scores in Reading, Listening, Speaking, and Writing.</p>
+    </div>
+    <div class="card">
+      <h3>Digital Marketing</h3>
+      <p>Learn SEO, social media, Google Ads, and content marketing to grow your online presence.</p>
+    </div>
+    <div class="card">
+      <h3>Personal Mentoring</h3>
+      <p>One-on-one coaching to build confidence, clarity, and career distinction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <h3>Get in Touch on WhatsApp</h3>
+  <input type="text" id="footerNumberInput" placeholder="Enter number (e.g. 1111-1111111)">
+  <button id="footerWhatsappBtn">Message on WhatsApp</button>
+  <p>© <span id="year"></span> Abid Khan's E-Learning Hub | Contact on WhatsApp: 1111-1111111, 2222-2222222</p>
+</footer>
+
+<script>
+  // Navbar toggle
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+
+  // WhatsApp button functionality
+  const footerNumberMap = {
+    "1111-1111111": "923497469638",
+    "2222-2222222": "923497469638"
+  };
+  document.getElementById('footerWhatsappBtn').addEventListener('click', function() {
+    const input = document.getElementById('footerNumberInput').value.trim();
+    const actualNumber = footerNumberMap[input] || input;
+    const cleaned = actualNumber.replace(/[^0-9]/g, '');
+    const message = encodeURIComponent("Assalam O Alaikum, I am reaching out to express my interest in the Digital Marketing course offered by Abid Khan's E-Learning Hub.");
+    const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
+    window.open(url, "_blank");
+  });
+
+  // Footer year update
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
