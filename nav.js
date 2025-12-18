@@ -4,6 +4,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const burgerMenu = document.getElementById("burger");
   const dropdowns = document.querySelectorAll(".dropdown");
 
+  // Function to show/hide dropdown
+  function toggleDropdownItem(item) {
+    const dropdownContent = item.querySelector(".dropdown-content");
+
+    if (item.classList.contains("dropdown-show")) {
+      dropdownContent.removeAttribute("style");
+      item.classList.remove("dropdown-show");
+      item.querySelector(".dropdown-toggle").setAttribute("aria-expanded", "false");
+    } else {
+      dropdownContent.style.height = dropdownContent.scrollHeight + "px";
+      item.classList.add("dropdown-show");
+      item.querySelector(".dropdown-toggle").setAttribute("aria-expanded", "true");
+    }
+  }
+
   // Burger menu toggle
   burgerMenu.addEventListener("click", () => {
     const isActive = burgerMenu.classList.toggle("is-active");
@@ -25,21 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
-  // Function to show/hide dropdown
-  const toggleDropdownItem = (item) => {
-    const dropdownContent = item.querySelector(".dropdown-content");
-
-    if (item.classList.contains("dropdown-show")) {
-      dropdownContent.removeAttribute("style");
-      item.classList.remove("dropdown-show");
-      item.querySelector(".dropdown-toggle").setAttribute("aria-expanded", "false");
-    } else {
-      dropdownContent.style.height = dropdownContent.scrollHeight + "px";
-      item.classList.add("dropdown-show");
-      item.querySelector(".dropdown-toggle").setAttribute("aria-expanded", "true");
-    }
-  };
 
   // Unified resize handler
   window.addEventListener("resize", () => {
