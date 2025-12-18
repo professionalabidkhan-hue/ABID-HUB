@@ -24,4 +24,6 @@ Contact: professionalabidkhan2@gmail.com
 
 ## Enforcement
 Violations of these terms may result in legal action under applicable intellectual property laws in Pakistan and internationally.  
-ABID KHAN FINTECH INSTITUTE reserves the right to enforce protections through global platforms including (but not limited to) Microsoft, GitHub, Google, and other international service providers to block unauthorized use or distribution of its content.
+ABID KHAN FINTECH INSTITUTE reserves the right to enforce protections through global platforms including (but not limited to) Microsoft, GitHub, Google, and other international service providers.  
+Infringing content may be subject to permanent removal from these platforms under applicable DMCA, trademark, and intellectual property enforcement procedures.
+
