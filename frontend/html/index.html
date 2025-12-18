@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ABID KHAN FINTECH INSTITUTE</title>
+  <link rel="stylesheet" href="../css/stylesheetnav.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Placeholder for nav -->
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <h1>Welcome to ABID KHAN FINTECH INSTITUTE</h1>
+    <p>Empowering students with fintech, web development, and certifications.</p>
+  </main>
+
+  <script>
+    // Load nav.html into placeholder
+    fetch("nav.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("nav-placeholder").innerHTML = data;
+        // Attach nav.js after nav loads
+        const script = document.createElement("script");
+        script.src = "../js/nav.js";
+        document.body.appendChild(script);
+      });
+  </script>
+</body>
+</html>
 
