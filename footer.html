@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+  rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="/ABID-HUB/frontend/includes/nav.css">
+<script defer src="/ABID-HUB/frontend/includes/nav.js"></script>
+
+    <title>FOOTER</title>
+  </head>
+  <body>
+<footer class="site-footer">
+  <h3>Get in Touch on WhatsApp</h3>
+  <input type="text" id="footerNumberInput" placeholder="Enter code (e.g. 1111)" aria-label="Enter WhatsApp code">
+  <button id="footerWhatsappBtn" aria-label="Send WhatsApp message">
+    Message on WhatsApp
+  </button>
+  <p>
+    © <span id="year"></span> ABID KHAN FINTECH INSTITUTE — Trademark Protected | WhatsApp: 1111, 4444
+  </p>
+</footer>
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+
+      // Attach CSS + JS after injection
+      const cssLink = document.createElement("link");
+      cssLink.rel = "stylesheet";
+      cssLink.href = "footer.css";
+      document.head.appendChild(cssLink);
+
+      const script = document.createElement("script");
+      script.src = "footer.js";
+      document.body.appendChild(script);
+    })
+    .catch(err => console.error("Footer load failed:", err));
+</script>
+
+
+    
+  </body>
+</html>
