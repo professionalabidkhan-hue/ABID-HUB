@@ -1,583 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ABID KHAN FINTECH INSTITUTE</title>
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-:root {
-  --color-white-100: hsl(0, 0%, 100%);
-  --color-white-200: hsl(0, 0%, 95%);
-  --color-white-300: hsl(0, 0%, 85%);
-  --color-white-400: hsl(0, 0%, 75%);
-  --color-white-500: hsl(0, 0%, 65%);
-  --color-white-600: hsl(0, 0%, 55%);
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  --color-black-100: hsl(210, 17%, 12%);
-  --color-black-200: hsl(210, 17%, 10%);
-  --color-black-300: hsl(210, 16%, 8%);
-  --color-black-400: hsl(210, 16%, 6%);
-  --color-black-500: hsl(210, 15%, 4%);
-  --color-black-600: hsl(210, 15%, 2%);
-
-  --color-blue-100: hsl(212, 96%, 60%);
-  --color-blue-200: hsl(213, 94%, 55%);
-  --color-blue-300: hsl(217, 91%, 50%);
-  --color-blue-400: hsl(221, 83%, 45%);
-  --color-blue-500: hsl(224, 76%, 40%);
-  --color-blue-600: hsl(226, 71%, 35%);
-
-  --text-tiny: clamp(0.84rem, calc(0.12vw + 0.8rem), 0.89rem);
-  --text-small: clamp(0.93rem, calc(0.13vw + 0.91rem), 1rem);
-  --text-base: clamp(1.05rem, calc(0.15vw + 1.01rem), 1.12rem);
-  --text-medium: clamp(1.18rem, calc(0.17vw + 1.14rem), 1.26rem);
-  --text-large: clamp(1.32rem, calc(0.19vw + 1.28rem), 1.41rem);
-
-  --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-*,
-*::before,
-*::after {
-  padding: 0;
-  margin: 0;
-  list-style: none;
+    <title>ABID KHAN E LEARNING HUB</title>
+  </head>
+<style>
+  .dropdown-menu a {
   text-decoration: none;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  color: #000000;
 }
-
-html {
-  font-size: 100%;
-  font-style: normal;
-  scroll-behavior: smooth;
-  height: -webkit-fill-available;
+.dropdown-menu a .d-flex {
+  transition: all 0.5s;
 }
-
-body {
-  font-family: "Roboto", system-ui, ui-sans-serif, sans-serif;
-  font-size: var(--text-base);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--color-black-500);
-  background-color: var(--color-white-100);
+.dropdown-menu .col-sm-6:nth-child(1) a:hover .d-flex {
+  background-color: var(--bs-warning-bg-subtle);
 }
-
-main,
-section {
-  overflow: hidden;
+.dropdown-menu .col-sm-6:nth-child(2) a:hover .d-flex {
+  background-color: var(--bs-danger-bg-subtle);
 }
-
-a,
-button {
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-  border: none;
-  outline: none;
-  color: inherit;
-  background: none;
+.dropdown-menu .col-sm-6:nth-child(3) a:hover .d-flex {
+  background-color: var(--bs-success-bg-subtle);
 }
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  line-height: 1.15;
-  word-wrap: break-word;
+.dropdown-menu .col-sm-6:nth-child(4) a:hover .d-flex {
+  background-color: var(--bs-secondary-bg-subtle);
 }
-
-p {
-  max-width: 50ch;
+.dropdown-menu .col-sm-6:nth-child(5) a:hover .d-flex {
+  background-color: var(--bs-tertiary-bg);
 }
-
-p,
-li {
-  line-height: inherit;
-  word-wrap: break-word;
+.dropdown-menu .col-sm-6:nth-child(6) a:hover .d-flex {
+  background-color: var(--bs-info-bg-subtle);
 }
-
-img,
-svg,
-picture,
-video {
-  font-style: italic;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  vertical-align: middle;
-}
-
-img,
-svg {
-  background-size: cover;
-  background-repeat: no-repeat;
-  image-rendering: crisp-edges;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-}
-
-/* Utility classes */
-.section { margin-inline: auto; margin-block: 5rem 2rem; }
-.container { max-width: 75rem; margin-inline: auto; padding-inline: 1.5rem; }
-.center { display: flex; align-items: center; justify-content: center; }
-.between { display: flex; align-items: center; justify-content: space-between; }
-
-.text-tiny { font-size: var(--text-tiny); }
-.text-small { font-size: var(--text-small); }
-.text-base { font-size: var(--text-base); }
-.text-medium { font-size: var(--text-medium); }
-.text-large { font-size: var(--text-large); }
-
-.font-normal { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-semi { font-weight: 600; }
-.font-bold { font-weight: 700; }
-
-.text-uppercase { text-transform: uppercase; }
-.text-lowercase { text-transform: lowercase; }
-.text-capitalize { text-transform: capitalize; }
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.6;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.25rem;
-  transition: all 0.25s ease;
-}
-.btn-default {
-  color: var(--color-black-500);
-  background-color: var(--color-white-100);
-  box-shadow: var(--shadow-medium);
-}
-.btn-darken {
-  color: var(--color-white-100);
-  background-color: var(--color-black-500);
-  box-shadow: var(--shadow-medium);
-}
-
-/* Header */
-.header {
-  position: fixed;
-  top: 0; left: 0;
-  z-index: 10;
-  width: 100%;
-  background-color: var(--color-white-100);
-  box-shadow: var(--shadow-medium);
-}
-.brand {
-  font-size: 1.6rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color-blue-300);
-}
-
-/* Navbar */
-.navbar { width: 100%; height: 4.25rem; margin-inline: auto; }
-.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
-.navbar-block {
-  position: absolute; left: 0; width: 100%;
-  height: calc(100vh - 4rem);
-  opacity: 0; pointer-events: none;
-  background-color: var(--color-white-100);
-  transition: opacity 0.4s ease;
-}
-.navbar-block.is-active { opacity: 1; pointer-events: initial; }
-
-@media screen and (min-width: 62rem) {
-  .navbar { display: flex; justify-content: space-between; }
-  .navbar-block {
-    position: initial; height: auto; opacity: 1;
-    pointer-events: auto; background: none; transition: none;
+@media only screen and (min-width: 992px) {
+  .dropdown-menu {
+    width: 55vw;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+  }
+  .dropdown-menu.show {
+    display: flex;
   }
 }
-
-/* Menu */
-.menu { padding-block: 1rem; }
-.menu-link {
-  font-size: var(--text-base);
-  font-weight: 500;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.5rem 1.5rem;
-  color: var(--color-black-500);
-  transition: color 0.3s ease;
-}
-@media screen and (min-width: 62rem) {
-  .menu { display: flex; flex-direction: row; column-gap: 1rem; padding: 0; }
-  .menu-item { display: flex; cursor: pointer; padding-inline: 0.5rem; }
-  .menu-link { padding: 0; }
-}
-
-/* Dropdown */
-.dropdown-toggle { cursor: pointer; }
-.dropdown-toggle i.bx { font-size: 1.5rem; transition: rotate 0.4s ease; }
-.dropdown-content {
-  height: 0; overflow: hidden;
-  background-color: var(--color-white-100);
-  transition: height 0.5s ease;
-}
-.dropdown-column, .dropdown-group, .dropdown-items { display: grid; }
-.dropdown-group { padding: 0 1.5rem 1rem; }
-.dropdown-title { display: flex
-
-    @import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
-
-:root {
-  --color: #3c3163;
-  --transition-time: 0.5s;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Open Sans';
-  background: #fafafa;
-}
-
-a {
-  color: inherit;
-}
-
-.cards-wrapper {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 4rem;
-  padding: 4rem;
-  margin: 0 auto;
-  width: max-content;
-}
-
-.card {
-  font-family: 'Heebo';
-  --bg-filter-opacity: 0.5;
-  background-image: linear-gradient(rgba(0,0,0,var(--bg-filter-opacity)),rgba(0,0,0,var(--bg-filter-opacity))), var(--bg-img);
-  height: 20em;
-  width: 15em;
-  font-size: 1.5em;
-  color: white;
-  border-radius: 1em;
-  padding: 1em;
-  /*margin: 2em;*/
-  display: flex;
-  align-items: flex-end;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 0 5em -1em black;
-  transition: all, var(--transition-time);
-  position: relative;
-  overflow: hidden;
-  border: 10px solid #ccc;
+.dropdown-menu a {
   text-decoration: none;
+  color: #000;
+}
+.dropdown-menu a .d-flex { transition: all 0.35s; border-radius: 10px; }
+.dropdown-menu .col-sm-6:nth-child(1) a:hover .d-flex { background-color: var(--bs-warning-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(2) a:hover .d-flex { background-color: var(--bs-danger-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(3) a:hover .d-flex { background-color: var(--bs-success-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(4) a:hover .d-flex { background-color: var(--bs-secondary-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(5) a:hover .d-flex { background-color: var(--bs-body-bg); }
+.dropdown-menu .col-sm-6:nth-child(6) a:hover .d-flex { background-color: var(--bs-info-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(7) a:hover .d-flex { background-color: var(--bs-warning-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(8) a:hover .d-flex { background-color: var(--bs-danger-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(9) a:hover .d-flex { background-color: var(--bs-success-bg-subtle); }
+.dropdown-menu .col-sm-6:nth-child(10) a:hover .d-flex { background-color: var(--bs-secondary-bg-subtle); }
+
+@media (min-width: 992px) {
+  .dropdown-menu { width: 55vw; display: block; }
+  .dropdown:hover .dropdown-menu,
+  .dropdown-menu.show { display: flex; }
 }
 
-.card:hover {
-  transform: rotate(0);
-}
+</style>
+  <body>
 
-.card h1 {
-  margin: 0;
-  font-size: 1.5em;
-  line-height: 1.2em;
-}
+<!-- Include Bootstrap CSS + Icons in <head> -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+  rel="stylesheet">
 
-.card p {
-  font-size: 0.75em;
-  font-family: 'Open Sans';
-  margin-top: 0.5em;
-  line-height: 2em;
-}
+<nav class="navbar navbar-expand-lg shadow-sm bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="index.html">ABID KHAN FINTECH INSTITUTE</a>
 
-.card .tags {
-  display: flex;
-}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-.card .tags .tag {
-  font-size: 0.75em;
-  background: rgba(255,255,255,0.5);
-  border-radius: 0.3rem;
-  padding: 0 0.5em;
-  margin-right: 0.5em;
-  line-height: 1.5em;
-  transition: all, var(--transition-time);
-}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-links">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">Home</a>
+        </li>
 
-.card:hover .tags .tag {
-  background: var(--color);
-  color: white;
-}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
 
-.card .date {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 0.75em;
-  padding: 1em;
-  line-height: 1em;
-  opacity: .8;
-}
+          <!-- Mega dropdown -->
+          <div class="dropdown-menu px-3 rounded-3 border-0 shadow">
+            <div class="row g-2">
+              <!-- Accounting & Finance -->
+              <div class="col-sm-6">
+                <a href="accounting.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-warning-subtle rounded-3 fs-1">
+                      <i class="bi bi-cash-coin"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Accounting & Finance</h5>
+                      <div>Financial statements, budgeting, audit trails, and fintech finance fundamentals.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.card:before, .card:after {
-  content: '';
-  transform: scale(0);
-  transform-origin: top left;
-  border-radius: 50%;
-  position: absolute;
-  left: -50%;
-  top: -50%;
-  z-index: -5;
-  transition: all, var(--transition-time);
-  transition-timing-function: ease-in-out;
-}
+              <!-- IELTS Test Preparation -->
+              <div class="col-sm-6">
+                <a href="ielts.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-danger-subtle rounded-3 fs-1">
+                      <i class="bi bi-chat-text"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">IELTS Test Preparation</h5>
+                      <div>Targeted practice for Listening, Reading, Writing, Speaking to boost band scores.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.card:before {
-  background: #ddd;
-  width: 250%;
-  height: 250%;
-}
+              <!-- Web Development -->
+              <div class="col-sm-6">
+                <a href="webdev.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-success-subtle rounded-3 fs-1">
+                      <i class="bi bi-window-desktop"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Web Development</h5>
+                      <div>HTML, CSS, JS, responsive design, and modern tooling for production sites.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.card:after {
-  background: white;
-  width: 200%;
-  height: 200%;
-}
+              <!-- Python -->
+              <div class="col-sm-6">
+                <a href="python.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-secondary-subtle rounded-3 fs-1">
+                      <i class="bi bi-filetype-py"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Python</h5>
+                      <div>Core syntax, automation scripts, APIs, data handling, and packaging basics.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.card:hover {
-  color: var(--color);
-}
+              <!-- Data Science -->
+              <div class="col-sm-6">
+                <a href="datascience.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-body-tertiary rounded-3 fs-1">
+                      <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Data Science</h5>
+                      <div>Pandas, visualization, feature engineering, ML pipelines, and model evaluation.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.card:hover:before, .card:hover:after {
-  transform: scale(1);
-}
+              <!-- Graphic Designing -->
+              <div class="col-sm-6">
+                <a href="graphicdesign.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-info-subtle rounded-3 fs-1">
+                      <i class="bi bi-brush"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Graphic Designing</h5>
+                      <div>Brand kits, typography, color systems, and assets for web and socials.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.card-grid-space .num {
-  font-size: 3em;
-  margin-bottom: 1.2rem;
-  margin-left: 1rem;
-}
+              <!-- Freelancing -->
+              <div class="col-sm-6">
+                <a href="freelancing.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-warning-subtle rounded-3 fs-1">
+                      <i class="bi bi-briefcase"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Freelancing</h5>
+                      <div>Portfolio building, proposals, client onboarding, and project delivery.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.info {
-  font-size: 1.2em;
-  display: flex;
-  padding: 1em 3em;
-  height: 3em;
-}
+              <!-- Software Development -->
+              <div class="col-sm-6">
+                <a href="softwaredev.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-danger-subtle rounded-3 fs-1">
+                      <i class="bi bi-code-slash"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Software Development</h5>
+                      <div>Requirements, version control, testing, CI/CD, and deployment practices.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.info img {
-  height: 3em;
-  margin-right: 0.5em;
-}
+              <!-- Content Writing -->
+              <div class="col-sm-6">
+                <a href="contentwriting.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-success-subtle rounded-3 fs-1">
+                      <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Content Writing</h5>
+                      <div>Research, outlines, SEO, tone, and publishing workflows for digital media.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
 
-.info h1 {
-  font-size: 1em;
-  font-weight: normal;
-}
+              <!-- Artificial Intelligence -->
+              <div class="col-sm-6">
+                <a href="ai.html">
+                  <div class="d-flex align-items-center py-3 px-1 rounded-3">
+                    <div class="icon px-3 bg-secondary-subtle rounded-3 fs-1">
+                      <i class="bi bi-cpu"></i>
+                    </div>
+                    <div class="text ps-3">
+                      <h5 class="mb-1">Artificial Intelligence</h5>
+                      <div>ML concepts, model training, evaluation, and ethical, responsible AI use.</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
 
-/* MEDIA QUERIES */
-@media screen and (max-width: 1285px) {
-  .cards-wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+        <li class="nav-item">
+          <a class="nav-link" href="courses.html">All Courses</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
 
-@media screen and (max-width: 900px) {
-  .cards-wrapper {
-    grid-template-columns: 1fr;
-  }
-  .info {
-    justify-content: center;
-  }
-  .card-grid-space .num {
-    /margin-left: 0;
-    /text-align: center;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .cards-wrapper {
-    padding: 4rem 2rem;
-  }
-  .card {
-    max-width: calc(100vw - 4rem);
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .info {
-    display: block;
-    text-align: center;
-  }
-  .info h1 {
-    margin: 0;
-  }
-}
-  </style>
-</head>
-<body>
-
-  <!-- Placeholder for nav -->
-  <div id="nav-placeholder"></div>
-
-  <main>
-    <h1>Welcome to ABID KHAN FINTECH INSTITUTE</h1>
-    <p>Empowering students with fintech, web development, and certifications.</p>
-  </main>
-<section class="cards-wrapper">
-  <!-- Accounting & Finance -->
-  <div class="card-grid-space">
-    <div class="num">01</div>
-    <a class="card" href="accounting.html" style="--bg-img: url('images/accounting.jpg')">
-      <div>
-        <h1>Accounting & Finance</h1>
-        <p>Master financial principles, accounting systems, and investment strategies for real-world success.</p>
-        <div class="tags"><div class="tag">Finance</div></div>
-      </div>
-    </a>
+      <!-- Right: Search -->
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search courses" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+      </form>
+    </div>
   </div>
+</nav>
 
-  <!-- IELTS Test Preparation -->
-  <div class="card-grid-space">
-    <div class="num">02</div>
-    <a class="card" href="ielts.html" style="--bg-img: url('images/ielts.jpg')">
-      <div>
-        <h1>IELTS Test Preparation</h1>
-        <p>Boost your English skills with proven strategies to achieve high IELTS band scores.</p>
-        <div class="tags"><div class="tag">Language</div></div>
-      </div>
-    </a>
-  </div>
+<!-- Include Bootstrap JS before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Web Development -->
-  <div class="card-grid-space">
-    <div class="num">03</div>
-    <a class="card" href="webdev.html" style="--bg-img: url('images/webdev.jpg')">
-      <div>
-        <h1>Web Development</h1>
-        <p>Learn HTML, CSS, JavaScript, and frameworks to build modern, responsive websites.</p>
-        <div class="tags"><div class="tag">Coding</div></div>
-      </div>
-    </a>
-  </div>
+    <!-- Optional JavaScript; choose one of the two! -->
 
-  <!-- Python -->
-  <div class="card-grid-space">
-    <div class="num">04</div>
-    <a class="card" href="python.html" style="--bg-img: url('images/python.jpg')">
-      <div>
-        <h1>Python</h1>
-        <p>Discover Python programming for automation, data analysis, and application development.</p>
-        <div class="tags"><div class="tag">Programming</div></div>
-      </div>
-    </a>
-  </div>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-  <!-- Data Science -->
-  <div class="card-grid-space">
-    <div class="num">05</div>
-    <a class="card" href="datascience.html" style="--bg-img: url('images/datascience.jpg')">
-      <div>
-        <h1>Data Science</h1>
-        <p>Analyze data, build predictive models, and gain insights with machine learning techniques.</p>
-        <div class="tags"><div class="tag">Analytics</div></div>
-      </div>
-    </a>
-  </div>
-
-  <!-- Graphic Designing -->
-  <div class="card-grid-space">
-    <div class="num">06</div>
-    <a class="card" href="graphicdesign.html" style="--bg-img: url('images/graphicdesign.jpg')">
-      <div>
-        <h1>Graphic Designing</h1>
-        <p>Create stunning visuals with Photoshop, Illustrator, and modern design tools.</p>
-        <div class="tags"><div class="tag">Design</div></div>
-      </div>
-    </a>
-  </div>
-
-  <!-- Freelancing -->
-  <div class="card-grid-space">
-    <div class="num">07</div>
-    <a class="card" href="freelancing.html" style="--bg-img: url('images/freelancing.jpg')">
-      <div>
-        <h1>Freelancing</h1>
-        <p>Learn how to build a career online, attract clients, and manage freelance projects.</p>
-        <div class="tags"><div class="tag">Career</div></div>
-      </div>
-    </a>
-  </div>
-
-  <!-- Software Development -->
-  <div class="card-grid-space">
-    <div class="num">08</div>
-    <a class="card" href="softwaredev.html" style="--bg-img: url('images/softwaredev.jpg')">
-      <div>
-        <h1>Software Development</h1>
-        <p>Design, develop, and deploy scalable software solutions using modern programming practices.</p>
-        <div class="tags"><div class="tag">Software</div></div>
-      </div>
-    </a>
-  </div>
-
-  <!-- Content Writing -->
-  <div class="card-grid-space">
-    <div class="num">09</div>
-    <a class="card" href="contentwriting.html" style="--bg-img: url('images/contentwriting.jpg')">
-      <div>
-        <h1>Content Writing</h1>
-        <p>Enhance your writing skills to create engaging blogs, articles, and marketing content.</p>
-        <div class="tags"><div class="tag">Writing</div></div>
-      </div>
-    </a>
-  </div>
-
-  <!-- Artificial Intelligence -->
-  <div class="card-grid-space">
-    <div class="num">10</div>
-    <a class="card" href="ai.html" style="--bg-img: url('images/ai.jpg')">
-      <div>
-        <h1>Artificial Intelligence</h1>
-        <p>Explore AI concepts, machine learning, and neural networks to build intelligent systems.</p>
-        <div class="tags"><div class="tag">AI</div></div>
-      </div>
-    </a>
-  </div>
-</section>
-
-  <script>
-    // Load nav.html into placeholder
-    fetch("nav.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("nav-placeholder").innerHTML = data;
-        // Attach nav.js after nav loads
-        const script = document.createElement("script");
-        script.src = "../js/nav.js";
-        document.body.appendChild(script);
-      });
-  </script>
-</body>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
 </html>
+
 
 
