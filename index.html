@@ -11,47 +11,17 @@
     <title>ABID KHAN E LEARNING HUB</title>
   </head>
 <style>
-  .dropdown-menu a {
-  text-decoration: none;
-  color: #000000;
-}
-.dropdown-menu a .d-flex {
-  transition: all 0.5s;
-}
-.dropdown-menu .col-sm-6:nth-child(1) a:hover .d-flex {
-  background-color: var(--bs-warning-bg-subtle);
-}
-.dropdown-menu .col-sm-6:nth-child(2) a:hover .d-flex {
-  background-color: var(--bs-danger-bg-subtle);
-}
-.dropdown-menu .col-sm-6:nth-child(3) a:hover .d-flex {
-  background-color: var(--bs-success-bg-subtle);
-}
-.dropdown-menu .col-sm-6:nth-child(4) a:hover .d-flex {
-  background-color: var(--bs-secondary-bg-subtle);
-}
-.dropdown-menu .col-sm-6:nth-child(5) a:hover .d-flex {
-  background-color: var(--bs-tertiary-bg);
-}
-.dropdown-menu .col-sm-6:nth-child(6) a:hover .d-flex {
-  background-color: var(--bs-info-bg-subtle);
-}
-@media only screen and (min-width: 992px) {
-  .dropdown-menu {
-    width: 55vw;
-  }
-  .dropdown:hover .dropdown-menu {
-    display: flex;
-  }
-  .dropdown-menu.show {
-    display: flex;
-  }
-}
+  /* Base link styles */
 .dropdown-menu a {
   text-decoration: none;
   color: #000;
 }
-.dropdown-menu a .d-flex { transition: all 0.35s; border-radius: 10px; }
+.dropdown-menu a .d-flex {
+  transition: all 0.35s;
+  border-radius: 10px;
+}
+
+/* Hover background colors for each column */
 .dropdown-menu .col-sm-6:nth-child(1) a:hover .d-flex { background-color: var(--bs-warning-bg-subtle); }
 .dropdown-menu .col-sm-6:nth-child(2) a:hover .d-flex { background-color: var(--bs-danger-bg-subtle); }
 .dropdown-menu .col-sm-6:nth-child(3) a:hover .d-flex { background-color: var(--bs-success-bg-subtle); }
@@ -63,10 +33,28 @@
 .dropdown-menu .col-sm-6:nth-child(9) a:hover .d-flex { background-color: var(--bs-success-bg-subtle); }
 .dropdown-menu .col-sm-6:nth-child(10) a:hover .d-flex { background-color: var(--bs-secondary-bg-subtle); }
 
+/* Desktop (≥992px) mega menu */
 @media (min-width: 992px) {
-  .dropdown-menu { width: 55vw; display: block; }
+  .dropdown-menu {
+    width: 55vw;
+    display: none; /* hidden by default */
+  }
   .dropdown:hover .dropdown-menu,
-  .dropdown-menu.show { display: flex; }
+  .dropdown-menu.show {
+    display: flex; /* flex layout for mega menu */
+  }
+}
+
+/* Mobile (<992px) dropdown */
+@media (max-width: 991px) {
+  .dropdown-menu {
+    width: 100%;
+    display: none; /* hidden until Bootstrap adds .show */
+    flex-direction: column;
+  }
+  .dropdown-menu.show {
+    display: block; /* Bootstrap toggles this on tap */
+  }
 }
 
 </style>
