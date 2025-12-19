@@ -50,62 +50,37 @@
   .corner-img {
     width: 80px;
   }
-
-
-
-
 </style>
+    
   </head>
+  
   <body>
+<!-- Placeholder for nav -->
+<div id="nav-placeholder"></div>
 
+<!-- Page content here -->
 
-
-
-
-    <!-- Footer -->
+<!-- Placeholder for footer -->
 <div id="footer-placeholder"></div>
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Load nav
-  fetch("navbar.html")
-    .then(res => res.text())
-    .then(data => {
-      document.body.insertAdjacentHTML("afterbegin", data);
+  // Load nav.html
+  fetch("nav.html")
+    .then(response => response.text())
+    .then(data => document.getElementById("nav-placeholder").innerHTML = data);
 
-      // Attach nav CSS + JS
-      const navCss = document.createElement("link");
-      navCss.rel = "stylesheet";
-      navCss.href = "nav.css";
-      document.head.appendChild(navCss);
-
-      const navScript = document.createElement("script");
-      navScript.src = "nav.js";
-      document.body.appendChild(navScript);
-    })
-    .catch(err => console.error("Nav load failed:", err));
-
-  // Load footer
+  // Load footer.html
   fetch("footer.html")
-    .then(res => res.text())
-    .then(data => {
-      document.body.insertAdjacentHTML("beforeend", data);
-
-      // Attach footer CSS + JS
-      const footerCss = document.createElement("link");
-      footerCss.rel = "stylesheet";
-      footerCss.href = "footer.css";
-      document.head.appendChild(footerCss);
-
-      const footerScript = document.createElement("script");
-      footerScript.src = "footer.js";
-      document.body.appendChild(footerScript);
-    })
-    .catch(err => console.error("Footer load failed:", err));
-});
+    .then(response => response.text())
+    .then(data => document.getElementById("footer-placeholder").innerHTML = data);
 </script>
 
 
 
+
+
+   
+     
 
 
   </body>
