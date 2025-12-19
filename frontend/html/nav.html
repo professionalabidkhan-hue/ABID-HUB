@@ -289,5 +289,18 @@ Logo by Sneaker-mission.com (http://www.sneaker-mission.com/)
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/mega-custom2.js"></script>
 </body>
-
+<script>
+	$(document).ready(function(){
+    $(".dropdown").hover(            
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("slow");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("slow");
+            $(this).toggleClass('open');       
+        }
+    );
+});
+</script>
 </html>
