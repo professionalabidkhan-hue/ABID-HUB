@@ -1,122 +1,44 @@
-<header class="header" id="header">
-  <nav class="navbar container">
-    <div class="navbar-inner">
-      <a href="frontend/html/index.html" class="brand">ABID KHAN FINTECH</a>
-      <div class="burger" id="burger">
-        <span class="burger-line"></span>
-        <span class="burger-line"></span>
-        <span class="burger-line"></span>
-      </div>
-    </div>
-    <div class="navbar-block" id="menu">
-      <ul class="menu">
-        <li class="menu-item"><a href="frontend/html/index.html" class="menu-link">Home</a></li>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+  rel="stylesheet">
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+  rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="/ABID-HUB/frontend/includes/nav.css">
+<script defer src="/ABID-HUB/frontend/includes/nav.js"></script>
 
-        <!-- Courses Dropdown -->
-        <li class="menu-item dropdown">
-          <span class="dropdown-toggle menu-link">
-            Courses <i class="bx bx-chevron-down"></i>
-          </span>
-          <div class="dropdown-content">
-            <div class="dropdown-column">
-              <div class="dropdown-group">
-                <div class="dropdown-title">
-                  <span class="dropdown-icon"><i class="bx bx-code"></i></span>
-                  <span class="text-base font-medium">Programming</span>
-                </div>
-                <ul class="dropdown-items">
-                  <li><a href="frontend/html/PythonforBeginners.html" class="dropdown-link">Python for Beginners</a></li>
-                  <li><a href="frontend/html/python.html" class="dropdown-link">Python Advanced</a></li>
-                  <li><a href="frontend/html/DataScienceBasics.html" class="dropdown-link">Data Science Basics</a></li>
-                  <li><a href="frontend/html/Dashboard-Card.html" class="dropdown-link">Dashboard Card</a></li>
-                </ul>
-              </div>
-              <div class="dropdown-group">
-                <div class="dropdown-title">
-                  <span class="dropdown-icon"><i class="bx bx-devices"></i></span>
-                  <span class="text-base font-medium">Web & Design</span>
-                </div>
-                <ul class="dropdown-items">
-                  <li><a href="frontend/html/WordPress&Hosting.html" class="dropdown-link">WordPress & Hosting</a></li>
-                  <li><a href="frontend/html/website.html" class="dropdown-link">Website Development</a></li>
-                  <li><a href="frontend/html/digitalmarketing.html" class="dropdown-link">Digital Marketing</a></li>
-                  <li><a href="frontend/html/content-writing.html" class="dropdown-link">Content Writing</a></li>
-                </ul>
-              </div>
-              <div class="dropdown-group">
-                <div class="dropdown-title">
-                  <span class="dropdown-icon"><i class="bx bx-bookmark"></i></span>
-                  <span class="text-base font-medium">Certifications</span>
-                </div>
-                <ul class="dropdown-items">
-                  <li><a href="frontend/html/courses.html" class="dropdown-link">All Courses</a></li>
-                  <li><a href="frontend/html/accounting&finance.html" class="dropdown-link">Accounting & Finance</a></li>
-                  <li><a href="frontend/html/IELTS.html" class="dropdown-link">IELTS</a></li>
-                  <li><a href="frontend/html/toefl.html" class="dropdown-link">TOEFL</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
+    <title>ABID KHAN E LEARNING HUB</title>
+  </head>
+<body>
+<nav class="site-nav">
+  <div class="nav-header">
+    <span class="logo">ABID KHAN FINTECH INSTITUTE</span>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
+      ☰
+    </button>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="courses.html">Courses</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-        <!-- Discover Dropdown -->
-        <li class="menu-item dropdown">
-          <span class="dropdown-toggle menu-link">
-            Discover <i class="bx bx-chevron-down"></i>
-          </span>
-          <div class="dropdown-content">
-            <div class="dropdown-column">
-              <div class="dropdown-group">
-                <div class="dropdown-block">
-                  <span class="dropdown-icon"><i class="bx bx-podcast"></i></span>
-                  <div class="dropdown-inner">
-                    <a href="frontend/html/abidhub-chat.html" class="text-base font-medium">ABIDHUB Chat</a>
-                    <p class="text-base font-normal">Interactive chat and podcasts.</p>
-                  </div>
-                </div>
-                <div class="dropdown-block">
-                  <span class="dropdown-icon"><i class="bx bx-video"></i></span>
-                  <div class="dropdown-inner">
-                    <a href="frontend/html/tutorials.html" class="text-base font-medium">Tutorials</a>
-                    <p class="text-base font-normal">Learn with professional instructors.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="dropdown-group">
-                <div class="dropdown-block">
-                  <span class="dropdown-icon"><i class="bx bx-book-open"></i></span>
-                  <div class="dropdown-inner">
-                    <a href="frontend/html/help.html" class="text-base font-medium">Help Center</a>
-                    <p class="text-base font-normal">Guides on registration and usage.</p>
-                  </div>
-                </div>
-                <div class="dropdown-block">
-                  <span class="dropdown-icon"><i class="bx bx-bookmark"></i></span>
-                  <div class="dropdown-inner">
-                    <a href="frontend/html/community.html" class="text-base font-medium">Community</a>
-                    <p class="text-base font-normal">Connect with other learners.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
+  
+</body>
+</html>
 
-        <!-- Standalone Pages -->
-        <li class="menu-item"><a href="frontend/html/about.html" class="menu-link">About</a></li>
-        <li class="menu-item"><a href="frontend/html/blog.html" class="menu-link">Blog</a></li>
-        <li class="menu-item"><a href="frontend/html/contact.html" class="menu-link">Contact</a></li>
-        <li class="menu-item"><a href="frontend/html/dashboard.html" class="menu-link">Dashboard</a></li>
-        <li class="menu-item"><a href="frontend/html/TRAINER-ABID.html" class="menu-link">Trainer Abid</a></li>
-        <li class="menu-item"><a href="frontend/html/trainer-ahmed.html" class="menu-link">Trainer Ahmed</a></li>
-        <li class="menu-item"><a href="frontend/html/trainer-fatima.html" class="menu-link">Trainer Fatima</a></li>
 
-        <!-- Auth Pages -->
-        <li class="menu-item"><a href="frontend/html/signin.html" class="menu-link">Sign In</a></li>
-        <li class="menu-item"><a href="frontend/html/signup.html" class="menu-link">Sign Up</a></li>
-        <li class="menu-item"><a href="frontend/html/forgot-password.html" class="menu-link">Forgot Password</a></li>
-        <li class="menu-item"><a href="frontend/html/reset-password.html" class="menu-link">Reset Password</a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
+
+
+
+
