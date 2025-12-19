@@ -572,81 +572,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
     <!-- Footer -->
-<footer class="site-footer"> <h3>Get in Touch on WhatsApp</h3> <input type="text" id="footerNumberInput" placeholder="Enter code (e.g. 1111)" aria-label="Enter WhatsApp code"> <button id="footerWhatsappBtn" aria-label="Send WhatsApp message"> Message on WhatsApp </button> <p> © <span id="year"></span> ABID KHAN FINTECH INSTITUTE — Trademark Protected | WhatsApp: 1111, 4444 </p> </footer>
-    
-<footer class="site-footer">
-  <h3>Get in Touch on WhatsApp</h3>
-  <input type="text" id="footerNumberInput" placeholder="Enter code (e.g. 1111)" aria-label="Enter WhatsApp code">
-  <button id="footerWhatsappBtn" aria-label="Send WhatsApp message">
-    Message on WhatsApp
-  </button>
-  <p>
-    © <span id="year"></span> ABID KHAN FINTECH INSTITUTE — Trademark Protected | WhatsApp: 1111, 4444
-  </p>
-</footer>
-<script>
-  /* ============================================================
-   * BROTHER ABID KHAN FINTECH INSTITUTE
-   * Footer + WhatsApp Integration Script
-   * ============================================================
-   */
+<script src="js/footer-loader.js"></script>
 
-  // WhatsApp alias mapping (short codes → actual numbers)
-  const footerNumberMap = {
-    "1111": "923497469638", // Primary institute number
-    "4444": "923497469638"  // Alias mapped to same number
-    // Add more aliases here if needed
-  };
 
-  // WhatsApp button click handler
-  const whatsappBtn = document.getElementById("footerWhatsappBtn");
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener("click", function () {
-      const inputEl = document.getElementById("footerNumberInput");
-      if (!inputEl) {
-        alert("Number input field not found.");
-        return;
-      }
-
-      const input = inputEl.value.trim();
-      const actualNumber = footerNumberMap[input] || input;
-      const cleaned = actualNumber.replace(/[^0-9]/g, "");
-
-      // Validate number length (10–15 digits typical for WhatsApp)
-      if (!cleaned.match(/^\d{10,15}$/)) {
-        alert("Please enter a valid WhatsApp number or code.");
-        return;
-      }
-
-      // Pre-filled message
-      const message = encodeURIComponent(
-        "Welcome, I am reaching out to express my interest to learn course offered by ABID KHAN FINTECH INSTITUTE."
-      );
-
-      // WhatsApp API link
-      const url = `https://api.whatsapp.com/send?phone=${cleaned}&text=${message}`;
-      window.open(url, "_blank", "noopener,noreferrer");
-    });
-  }
-
-  // Footer year update
-  const yearEl = document.getElementById("year");
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-
-  // Highlight active nav link
-  const currentPage = window.location.pathname.split("/").pop();
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
-    }
-    link.addEventListener("click", e => {
-      document.querySelectorAll(".nav-links a").forEach(a => a.classList.remove("active"));
-      e.currentTarget.classList.add("active");
-    });
-  });
-</script>
 
 
 
