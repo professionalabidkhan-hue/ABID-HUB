@@ -1,90 +1,248 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-  rel="stylesheet">
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-  rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script defer src="/ABID-HUB/frontend/includes/nav.js"></script>
-    <link type="text/css" rel="stylesheet" href="nav.css">
+
     <title>ABID KHAN E LEARNING HUB</title>
 <style>
-.corner-img {
-  position: fixed;        /* stays in place when scrolling */
-  bottom: 20px;           /* distance from bottom */
-  right: 20px;            /* distance from right */
-  width: 120px;           /* size of the image */
-  height: auto;           /* keep aspect ratio */
-  border-radius: 12px;    /* rounded corners */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* subtle shadow */
+/* Navbar brand image styling */
+.navbar img {
+  border-radius: 50%;              /* make it circular */
+  border: 2px solid #0b63d3;       /* brand blue border */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* subtle shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;        /* pointer cursor on hover */
+  cursor: pointer;                 /* pointer cursor on hover */
 }
 
-.corner-img:hover {
-  transform: scale(1.05); /* slight zoom on hover */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+/* Hover effect */
+.navbar img:hover {
+  transform: scale(1.1);           /* slight zoom on hover */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.corner-img {
-  border-radius: 50%;
-  border: 3px solid #0b63d3; /* your brand blue */
-}
-
-/* Move to top-left instead of bottom-right */
-.corner-img {
-  top: 20px;
-  left: 20px;
-  bottom: auto;
-  right: auto;
-}
 
 @media (max-width: 768px) {
-  .corner-img {
+  .navbar img{
     width: 80px;
   }
+/* Shared card styling */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Holy Quran trainers */
+.card-body.quran {
+  background: #f0f8ff; /* light blue background */
+  border-left: 5px solid #0b63d3; /* brand blue accent */
+}
+
+.card-body.quran .card-title {
+  color: #0b63d3;
+  font-style: italic;
+}
+
+/* IT trainers */
+.card-body.it {
+  background: #fffaf0; /* light orange background */
+  border-left: 5px solid #ff9800; /* orange accent */
+}
+
+.card-body.it .card-title {
+  color: #ff5722;
+}
+.whatsapp-btn {
+  display: inline-block;
+  background-color: #25D366; /* WhatsApp green */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  background-color: #1ebe5d;
+  transform: scale(1.05);
+  color: #fff;
+}
+
 </style>
-    
   </head>
-  
   <body>
-<!-- Placeholder for nav -->
-<div id="navbar-placeholder"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <img src="ABID KHAN.png" alt="Trainer" width="50px" height="50px">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tutorials</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    <form class="d-flex">
+  <button class="btn btn-outline-success" type="submit">Signin</button>
+  <button class="btn btn-outline-success ms-2" type="submit">Signup</button>
+</form>
 
-<!-- Page content here -->
+    </div>
+  </div>
+</nav>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body quran">
+        <h5 class="card-title">Male Trainers Holy Quran</h5>
+        <p class="card-text">Dedicated scholars guiding students with tajweed and authentic recitation methods.</p>
+        <a href="#" class="btn btn-primary">Explore</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body quran">
+        <h5 class="card-title">Woman Trainers Holy Quran</h5>
+        <p class="card-text">Experienced female mentors offering personalized Quran learning sessions.</p>
+        <a href="#" class="btn btn-primary">Explore</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Placeholder for footer -->
-<div id="footer-placeholder"></div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body it">
+        <h5 class="card-title">Male Trainers IT</h5>
+        <p class="card-text">Guides students in web development, coding, and fintech systems.</p>
+        <a href="#" class="btn btn-primary">Explore</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body it">
+        <h5 class="card-title">Woman Trainers IT</h5>
+        <p class="card-text">Specialists in data science, digital marketing, and mobile app development.</p>
+        <a href="#" class="btn btn-primary">Explore</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card text-center shadow-lg border-0">
+  <div class="card-header bg-success text-white fw-bold">
+    🚀 Featured Opportunity
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-uppercase text-success">Create Your Profile</h5>
+    <p class="card-text">
+      Showcase your skills and services to reach more customers. Build trust, grow your network, and start earning today.
+    </p>
+    <a href="signup.html" class="btn btn-success">Get Started</a>
+  </div>
+  <div class="card-footer text-muted">
+    Updated 2 days ago
+  </div>
+</div>
 
-<script>
-  // Load nav.html
-  fetch("navbar.html")
-    .then(response => response.text())
-    .then(data => document.getElementById("nav-placeholder").innerHTML = data);
+<div class="row">
+  <!-- Card 1: E-Learning Hub + Quick Links -->
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Abid Khan’s E-Learning Hub</h5>
+        <p class="card-text">
+          Career-focused online learning in technology, business, and professional skills.
+        </p>
+        <h6 class="mt-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="tutorials.html">Tutorials</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  // Load footer.html
-  fetch("footer.html")
-    .then(response => response.text())
-    .then(data => document.getElementById("footer-placeholder").innerHTML = data);
-</script>
+  <!-- Card 2: Support + WhatsApp -->
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Support</h5>
+        <ul class="list-unstyled">
+          <li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <h6 class="mt-3">WhatsApp</h6>
+        <!-- WhatsApp button -->
+        <a href="https://wa.me/1111" class="btn btn-success">
+          WhatsApp Now
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer Bottom -->
+<div class="row mt-3">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="card-text">© 2025 Abid Khan. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
 
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-   
-     
-
-
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
   </body>
 </html>
-
-
-
