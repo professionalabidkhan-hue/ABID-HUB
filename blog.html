@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Abid Khan E Learning Hub | Blog</title>
+  <meta name="description" content="Latest blog posts from Abid Khan E Learning Hub. Web development, programming, cybersecurity, data science and more.">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Styles -->
+  <style>
+    body { background:#f4f6f9; }
+
+    .blog-section { padding:60px 0; }
+
+    .blog-card {
+      border:none;
+      border-radius:12px;
+      overflow:hidden;
+      transition:all .3s ease;
+    }
+
+    .blog-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 12px 30px rgba(0,0,0,.15);
+    }
+
+    .blog-card img {
+      height:180px;
+      object-fit:cover;
+    }
+
+    .badge-label {
+      background:#0d6efd;
+      margin-right:5px;
+      font-size:0.7rem;
+      cursor:pointer;
+    }
+
+    /* Skeleton Loader */
+    .skeleton {
+      background:linear-gradient(
+        90deg,
+        #eee 25%,
+        #f5f5f5 37%,
+        #eee 63%
+      );
+      background-size:400% 100%;
+      animation:shimmer 1.4s ease infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position:100% 0; }
+      100% { background-position:-100% 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="blog-section container">
+
+  <div class="text-center mb-4">
+    <h2 class="fw-bold">Latest Blog Posts</h2>
+    <p class="text-muted">Auto-fetched from Abid Khan E-Learning Hub Blog</p>
+  </div>
+
+  <!-- Controls -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <input id="searchInput" class="form-control" placeholder="Search blog posts">
+    </div>
+    <div class="col-md-6 mt-2 mt-md-0">
+      <select id="categoryFilter" class="form-select">
+        <option value="">All Categories</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Blog Grid -->
+  <div id="blogGrid" class="row g-4">
+    <!-- Skeletons -->
+    <div class="col-md-4"><div class="card skeleton" style="height:300px"></div></div>
+    <div class="col-md-4"><div class="card skeleton" style="height:300px"></div></div>
+    <div class="col-md-4"><div class="card skeleton" style="height:300px"></div></div>
+  </div>
+
+  <!-- Load More -->
+  <div class="text-center mt-5">
+    <button id="loadMoreBtn" class="btn btn-outline-primary px-4">
+      Load More
+    </button>
+  </div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const FEED_URL = "https://abidkhanelearninghub.blogspot.com/feeds/posts/default?alt=json-in-script&callback=handleFeed";
+
+let allPosts = [];
+let visibleCount = 10;
+
+/* FETCH POSTS VIA JSONP */
+function handleFeed(data) {
+  allPosts = data.feed.entry || [];
+  populateCategories();
+  applyCategoryFromURL();
+  injectStructuredData(allPosts.slice(0, 10));
+  renderPosts();
+}
+
+/* CATEGORY DROPDOWN */
+function populateCategories() {
+  const select = document.getElementById("categoryFilter");
+  const labels = new Set();
+
+  allPosts.forEach(p => {
+    if (p.category) {
+      p.category.forEach(c => labels.add(c.term));
+    }
+  });
+
+  labels.forEach(label => {
+    const opt = document.createElement("option");
+    opt.value = label;
+    opt.textContent = label;
+    select.appendChild(opt);
+  });
+}
+
+/* URL FILTER */
+function applyCategoryFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+  if (category) document.getElementById("categoryFilter").value = category;
+}
+
+/* RENDER POSTS */
+function renderPosts(reset = true) {
+  const grid = document.getElementById("blogGrid");
+  if (reset) grid.innerHTML = "";
+
+  const search = document.getElementById("searchInput").value.toLowerCase();
+  const category = document.getElementById("categoryFilter").value;
+
+  let filtered = allPosts.filter(p => {
+    const title = p.title.$t.toLowerCase();
+    const matchSearch = title.includes(search);
+    let matchCategory = true;
+    if (category) {
+      matchCategory = p.category?.some(c => c.term === category);
+    }
+    return matchSearch && matchCategory;
+  });
+
+  const fragment = document.createDocumentFragment();
+
+  filtered.slice(0, visibleCount).forEach(post => {
+    fragment.appendChild(createPostCard(post));
+  });
+
+  grid.appendChild(fragment);
+
+  document.getElementById("loadMoreBtn").style.display =
+    visibleCount >= filtered.length ? "none" : "inline-block";
+}
+
+/* CREATE CARD */
+function createPostCard(post) {
+  const title = post.title.$t;
+  const link = post.link.find(l => l.rel === "alternate").href;
+
+  const html = post.content.$t;
+  const text = html.replace(/<[^>]*>/g, "").substring(0, 120) + "...";
+
+  const imgMatch = html.match(/<img[^>]+src="([^">]+)"/);
+  const image = imgMatch ? imgMatch[1] : "https://via.placeholder.com/400x200";
+
+  const labels = post.category
+    ? post.category.map(c => `<span class="badge badge-label">${c.term}</span>`).join("")
+    : "";
+
+  const col = document.createElement("div");
+  col.className = "col-md-6 col-lg-4";
+
+  col.innerHTML = `
+    <div class="card blog-card h-100">
+      <img src="${image}" loading="lazy" decoding="async" class="card-img-top" alt="${title}">
+      <div class="card-body d-flex flex-column">
+        <div class="mb-2">${labels}</div>
+        <h5>${title}</h5>
+        <p class="text-muted">${text}</p>
+        <a href="${link}" target="_blank" class="btn btn-primary mt-auto">
+          Read More
+        </a>
+      </div>
+    </div>
+  `;
+  return col;
+}
+
+/* LOAD MORE */
+document.getElementById("loadMoreBtn").addEventListener("click", () => {
+  visibleCount += 10;
+  renderPosts(false);
+});
+
+/* SEARCH & FILTER */
+document.getElementById("searchInput").addEventListener("input", () => {
+  visibleCount = 10;
+  renderPosts();
+});
+
+document.getElementById("categoryFilter").addEventListener("change", () => {
+  visibleCount = 10;
+  renderPosts();
+});
+
+/* SEO STRUCTURED DATA */
+function injectStructuredData(posts) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Abid Khan E Learning Hub Blog",
+    "blogPost": posts.map(p => ({
+      "@type": "BlogPosting",
+      "headline": p.title.$t,
+      "url": p.link.find(l => l.rel === "alternate").href,
+      "datePublished": p.published.$t,
+      "dateModified": p.updated.$t,
+      "author": {
+        "@type": "Person",
+        "name": "Abid Khan"
+      }
+    }))
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+}
+
+/* LOAD JSONP SCRIPT */
+(function() {
+  const script = document.createElement("script");
+  script.src = FEED_URL;
+  document.body.appendChild(script);
+})();
+</script>
+
+
+</body>
+</html>

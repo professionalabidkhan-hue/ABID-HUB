@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Abid Khan E-Learning Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Abid Khan E-Learning Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link active" href="aboutus.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-light text-center py-5">
+    <div class="container">
+      <h1 class="display-4 fw-bold">About Us</h1>
+      <p class="lead">Building a secure, scalable, and globally recognized e-learning hub.</p>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-6">
+          <h2 class="fw-bold">Our Mission</h2>
+          <p>To empower learners and trainers by providing a secure, accessible, and innovative digital education platform. We aim to connect local talent with international opportunities through compliance, trust, and technology.</p>
+        </div>
+        <div class="col-md-6">
+          <h2 class="fw-bold">Our Vision</h2>
+          <p>To become a globally recognized e-learning hub that bridges education, technology, and financial security, enabling growth for communities across Pakistan, Turkey, Georgia, and beyond.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-4">Our Core Values</h2>
+      <div class="row text-center">
+        <div class="col-md-3">
+          <h5>Integrity</h5>
+          <p>We build trust through transparency and ethical practices.</p>
+        </div>
+        <div class="col-md-3">
+          <h5>Innovation</h5>
+          <p>We embrace modern technology to deliver scalable solutions.</p>
+        </div>
+        <div class="col-md-3">
+          <h5>Accessibility</h5>
+          <p>We ensure education is available to everyone, everywhere.</p>
+        </div>
+        <div class="col-md-3">
+          <h5>Global Reach</h5>
+          <p>We connect learners and trainers across borders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 Abid Khan E-Learning Hub | Contact: professionalabidkhan@gmail.com | WhatsApp: 1111-1111111</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

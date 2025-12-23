@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup Form with Preview & Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 320px;
+      margin-bottom: 30px;
+    }
+
+    form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-pic {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border: 3px solid #007BFF;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .phone-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    .phone-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .prefix {
+      position: absolute;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      background: #e9f2ff;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: #007BFF;
+    }
+
+    .prefix span {
+      margin-right: 5px;
+    }
+
+    .phone-input-wrapper input {
+      width: 100%;
+      padding: 8px 8px 8px 85px; /* extra left padding for prefix */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .role-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .role-icon {
+      position: absolute;
+      left: 10px;
+      font-size: 16px;
+    }
+
+    .role-wrapper select {
+      width: 100%;
+      padding: 8px 8px 8px 35px; /* extra left padding for icon */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    /* Preview Card */
+    .preview-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    .preview-card h3 {
+      margin-bottom: 15px;
+      color: #007BFF;
+    }
+
+    .preview-item {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .preview-item span {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .preview-pic {
+      display: block;
+      margin: 0 auto 15px auto;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form id="signup-form">
+      <img src="ABID KHAN.png" alt="Abid Khan" class="profile-pic" id="form-pic">
+      <h2>Signup Form</h2>
+
+      <label for="upload-pic">Upload Profile Picture</label>
+      <input type="file" id="upload-pic" accept="image/*">
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="psw" required>
+
+      <label for="phone">Contact Number</label>
+      <div class="phone-field">
+        <select id="country-code" name="country-code" required>
+          <option value="">-- Select Code --</option>
+          <option value="+92" data-flag="🇵🇰">🇵🇰 +92 (Pakistan)</option>
+          <option value="+93" data-flag="🇦🇫">🇦🇫 +93 (Afghanistan)</option>
+          <option value="+94" data-flag="🇱🇰">🇱🇰 +94 (Sri Lanka)</option>
+          <option value="+91" data-flag="🇮🇳">🇮🇳 +91 (India)</option>
+          <option value="+1" data-country="US" data-flag="🇺🇸">🇺🇸 +1 (USA)</option>
+          <option value="+44" data-flag="🇬🇧">🇬🇧 +44 (UK)</option>
+          <option value="+1" data-country="CA" data-flag="🇨🇦">🇨🇦 +1 (Canada)</option>
+          <option value="+61" data-flag="🇦🇺">🇦🇺 +61 (Australia)</option>
+          <option value="+971" data-flag="🇦🇪">🇦🇪 +971 (UAE)</option>
+          <option value="+966" data-flag="🇸🇦">🇸🇦 +966 (Saudi Arabia)</option>
+          <option value="+974" data-flag="🇶🇦">🇶🇦 +974 (Qatar)</option>
+          <option value="+968" data-flag="🇴🇲">🇴🇲 +968 (Oman)</option>
+        </select>
+
+        <div class="phone-input-wrapper">
+          <div class="prefix" id="prefix"><span>📞</span></div>
+          <input type="tel" id="phone" name="phone" placeholder="123456789" required>
+        </div>
+      </div>
+
+      <label for="role">I want to:</label>
+      <div class="role-wrapper">
+        <div class="role-icon" id="role-icon">🎯</div>
+        <select id="role" name="role" required>
+          <option value="">-- Select an option --</option>
+          <option value="teach" data-icon="👨‍🏫">I want to Teach</option>
+          <option value="learn" data-icon="📚">I want to Learn</option>
+          <option value="freelance" data-icon="💻">I want to Work as Freelancer</option>
+        </select>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Live Preview Card -->
+    <div class="preview-card" id="preview-card">
+      <h3>Profile Preview</h3>
+      <img src="" alt="Preview Pic" class="preview-pic" id="preview-pic">
+      <div class="preview-item"><span>Name:</span> <span id="preview-name">---</span></div>
+      <div class="preview-item"><span>Email:</span> <span id="preview-email">---</span></div>
+      <div class="preview-item"><span>Phone:</span> <span id="preview-phone">---</span></div>
+      <div class="preview-item"><span>Role:</span> <span id="preview-role">---</span></div>
+    </div>
+  </div>
+
+  <script>
+  const countryCodeSelect = document.getElementById('country-code');
+  const prefixDiv = document.getElementById('prefix');
+  const phoneInput = document.getElementById('phone');
+  const roleSelect = document.getElementById('role');
+  const roleIcon = document.getElementById('role-icon');
+  const uploadPic = document.getElementById('upload-pic');
+  const previewPic = document.getElementById('preview-pic');
+
+  // Preview elements
+  const previewName = document.getElementById('preview-name');
+  const previewEmail = document.getElementById('preview-email');
+  const previewPhone = document.getElementById('preview-phone');
+  const previewRole = document.getElementById('preview-role');
+
+  // Update phone prefix and preview
+  countryCodeSelect.addEventListener('change', function() {
+    const code = this.value;
+    const flag = this.options[this.selectedIndex].dataset.flag || '';
+    if (code) {
+      prefixDiv.innerHTML = `<span>${flag}</span> ${code}`;
+      previewPhone.textContent = `${flag} ${code} ${phoneInput.value}`;
+    } else {
+      prefixDiv.innerHTML = `<span>📞</span>`;
+      previewPhone.textContent = phoneInput.value || '---';
+    }
+  });
+
+  // Update phone digits in preview
+  phoneInput.addEventListener('input', function() {
+    const code = countryCodeSelect.value;
+    const flag = countryCodeSelect.options[countryCodeSelect.selectedIndex].dataset.flag || '';
+    if (code) {
+      previewPhone.textContent = `${flag} ${code} ${phoneInput.value}`;
+    } else {
+      previewPhone.textContent = phoneInput.value || '---';
+    }
+  });
+
+  // Update role icon and preview
+  roleSelect.addEventListener('change', function() {
+    const icon = this.options[this.selectedIndex].dataset.icon || '🎯';
+    roleIcon.textContent = icon;
+    const roleText = this.options[this.selectedIndex].text || '---';
+    previewRole.textContent = `${icon} ${roleText}`;
+  });
+
+  // Update name preview
+  document.getElementById('name').addEventListener('input', function() {
+    previewName.textContent = this.value || '---';
+  });
+
+  // Update email preview
+  document.getElementById('email').addEventListener('input', function() {
+    previewEmail.textContent = this.value || '---';
+  });
+
+  // Handle profile picture upload
+  let uploadedPicData = '';
+  uploadPic.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        uploadedPicData = e.target.result;
+        // Show preview immediately
+        previewPic.src = uploadedPicData;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // On form submit, ensure uploaded picture appears in preview card
+  document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // prevent actual submission for demo
+    if (uploadedPicData) {
+      previewPic.src = uploadedPicData;
+    }
+    alert("Signup successful! Preview updated.");
+  });
+</script>
+</body>
+</html>

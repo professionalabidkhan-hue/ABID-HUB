@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ABID KHAN E LEARNING HUB</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+          crossorigin="anonymous">
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #f5f7fa;
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        width: 350px;
+        text-align: center;
+      }
+
+      form input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      form button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 12px;
+        background: #0077cc;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      form button:hover {
+        background: #005fa3;
+      }
+
+      h4 {
+        text-align: center;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-weight: bold;
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 6px;
+      }
+
+      h4:first-of-type {
+        font-size: 28px;
+        color: #0077cc;
+        background: #e6f2ff;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      }
+
+      h4:last-of-type {
+        font-size: 22px;
+        color: #333;
+        background: #f0f0f0;
+        text-transform: capitalize;
+        border-left: 4px solid #0077cc;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <form id="jobForm">
+      <h4>ABID KHAN INSTITUTE</h4>
+      <h4>Register As Job Seeker</h4>
+      <input type="text" name="title" placeholder="Job Title" required> 
+      <input type="text" name="company" placeholder="Company Name" required>
+      <input type="text" name="location" placeholder="Location" required> 
+      <input type="text" name="salary" placeholder="Salary" required> 
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Jobs List -->
+    <div id="jobsList"></div>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+            crossorigin="anonymous"></script>
+
+    <!-- Shared JS -->
+    <script src="dashboard.js"></script>
+    <script>
+      setupForm("jobForm", "jobsList", [
+        {name:"title", label:"Job Title"},
+        {name:"company", label:"Company"},
+        {name:"location", label:"Location"},
+        {name:"salary", label:"Salary"}
+      ], "job-card");
+    </script>
+  </body>
+</html>

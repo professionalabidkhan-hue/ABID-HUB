@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students Signup & Dashboard | Abid Khan E-Learning Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #f5f7fa;
+      font-family: Arial, sans-serif;
+    }
+    .hidden {
+      display: none;
+    }
+    .center-page {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form-width {
+      max-width: 420px;
+      width: 100%;
+    }
+    .dashboard-header {
+      text-align: center;
+      padding: 20px;
+      background: #0077cc;
+      color: #fff;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .ai-chat-box {
+      background: #f9f9f9;
+      min-height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">ABID KHAN HUB</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="students.html">Quran Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="studentsit.html">IT Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="trainer.html">Quran Trainers</a></li>
+        <li class="nav-item"><a class="nav-link" href="tutorsit.html">IT Tutors</a></li>
+        <li class="nav-item"><a class="nav-link" href="support.html">Support</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- SIGNUP SECTION (CENTERED) -->
+<div id="signup-section" class="container center-page">
+
+  <form id="studentForm" class="card p-4 shadow form-width">
+
+    <div id="context-banner" class="alert alert-info text-center d-none"></div>
+
+    <h4 class="text-center text-primary">ABID KHAN INSTITUTE</h4>
+    <h5 class="text-center mb-3">Register As Student</h5>
+
+    <input type="text" name="name" class="form-control mb-2" placeholder="Full Name" required>
+    <input type="text" name="course" class="form-control mb-2" placeholder="Course Interested" required>
+    <input type="text" name="location" class="form-control mb-2" placeholder="Location" required>
+
+    <label class="fw-bold">Student Type</label>
+    <select name="type" id="student-type" class="form-control mb-3" required>
+      <option value="HolyQuran">Holy Quran Student</option>
+      <option value="IT">IT Student</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+  </form>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard-section" class="hidden">
+
+  <div class="dashboard-header">
+    <h2>ABID KHAN INSTITUTE</h2>
+    <p>Student Dashboard</p>
+  </div>
+
+  <div class="container mt-4">
+
+    <!-- PROFILE -->
+    <div class="card">
+      <div class="card-header bg-info text-white">Student Profile</div>
+      <div class="card-body">
+        <p><strong>Name:</strong> <span id="profile-name">---</span></p>
+        <p><strong>Course:</strong> <span id="profile-course">---</span></p>
+        <p><strong>Location:</strong> <span id="profile-location">---</span></p>
+        <p><strong>Student Type:</strong> <span id="profile-type">---</span></p>
+      </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="card">
+      <div class="card-header bg-primary text-white">Monthly Class Schedule</div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">Week 1 – Basics</li>
+          <li class="list-group-item">Week 2 – Practice</li>
+          <li class="list-group-item">Week 3 – Advanced Topics</li>
+          <li class="list-group-item">Week 4 – Assessment</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ATTENDANCE -->
+    <div class="card">
+      <div class="card-header bg-secondary text-white">Attendance</div>
+      <div class="card-body">
+        <table class="table">
+          <tbody id="attendance-student"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LANGUAGE -->
+    <div class="mb-3 text-end">
+      <label class="fw-bold">Choose Language</label>
+      <select id="lang-select" class="form-select w-auto d-inline-block">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="ur">اردو</option>
+        <option value="hi">हिन्दी</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </div>
+
+    <!-- COMPLAINT -->
+    <div class="card">
+      <div class="card-header bg-warning">Complaint Room</div>
+      <div class="card-body">
+        <textarea class="form-control mb-2" rows="3" placeholder="Describe your issue"></textarea>
+        <button class="btn btn-warning">Submit</button>
+        <div class="ai-chat-box mt-3 p-2 border">
+          <strong>AI Agent:</strong> Hello! Please describe your issue.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  © 2025 ABID KHAN E-LEARNING HUB
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const typeParam = params.get("type");
+  const genderParam = params.get("gender");
+
+  const typeSelect = document.getElementById("student-type");
+  const banner = document.getElementById("context-banner");
+
+  if (typeParam) {
+    typeSelect.value = typeParam;
+    banner.classList.remove("d-none");
+    banner.innerHTML = `<strong>${typeParam} Students</strong>${genderParam ? " | " + genderParam : ""}`;
+  }
+
+  document.getElementById("studentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    document.getElementById("profile-name").textContent = this.name.value;
+    document.getElementById("profile-course").textContent = this.course.value;
+    document.getElementById("profile-location").textContent = this.location.value;
+    document.getElementById("profile-type").textContent = this.type.value;
+
+    document.getElementById("attendance-student").innerHTML = `
+      <tr><td>Day 1</td><td>Present</td></tr>
+      <tr><td>Day 2</td><td>Present</td></tr>
+    `;
+
+    document.getElementById("signup-section").classList.add("hidden");
+    document.getElementById("dashboard-section").classList.remove("hidden");
+  });
+
+  const messages = {
+    en: "Hello! Please describe your issue.",
+    ar: "يرجى وصف مشكلتك.",
+    ur: "براہ کرم مسئلہ بیان کریں۔",
+    hi: "कृपया अपनी समस्या बताएं।",
+    bn: "আপনার সমস্যাটি লিখুন।"
+  };
+
+  document.getElementById("lang-select").addEventListener("change", function() {
+    document.querySelector(".ai-chat-box").innerHTML =
+      "<strong>AI Agent:</strong> " + messages[this.value];
+  });
+</script>
+
+</body>
+</html>

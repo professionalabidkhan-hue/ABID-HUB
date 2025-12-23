@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tutor Signup & Dashboard (IT)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f5f7fa; font-family: Arial, sans-serif; }
+    .hidden { display: none; }
+    .dashboard-header { text-align: center; padding: 20px; background: #0077cc; color: #fff; }
+    .dashboard-header h2 { margin: 0; font-weight: bold; }
+    .card { margin-bottom: 20px; }
+    .ai-chat-box { background: #f9f9f9; min-height: 100px; }
+  </style>
+</head>
+<body>
+<!-- Unified Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">ABID KHAN HUB</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" aria-controls="navbarNav" 
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="students.html">Quran Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="studentsit.html">IT Students</a></li>
+        <li class="nav-item"><a class="nav-link" href="trainer.html">Quran Trainers</a></li>
+        <li class="nav-item"><a class="nav-link" href="tutorsit.html">IT Tutors</a></li>
+        <li class="nav-item"><a class="nav-link" href="support.html">Support/FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Signup Form -->
+<div id="signup-section" class="container mt-5">
+  <form id="tutorForm" class="card p-4 shadow">
+    <h4 class="text-center text-primary">ABID KHAN INSTITUTE</h4>
+    <h5 class="text-center mb-3">Register As IT Tutor</h5>
+
+    <input type="text" name="name" class="form-control mb-2" placeholder="Full Name" required>
+    <input type="text" name="subject" class="form-control mb-2" placeholder="IT Expertise (e.g. Web Dev, Python)" required>
+    <input type="text" name="location" class="form-control mb-2" placeholder="Location" required>
+
+    <button type="submit" class="btn btn-success w-100">Sign Up</button>
+  </form>
+</div>
+
+<!-- Dashboard Section (hidden initially) -->
+<div id="dashboard-section" class="hidden">
+  <div class="dashboard-header">
+    <h2>ABID KHAN INSTITUTE</h2>
+    <p>IT Tutor Dashboard</p>
+  </div>
+
+  <div class="container mt-4">
+
+    <!-- Profile Section -->
+    <div class="card">
+      <div class="card-header bg-info text-white">Tutor Profile</div>
+      <div class="card-body">
+        <p><strong>Name:</strong> <span id="profile-name">---</span></p>
+        <p><strong>Expertise:</strong> <span id="profile-subject">---</span></p>
+        <p><strong>Location:</strong> <span id="profile-location">---</span></p>
+      </div>
+    </div>
+
+    <!-- Class Management -->
+    <div class="card">
+      <div class="card-header bg-primary text-white">Class Management</div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">Student X – Web Development</li>
+          <li class="list-group-item">Student Y – Python Basics</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Auto Attendance -->
+    <div class="card">
+      <div class="card-header bg-secondary text-white">Student Attendance (Auto-Generated)</div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Course</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-tutor">
+            <tr><td>Student X</td><td>Web Development</td><td>21 Dec</td><td>Present</td></tr>
+            <tr><td>Student Y</td><td>Python Basics</td><td>21 Dec</td><td>Absent</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- IT Syllabus Outline -->
+    <div class="card">
+      <div class="card-header bg-success text-white">IT Syllabus Outline</div>
+      <div class="card-body">
+        <p>This month’s syllabus covers HTML/CSS basics, JavaScript fundamentals, and Python introduction.</p>
+        <a href="itsyllabus.pdf" class="btn btn-outline-success">Download PDF</a>
+      </div>
+    </div>
+
+    <!-- Tutor AI Agent Chatroom -->
+  <!-- Language Selector -->
+<div class="mb-3 text-end">
+  <label for="lang-select" class="form-label fw-bold">Choose Language:</label>
+  <select id="lang-select" class="form-select w-auto d-inline-block">
+    <option value="en">English</option>
+    <option value="ar">العربية (Arabic)</option>
+    <option value="ur">اردو (Urdu)</option>
+    <option value="hi">हिन्दी (Hindi)</option>
+    <option value="bn">বাংলা (Bangla)</option>
+  </select>
+</div>
+
+<!-- Complaint Room -->
+<div class="card">
+  <div class="card-header bg-warning text-dark">Complaint Room</div>
+  <div class="card-body">
+    <textarea class="form-control mb-3" rows="3" placeholder="Describe your issue..."></textarea>
+    <button class="btn btn-warning">Submit Complaint</button>
+    <div class="ai-chat-box mt-3 p-3 border rounded">
+      <p><strong>AI Agent:</strong> Hello! Please describe your issue. I will try to help you immediately.</p>
+    </div>
+  </div>
+</div>
+
+
+
+  </div>
+</div>
+<!-- Unified Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <div class="container">
+    <p class="mb-1">© 2025 ABID KHAN E-LEARNING HUB. All rights reserved.</p>
+    <p class="mb-0">
+      <a href="aboutus.html" class="text-white me-3">About Us</a>
+      <a href="privacy.html" class="text-white me-3">Privacy Policy</a>
+      <a href="terms.html" class="text-white me-3">Terms & Conditions</a>
+      <a href="support.html" class="text-white">Support</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Redirect Logic -->
+<script>
+  // Handle IT tutor signup form submission
+  document.getElementById("tutorForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get form values
+    const name = document.querySelector("[name='name']").value;
+    const subject = document.querySelector("[name='subject']").value;
+    const location = document.querySelector("[name='location']").value;
+
+    // Inject into dashboard profile
+    document.getElementById("profile-name").textContent = name;
+    document.getElementById("profile-subject").textContent = subject;
+    document.getElementById("profile-location").textContent = location;
+
+    // Example: Auto-generate attendance rows for tutor's IT students
+    const attendanceTable = document.getElementById("attendance-tutor");
+    attendanceTable.innerHTML = `
+      <tr><td>Student X</td><td>Web Development</td><td>21 Dec</td><td>Present</td></tr>
+      <tr><td>Student Y</td><td>Python Basics</td><td>21 Dec</td><td>Absent</td></tr>
+      <tr><td>Student Z</td><td>JavaScript Fundamentals</td><td>21 Dec</td><td>Present</td></tr>
+    `;
+
+    // Hide signup, show dashboard
+    document.getElementById("signup-section").classList.add("hidden");
+    document.getElementById("dashboard-section").classList.remove("hidden");
+  });
+
+  // Multilingual AI Agent greetings
+  const langSelect = document.getElementById("lang-select");
+  const chatBox = document.querySelector(".ai-chat-box");
+
+  const messages = {
+    en: "Hello Tutor! You can request IT notes, syllabus, or payment help here.",
+    ar: "مرحبًا أيها المعلم! يمكنك طلب ملاحظات تقنية أو المنهج أو المساعدة في الدفع هنا.",
+    ur: "السلام علیکم استاد! آپ یہاں آئی ٹی نوٹس، نصاب یا ادائیگی کی مدد طلب کر سکتے ہیں۔",
+    hi: "नमस्ते शिक्षक! आप यहाँ आईटी नोट्स, पाठ्यक्रम या भुगतान सहायता माँग सकते हैं।",
+    bn: "হ্যালো শিক্ষক! আপনি এখানে আইটি নোট, সিলেবাস বা পেমেন্ট সহায়তা চাইতে পারেন।"
+  };
+
+  langSelect.addEventListener("change", function() {
+    const lang = this.value;
+    chatBox.innerHTML = `<p><strong>AI Agent:</strong> ${messages[lang]}</p>`;
+  });
+</script>
+
+
+</body>
+</html>
