@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT HUB | Abid Khan Global</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --master-blue: #1e3a8a;
+            --sidebar-dark: #0f172a;
+            --accent-cyan: #00d2ff;
+        }
+
+        body { 
+            background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 280px; height: 100vh; position: fixed; left: 0; top: 0;
+            background: var(--sidebar-dark); color: white;
+            padding: 25px 15px; transition: 0.4s; z-index: 1050;
+            display: flex; flex-direction: column;
+            border-right: 3px solid var(--master-blue);
+        }
+
+        .main-content { margin-left: 280px; padding: 25px; transition: 0.4s; }
+        
+        /* SESSION CONTROLLER BUTTONS */
+        .session-btn {
+            border: none; border-radius: 8px; padding: 10px 20px;
+            font-weight: 600; font-size: 0.9rem; transition: 0.3s;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-zoom { background: #2D8CFF; color: white; }
+        .btn-google { background: #0F9D58; color: white; }
+        .btn-teams { background: #6264A7; color: white; }
+        .btn-whatsapp { background: #25D366; color: white; }
+        
+        .session-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); opacity: 0.95; }
+
+        .master-viewport {
+            width: 100%; height: 70vh; border-radius: 15px;
+            background: #000; overflow: hidden; border: 5px solid white;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+        }
+
+        .top-bar {
+            background: var(--glass-bg); backdrop-filter: blur(10px);
+            padding: 15px 25px; border-radius: 12px; margin-bottom: 20px;
+            border: 1px solid white; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        #founderAlert {
+            display: none; position: fixed; top: 20px; right: 20px; width: 380px;
+            background: white; border-top: 5px solid var(--master-blue);
+            z-index: 9999; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-radius: 12px; padding: 20px; animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        @media (max-width: 991px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.show { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<div id="founderAlert">
+    <div class="d-flex align-items-center mb-2">
+        <i class="fas fa-shield-alt text-primary me-2"></i>
+        <h6 class="fw-bold mb-0">FOUNDER'S DIRECTIVE</h6>
+    </div>
+    <p id="alertMessage" class="text-muted small"></p>
+    <button class="btn btn-sm btn-primary w-100" onclick="this.parentElement.style.display='none'">Acknowledged</button>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <div class="text-center mb-4">
+        <img id="studentPhoto" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="rounded-circle mb-2 border border-2 border-info" style="width: 70px; height: 70px; object-fit: cover;">
+        <h6 id="userNameDisplay" class="fw-bold mb-0">Student</h6>
+        <span class="badge bg-info text-dark" style="font-size: 10px;">AKG-IT-2026</span>
+    </div>
+
+    <div class="overflow-auto pe-2" style="flex-grow: 1;">
+        <nav class="nav flex-column gap-2">
+            <a class="nav-link active text-white text-decoration-none" onclick="location.reload()"><i class="fas fa-terminal me-2"></i> Command Center</a>
+            <div class="text-info small fw-bold mt-3">CURRICULUM</div>
+            <a class="nav-link text-white-50 text-decoration-none small" onclick="loadContent('html_mastery.pdf', 'pdf')">Frontend Mastery</a>
+            <a class="nav-link text-white-50 text-decoration-none small" onclick="loadContent('javascript_logic.pdf', 'pdf')">Logic Engine</a>
+        </nav>
+    </div>
+
+    <div class="mt-auto pt-3 border-top border-secondary">
+        <button class="btn btn-sm btn-outline-danger w-100" onclick="logout()">Secure Logout</button>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="top-bar shadow-sm">
+        <div>
+            <h5 class="fw-bold mb-0 text-dark" id="pageTitle">IT FACULTY PORTAL</h5>
+            <div id="liveStatusBadge" class="badge bg-secondary">System Standby</div>
+        </div>
+        <div class="d-flex gap-2 align-items-center">
+            <div class="text-end me-3">
+                <small class="text-muted d-block" style="font-size: 11px;">Current Date</small>
+                <span class="fw-bold small" id="currentDateDisplay"></span>
+            </div>
+            <button class="btn btn-dark btn-sm d-lg-none" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-3 mb-4 justify-content-center bg-white p-3 rounded-3 shadow-sm border border-primary">
+        <button onclick="openLive('https://zoom.us/wc/join/2932023227', 'Zoom Live Session')" class="session-btn btn-zoom">
+            <i class="fas fa-video"></i> ZOOM
+        </button>
+        <button onclick="openLive('https://classroom.google.com/c/NzkyOTU5OTIyNzY3?cjc=ufgsbiil', 'Google Classroom')" class="session-btn btn-google">
+            <i class="fab fa-google"></i> CLASSROOM
+        </button>
+        <button onclick="openLive('https://teams.microsoft.com/', 'MS Teams Session')" class="session-btn btn-teams">
+            <i class="fas fa-users"></i> TEAMS
+        </button>
+        <button onclick="openLive('https://chat.whatsapp.com/YOUR_LINK', 'WhatsApp Session')" class="session-btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> WHATSAPP
+        </button>
+    </div>
+
+    <div class="master-viewport" id="viewportContainer">
+        <iframe id="masterFrame" src="about:blank" class="w-100 h-100 border-0"></iframe>
+    </div>
+</div>
+
+<script>
+    window.onload = () => {
+        const user = JSON.parse(localStorage.getItem('hub_user')) || { full_name: "Student" };
+        document.getElementById('userNameDisplay').innerText = user.full_name;
+        document.getElementById('currentDateDisplay').innerText = new Date().toLocaleDateString();
+        showDailyOutline();
+        setInterval(masterHeartbeat, 4000);
+    };
+
+    async function masterHeartbeat() {
+        const msg = localStorage.getItem('hub_broadcast');
+        const lastMsg = sessionStorage.getItem('last_read_broadcast');
+        if (msg && msg !== lastMsg) {
+            document.getElementById('alertMessage').innerText = msg;
+            document.getElementById('founderAlert').style.display = 'block';
+            sessionStorage.setItem('last_read_broadcast', msg);
+        }
+
+        const trainerLink = localStorage.getItem('hub_current_live_class');
+        if (trainerLink && trainerLink !== sessionStorage.getItem('active_link')) {
+            openLive(trainerLink, "New Live Session Active");
+            sessionStorage.setItem('active_link', trainerLink);
+            document.getElementById('liveStatusBadge').className = "badge bg-danger pulse";
+            document.getElementById('liveStatusBadge').innerText = "LIVE SESSION ACTIVE";
+        }
+    }
+
+    function openLive(url, context) {
+        const frame = document.getElementById('masterFrame');
+        document.getElementById('pageTitle').innerText = context;
+        
+        // Security logic for external platforms
+        if(url.includes('zoom') || url.includes('google') || url.includes('teams') || url.includes('whatsapp')) {
+            renderSecurityBypass(url, context);
+        } else {
+            frame.src = url;
+        }
+    }
+
+    function renderSecurityBypass(url, context) {
+        const frame = document.getElementById('masterFrame');
+        frame.srcdoc = `
+            <body style="background:#0f172a; color:white; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; text-align:center; margin:0;">
+                <div style="padding:40px; border:2px solid #00d2ff; border-radius:24px; background: rgba(0,210,255,0.05); max-width: 85%;">
+                    <i class="fas fa-lock-shield" style="font-size:3rem; color:#00d2ff; margin-bottom:20px;"></i>
+                    <h2 style="color:#00d2ff; margin-bottom:10px;">SECURE GATEWAY</h2>
+                    <p style="color:#94a3b8;">Redirecting to: <b style="color:white;">${context}</b></p>
+                    <a href="${url}" target="_top" style="display:inline-block; margin-top:20px; padding:15px 40px; background:linear-gradient(45deg, #00d2ff, #1e3a8a); color:white; text-decoration:none; border-radius:12px; font-weight:bold; text-transform:uppercase; letter-spacing:1px;">Launch Session</a>
+                </div>
+            </body>`;
+    }
+
+    function showDailyOutline() {
+        const frame = document.getElementById('masterFrame');
+        frame.srcdoc = `
+            <body style="background:#0f172a; color:white; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; text-align:center; margin:0;">
+                <div style="padding:40px; border:1px solid rgba(255,255,255,0.1); border-radius:20px;">
+                    <h1 style="color:#00d2ff;">COMMAND CENTER ONLINE</h1>
+                    <p>Welcome to the AKG IT Portal. Select a session platform to begin.</p>
+                </div>
+            </body>`;
+    }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href = 'index.html';
+    }
+
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('show'); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Content Hub | Abid Khan Global</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --quran-green: #1b5e20; --gold: #c49102; --soft-bg: #f0f4f0; }
+        body { background-color: var(--soft-bg); font-family: 'Segoe UI', sans-serif; padding-bottom: 50px; }
+        
+        .header-brand { background: var(--quran-green); color: white; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        /* HORIZONTAL SCROLLING TABS */
+        .nav-tabs-container {
+            background: white;
+            white-space: nowrap;
+            overflow-x: auto;
+            border-bottom: 3px solid var(--quran-green);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-tabs-container::-webkit-scrollbar { display: none; }
+
+        .quran-tab {
+            display: inline-block;
+            padding: 8px 22px;
+            color: #444;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-right: 8px;
+            transition: 0.3s;
+            border: 1px solid #ddd;
+            font-size: 0.9rem;
+        }
+        .quran-tab.active {
+            background: var(--quran-green);
+            color: white !important;
+            border-color: var(--quran-green);
+            box-shadow: 0 4px 10px rgba(27, 94, 32, 0.3);
+        }
+
+        /* CONTENT PANELS */
+        .tab-content-panel { display: none; padding: 20px 0; }
+        .tab-content-panel.active { display: block; animation: slideUp 0.4s ease; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .feature-card {
+            background: white; border-radius: 18px; padding: 20px;
+            border-left: 6px solid var(--quran-green);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+        }
+
+        .dua-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 15px; margin-bottom: 10px; }
+        .arabic-text { font-family: 'Traditional Arabic', serif; font-size: 1.8rem; color: var(--quran-green); direction: rtl; }
+        .lesson-btn { text-align: left; border-radius: 10px !important; margin-bottom: 5px; border-left: 4px solid var(--gold) !important; }
+    </style>
+</head>
+<body>
+
+<div class="header-brand d-flex justify-content-between align-items-center">
+    <h5 class="m-0"><i class="fas fa-mosque me-2"></i> AKG LEARNING HUB</h5>
+    <div class="d-flex align-items-center gap-2">
+        <small id="studentName">Student</small>
+        <i class="fas fa-user-circle fa-lg"></i>
+    </div>
+</div>
+
+<div class="nav-tabs-container shadow-sm">
+    <a href="#" class="quran-tab active" onclick="switchTab(event, 'hifz')">Hifz Class</a>
+    <a href="#" class="quran-tab" onclick="switchTab(event, 'qaida')">Noorani Qaida</a>
+    <a href="#" class="quran-tab" onclick="switchTab(event, 'tajweed')">Tajweed Rules</a>
+    <a href="#" class="quran-tab" onclick="switchTab(event, 'duas')">Daily Duas</a>
+    <a href="#" class="quran-tab" onclick="switchTab(event, 'namaz')">Salah Guide</a>
+</div>
+
+<div class="container mt-3">
+    <div id="hifz" class="tab-content-panel active">
+        <div class="feature-card">
+            <h5 class="fw-bold text-success"><i class="fas fa-star me-2"></i> CURRENT LESSON</h5>
+            <div class="p-4 bg-light rounded-4 text-center border-dashed">
+                <h2 id="displaySabaq" class="fw-bold text-dark">Para 30: Surah An-Naba</h2>
+                <span class="badge bg-success">LIVE UPDATED</span>
+            </div>
+        </div>
+        
+        <div class="feature-card" style="border-left-color: var(--gold);">
+            <h6>Hifz Completion Tracker</h6>
+            <div class="progress mt-3" style="height: 25px; border-radius: 20px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 65%;">65% of Manzil</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="qaida" class="tab-content-panel">
+        <div class="feature-card">
+            <h5 class="fw-bold"><i class="fas fa-book-open me-2 text-success"></i> Noorani Qaida Lessons</h5>
+            <div class="list-group mt-3">
+                <button class="list-group-item list-group-item-action lesson-btn" onclick="showQaida(1)">Lesson 1: The Arabic Alphabet</button>
+                <button class="list-group-item list-group-item-action lesson-btn" onclick="showQaida(2)">Lesson 2: Joined Letters</button>
+                <button class="list-group-item list-group-item-action lesson-btn" onclick="showQaida(3)">Lesson 3: The Movements (Harakaat)</button>
+                <button class="list-group-item list-group-item-action lesson-btn" onclick="showQaida(4)">Lesson 4: Tanween (Double Signs)</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tajweed" class="tab-content-panel">
+        <div class="feature-card">
+            <h5 class="fw-bold mb-3">Master Tajweed Rules</h5>
+            <div class="row g-2">
+                <div class="col-6"><div class="p-3 border rounded-3 bg-white text-center shadow-sm"><b>Ghunna</b><br><small>Nasal Sound</small></div></div>
+                <div class="col-6"><div class="p-3 border rounded-3 bg-white text-center shadow-sm"><b>Qalqala</b><br><small>Echo Sound</small></div></div>
+                <div class="col-6"><div class="p-3 border rounded-3 bg-white text-center shadow-sm"><b>Idghaam</b><br><small>Merging Letters</small></div></div>
+                <div class="col-6"><div class="p-3 border rounded-3 bg-white text-center shadow-sm"><b>Makhraj</b><br><small>Exit Points</small></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="duas" class="tab-content-panel">
+        <div class="feature-card">
+            <h5 class="fw-bold text-primary mb-3">Daily Masnoon Duas</h5>
+            <div class="dua-card">
+                <div class="d-flex justify-content-between"><b>Before Eating</b> <i class="fas fa-volume-up text-muted"></i></div>
+                <p class="arabic-text mt-2">بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ</p>
+                <small class="text-muted">Translation: In the name of Allah and with the blessings of Allah.</small>
+            </div>
+            <div class="dua-card">
+                <div class="d-flex justify-content-between"><b>Dua for Parents</b> <i class="fas fa-heart text-danger"></i></div>
+                <p class="arabic-text mt-2">رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا</p>
+                <small class="text-muted">My Lord, have mercy upon them as they brought me up when I was small.</small>
+            </div>
+        </div>
+    </div>
+
+    <div id="namaz" class="tab-content-panel">
+        <div class="feature-card">
+            <h5 class="fw-bold text-danger"><i class="fas fa-pray me-2"></i> Salah (Namaz) Guide</h5>
+            <div class="bg-dark p-4 rounded-4 text-center">
+                <div class="text-white mb-3">Follow the Trainer's Screen for Posture Correction</div>
+                <button class="btn btn-outline-warning w-100 py-3 mb-2">View Wudu Steps</button>
+                <button class="btn btn-outline-light w-100 py-3">View 4 Raka'at Chart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchTab(event, tabId) {
+        event.preventDefault();
+        document.querySelectorAll('.quran-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        
+        event.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+    }
+
+    function showQaida(lessonNum) {
+        alert("Loading Noorani Qaida Lesson " + lessonNum + " in the main viewer...");
+        // Logic to send lesson command to the parent iframe
+    }
+
+    window.onload = function() {
+        const user = JSON.parse(localStorage.getItem('hub_user'));
+        if(user) document.getElementById('studentName').innerText = user.full_name;
+        
+        const sabaq = localStorage.getItem('currentQuranSabaq');
+        if(sabaq) document.getElementById('displaySabaq').innerText = sabaq;
+    }
+</script>
+</body>
+</html>

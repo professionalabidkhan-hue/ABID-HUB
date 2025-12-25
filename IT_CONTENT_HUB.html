@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT HUB | Content & Resources</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --cyber-blue: #0ea5e9; 
+            --dark-space: #0f172a; 
+            --neon-accent: #22d3ee;
+            --surface: #ffffff;
+        }
+        
+        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; }
+
+        /* HEADER */
+        .it-header { 
+            background: linear-gradient(90deg, var(--dark-space), #1e293b); 
+            color: white; padding: 15px; border-bottom: 3px solid var(--cyber-blue);
+        }
+
+        /* TECH TAB SCROLLING */
+        .nav-tabs-container {
+            background: white;
+            white-space: nowrap;
+            overflow-x: auto;
+            border-bottom: 2px solid #e2e8f0;
+            padding: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-tabs-container::-webkit-scrollbar { display: none; }
+
+        .tech-tab {
+            display: inline-block;
+            padding: 10px 24px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 12px;
+            margin-right: 8px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .tech-tab.active {
+            background: var(--dark-space);
+            color: var(--neon-accent) !important;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+
+        /* CONTENT ANIMATION */
+        .tab-content-panel { display: none; padding: 20px 0; }
+        .tab-content-panel.active { display: block; animation: techFade 0.4s ease-out; }
+        @keyframes techFade { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+        /* FEATURE CARDS */
+        .feature-card {
+            background: white; border-radius: 20px; padding: 25px;
+            border-top: 5px solid var(--cyber-blue);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-5px); }
+
+        .code-snippet { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 10px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin: 10px 0; }
+        .badge-tech { background: rgba(14, 165, 233, 0.1); color: var(--cyber-blue); border: 1px solid var(--cyber-blue); }
+    </style>
+</head>
+<body>
+
+<div class="it-header d-flex justify-content-between align-items-center">
+    <h5 class="m-0 fw-bold"><i class="fas fa-microchip me-2 text-info"></i> IT FACULTY HUB</h5>
+    <div class="d-flex align-items-center gap-3">
+        <span class="badge bg-primary">AKG-PRO</span>
+        <i class="fas fa-circle-user fa-lg"></i>
+    </div>
+</div>
+
+<div class="nav-tabs-container shadow-sm">
+    <a href="#" class="tech-tab active" onclick="switchTab(event, 'web')">Web Dev</a>
+    <a href="#" class="tech-tab" onclick="switchTab(event, 'graphics')">Graphic Design</a>
+    <a href="#" class="tech-tab" onclick="switchTab(event, 'office')">MS Office</a>
+    <a href="#" class="tech-tab" onclick="switchTab(event, 'marketing')">Digital Marketing</a>
+    <a href="#" class="tech-tab" onclick="switchTab(event, 'typing')">Typing Master</a>
+</div>
+
+<div class="container mt-3">
+    <div id="web" class="tab-content-panel active">
+        <div class="feature-card">
+            <h5 class="fw-bold text-dark"><i class="fab fa-html5 text-danger me-2"></i> Current Project: Landing Page</h5>
+            <div class="p-3 bg-light rounded text-center border mt-3">
+                <code class="text-primary fw-bold">Working on: Flexbox & CSS Grid</code>
+                <p class="small text-muted mb-0">Updated by Trainer 10 mins ago</p>
+            </div>
+        </div>
+        <div class="feature-card" style="border-top-color: #f59e0b;">
+            <h6 class="fw-bold">Coding Milestones</h6>
+            <div class="progress mt-3" style="height: 12px; border-radius: 10px;">
+                <div class="progress-bar bg-warning" style="width: 75%;">75% Ready</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="graphics" class="tab-content-panel">
+        <div class="feature-card">
+            <h5 class="fw-bold"><i class="fas fa-palette text-warning me-2"></i> Design Resources</h5>
+            <div class="list-group list-group-flush mt-3">
+                <a href="#" class="list-group-item list-group-item-action border-0 mb-2 shadow-sm rounded">1. Color Theory Fundamentals</a>
+                <a href="#" class="list-group-item list-group-item-action border-0 mb-2 shadow-sm rounded">2. Mastering Pen Tool (Photoshop)</a>
+                <a href="#" class="list-group-item list-group-item-action border-0 mb-2 shadow-sm rounded">3. Social Media Post Sizes 2024</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="typing" class="tab-content-panel">
+        <div class="feature-card text-center">
+            <i class="fas fa-keyboard fa-3x text-secondary mb-3"></i>
+            <h5 class="fw-bold">Typing Speed Challenge</h5>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <div class="p-3 border rounded bg-dark text-white">
+                        <small>Speed</small><br><strong>45 WPM</strong>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border rounded bg-info text-white">
+                        <small>Accuracy</small><br><strong>98%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="office" class="tab-content-panel">
+        <div class="feature-card">
+            <h5 class="fw-bold text-primary">Excel Formula Sheet</h5>
+            <div class="code-snippet">
+                =VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])
+            </div>
+            <p class="small text-muted">Use this formula for the upcoming test.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchTab(event, tabId) {
+        event.preventDefault();
+        document.querySelectorAll('.tech-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        
+        event.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+    }
+</script>
+</body>
+</html>

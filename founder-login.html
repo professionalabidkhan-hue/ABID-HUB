@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Access | Abid Khan Global</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #07090d; color: white; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .login-card { 
+            background: #0a192f; 
+            border: 2px solid #ffd700; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2); 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+        }
+        .founder-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 20px; object-fit: cover; }
+        input { background: #0f172a !important; color: #ffd700 !important; border: 1px solid #1e293b !important; text-align: center; font-weight: bold; }
+        .btn-unlock { background: #ffd700; color: #000; font-weight: 800; transition: 0.3s; }
+        .btn-unlock:hover { background: #fff; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <img src="ABID KHAN.png" class="founder-img" alt="Abid Khan">
+        <h3 class="text-warning fw-bold">MASTER KEY</h3>
+        <p class="small text-muted mb-4">Verification required for Founder Abid Khan.</p>
+        
+        <input type="password" id="masterPass" class="form-control mb-3" placeholder="ENTER SECRET KEY">
+        <button class="btn btn-unlock w-100" onclick="verifyFounder()">UNLOCK DASHBOARD</button>
+        
+        <div id="errorMsg" class="text-danger mt-3 small fw-bold" style="display:none;">
+            <i class="fas fa-exclamation-triangle"></i> ACCESS DENIED
+        </div>
+    </div>
+
+    <script>
+        function verifyFounder() {
+            const pass = document.getElementById('masterPass').value;
+            // SET YOUR PASSWORD HERE (Default: ABID786)
+            if(pass === 'ABID786') { 
+                sessionStorage.setItem('founder_access', 'granted');
+                window.location.href = 'DASHBOARDABIDKHAN.html';
+            } else {
+                const err = document.getElementById('errorMsg');
+                err.style.display = 'block';
+                setTimeout(() => { err.style.display = 'none'; }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

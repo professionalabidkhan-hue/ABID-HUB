@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | Abid Khan Hub</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #4fc3f7;
+            --dark-bg: #090b0f;
+            --card-bg: #161b22;
+            --accent-green: #2ecc71;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #fff;
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .dashboard-sidebar {
+            width: 280px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            padding: 30px 20px;
+        }
+
+        .nav-link {
+            color: #b0b0b0;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: 0.3s;
+            display: block;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-blue);
+            color: #000;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+            width: calc(100% - 280px);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .course-progress-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .progress {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-blue);
+        }
+
+        .btn-continue {
+            background: var(--primary-blue);
+            color: #000;
+            border-radius: 10px;
+            font-weight: 700;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="dashboard-sidebar">
+        <div class="mb-5 text-center">
+            <img src="https://raw.githubusercontent.com/professionalabidkhan-hue/ABID-KHAN-/main/ABID%20KHAN.png" width="80" class="rounded-circle mb-3 border border-info">
+            <h5 class="fw-bold">Abid Khan Hub</h5>
+        </div>
+        
+        <a href="#" class="nav-link active">🏠 Dashboard</a>
+        <a href="courses.html" class="nav-link">📚 My Courses</a>
+        <a href="#" class="nav-link">📝 Assignments</a>
+        <a href="#" class="nav-link">🏆 Certificates</a>
+        <a href="#" class="nav-link">⚙️ Settings</a>
+        
+        <div class="mt-5 pt-5">
+            <a href="index.html" class="nav-link text-danger">Logout</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="welcome-banner d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="fw-extrabold">Welcome back, Student! 👋</h1>
+                <p class="text-secondary mb-0">You have completed 65% of your current track. Keep going!</p>
+            </div>
+            <div class="text-end">
+                <span class="badge bg-success p-2 px-3">Status: Active Learner</span>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h2 class="fw-bold">03</h2>
+                    <p class="text-secondary mb-0">Enrolled Courses</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h2 class="fw-bold">12</h2>
+                    <p class="text-secondary mb-0">Lessons Finished</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h2 class="fw-bold">01</h2>
+                    <p class="text-secondary mb-0">Certificates Earned</p>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="mb-4 fw-bold">Current Learning Track</h4>
+
+        <div class="course-progress-card d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="me-4" style="width: 60px; height: 60px; background: #2c3e50; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    💻
+                </div>
+                <div>
+                    <h6 class="mb-1">IT Diploma (6 Months)</h6>
+                    <div class="d-flex align-items-center" style="width: 300px;">
+                        <div class="progress w-100 me-3">
+                            <div class="progress-bar" style="width: 75%"></div>
+                        </div>
+                        <small>75%</small>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn-continue">Continue Lesson</a>
+        </div>
+
+        <div class="course-progress-card d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="me-4" style="width: 60px; height: 60px; background: #1b4d3e; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    📖
+                </div>
+                <div>
+                    <h6 class="mb-1">Holy Quran with Tajweed</h6>
+                    <div class="d-flex align-items-center" style="width: 300px;">
+                        <div class="progress w-100 me-3">
+                            <div class="progress-bar bg-success" style="width: 40%"></div>
+                        </div>
+                        <small>40%</small>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn-continue">Start Practice</a>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

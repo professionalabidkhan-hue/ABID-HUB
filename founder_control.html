@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder's Command | Abid Khan Global</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #0f172a; color: white; font-family: 'Inter', sans-serif; height: 100vh; display: flex; align-items: center; margin: 0; }
+        
+        .control-panel { 
+            background: rgba(30, 41, 59, 0.8); 
+            border: 2px solid #0ea5e9; 
+            border-radius: 30px; 
+            padding: 40px; 
+            box-shadow: 0 0 50px rgba(14, 165, 233, 0.2); 
+            position: relative;
+        }
+
+        /* FOUNDER IMAGE STYLING */
+        .founder-profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--cyber-blue);
+            margin-top: -100px; /* Pulls image halfway out of the box */
+            background: #1e293b;
+            box-shadow: 0 0 20px #0ea5e9;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .btn-broadcast { background: #0ea5e9; color: white; font-weight: 800; border: none; letter-spacing: 2px; transition: 0.3s; }
+        .btn-broadcast:hover { background: #38bdf8; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.4); }
+        
+        textarea { 
+            background: rgba(15, 23, 42, 0.9) !important; 
+            color: #22d3ee !important; 
+            border: 1px solid #334155 !important; 
+            border-radius: 15px !important; 
+            padding: 15px !important;
+        }
+
+        .status-dot { height: 12px; width: 12px; background-color: #22c55e; border-radius: 50%; display: inline-block; margin-right: 10px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+        
+        .label-tech { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 text-center">
+            <div class="control-panel">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Founder" class="founder-profile">
+                
+                <h2 class="fw-bold mb-1">FOUNDER'S COMMAND</h2>
+                <p class="text-info small fw-bold mb-4">ABID KHAN GLOBAL DIRECTIVE SYSTEM</p>
+                
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                    <span class="status-dot"></span>
+                    <span class="small text-success fw-bold">ENCRYPTED SATELLITE UPLINK ACTIVE</span>
+                </div>
+                
+                <div class="mb-4 text-start">
+                    <span class="label-tech">Message Content</span>
+                    <textarea id="broadcastMsg" class="form-control" rows="4" placeholder="Enter lesson updates, class timings, or direct commands..."></textarea>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <button class="btn btn-broadcast w-100 py-3 rounded-pill" onclick="sendBroadcast()">
+                            <i class="fas fa-broadcast-tower me-2"></i> TRANSMIT
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-secondary w-100 py-3 rounded-pill text-white" onclick="clearBroadcast()">
+                            <i class="fas fa-eraser me-2"></i> WIPE ALERTS
+                        </button>
+                    </div>
+                </div>
+
+                <div id="log" class="mt-4 p-2 rounded bg-dark text-success" style="display:none; font-size: 0.85rem;">
+                    <i class="fas fa-check-double me-1"></i> Data Packet Sent. All student portals updated.
+                </div>
+            </div>
+            <p class="mt-4 text-muted small">© 2025 Abid Khan Global | Secure Founder Access Only</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendBroadcast() {
+        const msg = document.getElementById('broadcastMsg').value;
+        if(msg) {
+            // Transmitting to localStorage
+            localStorage.setItem('hub_broadcast', msg);
+            localStorage.setItem('currentQuranSabaq', msg);
+            
+            const logBox = document.getElementById('log');
+            logBox.style.display = 'block';
+            
+            // Visual feedback for successful transmission
+            if(navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            
+            setTimeout(() => { 
+                logBox.style.display = 'none'; 
+            }, 4000);
+        } else {
+            alert("Founder, please enter a directive before transmitting.");
+        }
+    }
+
+    function clearBroadcast() {
+        localStorage.removeItem('hub_broadcast');
+        document.getElementById('broadcastMsg').value = '';
+        alert("Directive Wiped. Student dashboards cleared.");
+    }
+</script>
+</body>
+</html>

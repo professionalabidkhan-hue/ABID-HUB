@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #020617; color: #f8fafc; padding: 40px; font-family: 'Inter', sans-serif; }
+        .founder-header { border-bottom: 2px solid #fbbf24; padding-bottom: 20px; margin-bottom: 40px; }
+        .mentor-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .mentor-card:hover { border-color: #fbbf24; transform: translateY(-5px); background: rgba(251, 191, 36, 0.05); }
+        .mentor-img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fbbf24; margin-bottom: 15px; }
+        .badge-pro { background: #fbbf24; color: #000; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 5px; }
+        .whatsapp-sync { color: #25D366; text-decoration: none; font-weight: bold; border: 1px dashed #25D366; padding: 5px 10px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="founder-header text-center">
+        <h2 class="fw-bold" style="color: #fbbf24;">PROFESSIONAL MENTOR SELECTION</h2>
+        <p class="lead text-muted">Curated by Founder <strong>Abid Khan Global</strong></p>
+    </div>
+
+    <div class="alert alert-dark border-warning mb-5">
+        <i class="fas fa-quote-left text-warning me-2"></i>
+        "Select your preferred mentors for one or both courses. <strong>Founder Abid Khan</strong> will personally review your profile to assign a high-professional mentor. 
+        <br><br>
+        <small class="text-warning">Note: If your selected mentor is unavailable due to scheduling, Abid Khan Global will assign an equivalent top-tier professional to ensure your learning is never interrupted.</small>"
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="mentor-card">
+                <span class="badge-pro mb-2 d-inline-block">IT GLOBAL EXPERT</span>
+                <div class="d-flex align-items-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="mentor-img me-3">
+                    <div>
+                        <h4 class="mb-1">IT Development Team</h4>
+                        <p class="small text-muted mb-2">Web Architecture & Logic Building</p>
+                        <button class="btn btn-sm btn-outline-warning" onclick="selectMentor('IT_Mentor_Group')">Select for Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mentor-card">
+                <span class="badge-pro mb-2 d-inline-block">QURANIC SCHOLAR</span>
+                <div class="d-flex align-items-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2911/2911030.png" class="mentor-img me-3">
+                    <div>
+                        <h4 class="mb-1">Tajweed Faculty</h4>
+                        <p class="small text-muted mb-2">Advanced Arabic & Quranic Science</p>
+                        <button class="btn btn-sm btn-outline-warning" onclick="selectMentor('Quran_Mentor_Group')">Select for Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <p class="mb-2">Enrolling in multiple courses?</p>
+        <a href="https://wa.me/YOUR_NUMBER" class="whatsapp-sync">
+            <i class="fab fa-whatsapp me-2"></i> Sync Class Timings with Abid Khan
+        </a>
+    </div>
+</div>
+
+<script>
+    function selectMentor(type) {
+        alert("Selection recorded. Founder Abid Khan will verify and assign your mentor within 24 hours.");
+        // In the FreeSQL phase, this will save 'type' to the Database
+        localStorage.setItem('selected_mentor_path', type);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Quran Student Hub | Abid Khan Global</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --quran-emerald: #1b5e20;
+            --emerald-dark: #0a2e12;
+            --gold-accent: #fbbf24;
+            --soft-mint: #f4f9f4;
+        }
+        
+        body { background-color: var(--soft-mint); font-family: 'Inter', sans-serif; overflow-x: hidden; margin: 0; }
+
+        /* --- MASTER SIDEBAR --- */
+        .sidebar { 
+            background: var(--emerald-dark); color: white; padding: 30px 20px; 
+            height: 100vh; position: fixed; width: 280px; left: 0; top: 0; 
+            z-index: 1100; border-right: 4px solid var(--gold-accent);
+            display: flex; flex-direction: column;
+        }
+        
+        .course-label { color: var(--gold-accent); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin: 20px 0 10px 0; letter-spacing: 1px; }
+        .main-content { margin-left: 280px; padding: 30px; }
+
+        @media (max-width: 991px) {
+            .sidebar { transform: translateX(-100%); transition: 0.3s; }
+            .sidebar.show { transform: translateX(0); display: flex; }
+            .main-content { margin-left: 0; }
+        }
+
+        /* --- SESSION BUTTONS --- */
+        .quran-btn {
+            border: none; border-radius: 10px; padding: 10px 18px;
+            font-weight: 700; font-size: 0.8rem; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px; color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn-zoom { background: #2D8CFF; }
+        .btn-google { background: #0F9D58; }
+        .btn-teams { background: #6264A7; }
+        .btn-whatsapp { background: #25D366; }
+        .quran-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        /* --- CONTENT DESIGN --- */
+        .viewer-card { 
+            height: 60vh; background: #000; border-radius: 20px; 
+            overflow: hidden; border: 4px solid var(--quran-emerald);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .nav-link { color: rgba(255,255,255,0.7); transition: 0.3s; cursor: pointer; text-decoration: none; display: block; padding: 10px; border-radius: 8px; }
+        .nav-link:hover, .nav-link.active { color: var(--gold-accent); background: rgba(255,255,255,0.05); }
+
+        #globalDecree {
+            display: none; position: fixed; top: 20px; right: 20px; width: 350px;
+            background: white; border-left: 10px solid var(--gold-accent);
+            z-index: 9999; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border-radius: 10px; padding: 20px;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    </style>
+</head>
+<body>
+
+<div id="globalDecree">
+    <h6 class="text-warning fw-bold mb-1"><i class="fas fa-crown me-2"></i> FOUNDER'S DECREE</h6>
+    <p id="decreeText" class="text-dark small mb-0"></p>
+    <button class="btn btn-sm btn-dark mt-2" onclick="this.parentElement.style.display='none'">Acknowledge</button>
+</div>
+
+<div class="sidebar" id="sidebar">
+    <div class="text-center mb-4">
+        <img id="userAvatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="rounded-circle border border-2 border-warning mb-2" style="width: 80px; height: 80px; object-fit: cover;">
+        <h6 id="userNameDisplay" class="fw-bold mb-0">Student</h6>
+        <span class="badge bg-warning text-dark">Verified Student</span>
+    </div>
+
+    <nav class="nav flex-column gap-1">
+        <a class="nav-link active" onclick="location.reload()"><i class="fas fa-mosque me-2"></i> Dashboard</a>
+        
+        <div class="course-label">Curriculum</div>
+        <a class="nav-link"><i class="fas fa-book-open me-2"></i> Noorani Qaida</a>
+        <a class="nav-link"><i class="fas fa-microphone-alt me-2"></i> Tajweed Mastery</a>
+        
+        <div class="course-label">Spiritual Tools</div>
+        <a class="nav-link" onclick="openSection('tasbeeh')"><i class="fas fa-fingerprint me-2"></i> Digital Tasbeeh</a>
+    </nav>
+
+    <div class="mt-auto">
+        <button class="btn btn-outline-danger btn-sm w-100" onclick="logout()">Secure Logout</button>
+    </div>
+</div>
+
+<div class="main-content">
+    <div id="dashboardSection">
+        <div class="d-flex justify-content-between align-items-end mb-3">
+            <div>
+                <h2 class="fw-bold text-dark mb-0">Islamic Learning Portal</h2>
+                <div id="liveStatus" class="badge bg-secondary"><i class="fas fa-circle me-1"></i> Standby</div>
+            </div>
+            <button class="btn btn-dark d-lg-none" onclick="document.getElementById('sidebar').classList.toggle('show')"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 mb-3 justify-content-center bg-white p-3 rounded-4 shadow-sm border border-success">
+            <button onclick="openLive('https://zoom.us/wc/join/YOUR_ID', 'Zoom Madrasa')" class="quran-btn btn-zoom"><i class="fas fa-video"></i> ZOOM</button>
+            <button onclick="openLive('https://classroom.google.com/c/NzkyOTU5OTIyNzY3?cjc=ufgsbiil', 'Google Classroom')" class="quran-btn btn-google"><i class="fab fa-google"></i> CLASSROOM</button>
+            <button onclick="openLive('https://teams.microsoft.com/', 'Teams Madrasa')" class="quran-btn btn-teams"><i class="fas fa-users"></i> TEAMS</button>
+            <button onclick="openLive('https://chat.whatsapp.com/YOUR_LINK', 'WhatsApp Hub')" class="quran-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WHATSAPP</button>
+        </div>
+
+        <div class="viewer-card">
+            <iframe id="quranLiveFrame" src="" width="100%" height="100%" allow="camera; microphone; fullscreen" style="border:none;"></iframe>
+        </div>
+
+        <div class="mt-4 p-4 bg-white rounded-4 shadow-sm border-start border-5 border-success">
+            <h6 class="text-success fw-bold mb-1">SESSION STATUS</h6>
+            <h4 id="liveSabaq">Select your learning platform from the bar above.</h4>
+        </div>
+    </div>
+
+    <div id="tasbeehSection" class="d-none">
+        <div class="text-center bg-success text-white p-5 rounded-4 shadow-lg mt-5">
+            <h3>DIGITAL TASBEEH</h3>
+            <h1 id="counter" class="display-1 my-4">0</h1>
+            <button class="btn btn-light btn-lg w-100 py-4 fw-bold rounded-pill shadow" onclick="countUp()">TAP TO COUNT</button>
+            <button class="btn btn-link text-white mt-3" onclick="count=0; document.getElementById('counter').innerText=0;">Reset</button>
+            <button class="btn btn-sm btn-outline-light d-block mx-auto mt-4" onclick="location.reload()">Back to Portal</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = () => {
+        const userData = JSON.parse(localStorage.getItem('hub_user'));
+        if (userData) document.getElementById('userNameDisplay').innerText = userData.full_name;
+        
+        showDefaultFrame();
+        setInterval(syncLivePulse, 4000);
+    };
+
+    async function syncLivePulse() {
+        const broadcast = localStorage.getItem('hub_broadcast');
+        if (broadcast && broadcast !== sessionStorage.getItem('last_decree')) {
+            document.getElementById('decreeText').innerText = broadcast;
+            document.getElementById('globalDecree').style.display = 'block';
+            sessionStorage.setItem('last_decree', broadcast);
+        }
+    }
+
+    function openLive(url, context) {
+        const frame = document.getElementById('quranLiveFrame');
+        const isExternal = /zoom|google|classroom|teams|whatsapp/.test(url.toLowerCase());
+
+        if (isExternal) {
+            renderSecureBridge(url, context);
+        } else {
+            frame.src = url;
+        }
+        
+        document.getElementById('liveStatus').className = "badge bg-success pulse";
+        document.getElementById('liveStatus').innerHTML = "<i class='fas fa-circle me-1'></i> SESSION ACTIVE";
+        document.getElementById('liveSabaq').innerText = "Connected to " + context;
+    }
+
+    function renderSecureBridge(url, context) {
+        const frame = document.getElementById('quranLiveFrame');
+        frame.srcdoc = `
+            <body style="background:#0a2e12; color:white; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; text-align:center; margin:0; border:5px solid #fbbf24;">
+                <div style="padding:30px;">
+                    <div style="font-size:4rem; color:#fbbf24; margin-bottom:20px;"><i class="fas fa-mosque"></i></div>
+                    <h2 style="color:#fbbf24; margin-bottom:10px;">MADRASA GATEWAY</h2>
+                    <p style="color:#a5d6a7;">You are joining: <b>${context}</b></p>
+                    
+                    <button onclick="parent.window.location.replace('${url}')" 
+                        style="margin-top:20px; padding:15px 40px; background:#fbbf24; color:#0a2e12; border:none; border-radius:12px; font-weight:bold; cursor:pointer; text-transform:uppercase; letter-spacing:1px;">
+                        Enter Session Now
+                    </button>
+                </div>
+            </body>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">`;
+    }
+
+    function showDefaultFrame() {
+        document.getElementById('quranLiveFrame').srcdoc = `
+            <body style="background:#0a2e12; color:white; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
+                <div style="text-align:center;">
+                    <h2 style="color:#fbbf24;">Bismillah</h2>
+                    <p style="color:#a5d6a7;">Welcome to the Spiritual Learning Hub.</p>
+                </div>
+            </body>`;
+    }
+
+    function openSection(id) {
+        if(id === 'tasbeeh') {
+            document.getElementById('dashboardSection').classList.add('d-none');
+            document.getElementById('tasbeehSection').classList.remove('d-none');
+        }
+    }
+
+    let count = 0;
+    function countUp() {
+        count++;
+        document.getElementById('counter').innerText = count;
+        if(navigator.vibrate) navigator.vibrate(50);
+    }
+
+    function logout() { localStorage.clear(); window.location.href = 'index.html'; }
+</script>
+
+</body>
+</html>

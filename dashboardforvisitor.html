@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abid Khan Hub - Distinguished Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1a237e;
+            --quran-green: #2e7d32;
+            --it-dark: #212529;
+        }
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #dee2e6;
+            padding: 30px 20px;
+            position: sticky;
+            top: 0;
+            text-align: center;
+        }
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-blue);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+        }
+        .whatsapp-btn:hover { background-color: #128C7E; color: white; transform: translateY(-2px); }
+        
+        /* Content Area */
+        .main-content { padding: 40px; }
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .pdf-viewer-container {
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 700px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .course-btn {
+            margin: 5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* MOBILE RESPONSIVE FIXES */
+        @media (max-width: 768px) {
+            .sidebar {
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+                padding: 20px;
+width:100%;
+            }
+            .main-content { padding: 20px; }
+            .pdf-viewer-container { height: 450px; }
+            .profile-pic { width: 120px; height: 120px; }
+        }
+.pdf-viewer-container {
+width:100%;
+}
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 col-lg-2 sidebar">
+            <img src="ABID KHAN.png" alt="Founder Abid Khan" class="profile-pic">
+            <h4 class="fw-bold text-dark mb-1">FOUNDER</h4>
+            <h5 class="text-primary mb-3">ABID KHAN</h5>
+            <p class="text-muted small">Leading the Hub to Excellence</p>
+            <hr>
+            <a href="https://wa.me/923XXXXXXXXX" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp me-2"></i> WhatsApp Me
+            </a>
+        </div>
+
+        <div class="col-md-9 col-lg-10 main-content">
+            <h2 class="fw-bold text-primary mb-4">Master Learning Portal</h2>
+
+            <div class="d-flex justify-content-start gap-2 mb-4">
+                <input type="radio" class="btn-check" name="courseType" id="itRadio" checked onclick="toggleCategory('IT')">
+                <label class="btn btn-outline-primary px-3 fw-bold" for="itRadio">IT & SOFTWARE</label>
+
+                <input type="radio" class="btn-check" name="courseType" id="quranRadio" onclick="toggleCategory('Quran')">
+                <label class="btn btn-outline-success px-3 fw-bold" for="quranRadio">QURANIC STUDIES</label>
+            </div>
+
+            <div class="category-card">
+                <h3 id="displayTitle" class="mb-4 fw-bold text-dark">IT & Software Engineering</h3>
+                
+                <div id="itButtonGroup" class="d-flex flex-wrap">
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('it_basics.pdf')">Microsoft Office</button>
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('web_dev.pdf')">Web Development</button>
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('database.pdf')">Database (SQL)</button>
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('ai_tools.pdf')">AI & Chatbots</button><br>
+<button class="btn btn-dark course-btn" onclick="loadPDF('it_basics.pdf')">Python Basics</button>
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('web_dev.pdf')">Graphic Designing</button>
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('database.pdf')">Digital Marketing</button>
+                    <button class="btn btn-dark course-btn" onclick="loadPDF('ai_tools.pdf')">AI Marketing</button><br>
+                </div>
+
+                <div id="quranButtonGroup" class="d-flex flex-wrap d-none">
+                    <button class="btn btn-success course-btn" onclick="loadPDF('qaeda.pdf')">Basic Arabic Qaeedha</button>
+                    <button class="btn btn-success course-btn" onclick="loadPDF('tajweed.pdf')">Tajweed Basics</button>
+                    <button class="btn btn-success course-btn" onclick="loadPDF('tafseer.pdf')">Tafseer & Translation</button>
+                    <button class="btn btn-success course-btn" onclick="loadPDF('duas.pdf')">Masnoon Duas</button>
+                </div>
+            </div>
+
+            <div id="viewerWrapper" class="pdf-viewer-container text-center">
+                <div id="mobileMessage" class="d-none d-flex flex-column justify-content-center align-items-center h-100 text-white p-3">
+                    <i class="fas fa-file-pdf fa-3x mb-3 text-danger"></i>
+                    <p>Click a course to view the syllabus.</p>
+                </div>
+                <iframe id="pdfFrame" src="about:blank" width="100%" height="100%" style="border:none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleCategory(category) {
+        const itGroup = document.getElementById('itButtonGroup');
+        const quranGroup = document.getElementById('quranButtonGroup');
+        const title = document.getElementById('displayTitle');
+        const frame = document.getElementById('pdfFrame');
+
+        frame.src = "about:blank";
+
+        if (category === 'IT') {
+            itGroup.classList.remove('d-none');
+            quranGroup.classList.add('d-none');
+            title.innerText = "IT & Software Engineering";
+            title.style.color = "#1a237e";
+        } else {
+            itGroup.classList.add('d-none');
+            quranGroup.classList.remove('d-none');
+            title.innerText = "Quranic & Islamic Studies";
+            title.style.color = "#2e7d32";
+        }
+    }
+
+    function loadPDF(fileName) {
+        const frame = document.getElementById('pdfFrame');
+        
+        // Mobile behavior: If screen is small, open in new tab
+        if (window.innerWidth < 768) {
+            const openNow = confirm("Opening syllabus in a new tab for better mobile view. Proceed?");
+            if (openNow) {
+                window.open(fileName, '_blank');
+            }
+        } else {
+            frame.src = fileName;
+        }
+    }
+
+    // Role redirection logic
+    function handleLoginRedirect(userData) {
+        const role = userData.role;
+        const course = userData.course;
+        if (role === 'Trainer') {
+            window.location.href = (course === 'IT') ? 'dashboardittrainer.html' : 'dbdislamictrainer.html';
+        } else if (role === 'Student') {
+            window.location.href = (course === 'IT') ? 'dashboarditstudent.html' : 'dbdislamicstudent.html';
+        } else {
+            window.location.href = 'dashboardforvisitor.html';
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

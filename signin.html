@@ -2,111 +2,156 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In | Abid Khan Hub</title>
   <style>
+    :root {
+      --primary-blue: #4fc3f7;
+      --dark-bg: #07090d;
+      --glass: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top right, #1a1c2c, #07090d);
+      color: #fff;
       margin: 0;
-      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      background: rgba(13, 17, 23, 0.8);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
     .profile-pic {
       display: block;
       margin: 0 auto 20px auto;
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      border: 3px solid #007BFF;
+      border: 3px solid var(--primary-blue);
     }
 
-    .form-container {
-      margin-top: 150px;
-      display: flex;
-      justify-content: center;
-    }
+    h2 { text-align: center; font-weight: 700; margin-bottom: 30px; letter-spacing: 1px; }
 
-    form {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      width: 300px;
-    }
-
-    form h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
+    label { display: block; margin-bottom: 8px; font-size: 0.8rem; color: var(--primary-blue); text-transform: uppercase; font-weight: bold; }
 
     input {
       width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 12px;
+      margin-bottom: 20px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #fff;
+      box-sizing: border-box;
     }
 
     button {
       width: 100%;
-      padding: 10px;
-      background: #007BFF;
-      color: #fff;
+      padding: 14px;
+      background: var(--primary-blue);
+      color: #000;
+      font-weight: 800;
       border: none;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.3s;
     }
 
-    button:hover {
-      background: #0056b3;
-    }
+    button:hover { background: #fff; transform: translateY(-2px); }
 
-    .forgot-password {
-      text-align: right;
-      margin-top: -10px;
-      margin-bottom: 15px;
-    }
-
-    .forgot-password a {
-      color: #007BFF;
-      text-decoration: none;
-      font-size: 0.9em;
-    }
-
-    .forgot-password a:hover {
-      text-decoration: underline;
-    }
+    .forgot-password { text-align: right; margin-top: -10px; margin-bottom: 20px; }
+    .forgot-password a { color: var(--primary-blue); text-decoration: none; font-size: 0.85em; }
+    
+    .signup-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #888; }
+    .signup-link a { color: var(--primary-blue); text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
+
   <div class="form-container">
-    <form>
+    <form id="signin-form">
       <img src="ABID KHAN.png" alt="Abid Khan" class="profile-pic">
       <h2>Sign In</h2>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required placeholder="Enter your email">
 
       <label for="password">Password</label>
-      <input type="password" id="password" name="psw" required>
+      <input type="password" id="password" required placeholder="••••••••">
 
-<div class="forgot-password">
-  <a href="https://professionalabidkhan-hue.github.io/ABID-HUB/forgotpasswordrecovery.html" target="_blank">
-    Forgot Password?
-  </a>
-</div>
+      <div class="forgot-password">
+        <a href="https://professionalabidkhan-hue.github.io/ABID-HUB/forgotpasswordrecovery.html" target="_blank">Forgot Password?</a>
+      </div>
 
-
-      <button type="submit">Sign In</button>
+      <button type="submit">Unlock Hub</button>
+      
+      <div class="signup-link">
+        New to the Hub? <a href="signup.html">Join Now</a>
+      </div>
     </form>
   </div>
+
+  <script>
+    document.getElementById('signin-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            // This connects to your Node.js server
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Save user session details
+                localStorage.setItem('hubUserName', data.user.full_name);
+                localStorage.setItem('hubUserRole', data.user.role);
+                localStorage.setItem('hubUserField', data.user.field);
+
+                alert("Welcome back, " + data.user.full_name);
+
+                // MASTER REDIRECTION LOGIC
+                const role = data.user.role; // e.g., 'Founder', 'learn', 'teach'
+                const field = data.user.field; // e.g., 'IT', 'Islamic'
+
+                if (role === 'Founder' || email === 'professionalabidkhan@gmail.com') {
+                    window.location.href = 'DASHBOARDABIDKHAN.html';
+                } else if (role === 'teach') {
+                    window.location.href = (field === 'IT') ? 'dashboardittrainer.html' : 'dbdislamictrainer.html';
+                } else if (role === 'learn') {
+                    window.location.href = (field === 'IT') ? 'dashboarditstudent.html' : 'dbdislamicstudent.html';
+                } else {
+                    window.location.href = 'dashboardforvisitor.html';
+                }
+            } else {
+                alert("Invalid Credentials. Check your email/password.");
+            }
+        } catch (error) {
+            console.error("Login Error:", error);
+            alert("Hub Server Connection Error.");
+        }
+    });
+  </script>
 </body>
 </html>
