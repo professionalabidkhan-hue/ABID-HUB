@@ -10,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-// --- ORACLE 23ai VAULT CONNECTION ---
+// --- MASTER FUNCTIONS INCLUDE ---
+// Partner, we include your vault_functions.php here to use its specialized logic
+include('vault_functions.php'); 
+
+// --- ORACLE VAULT CONNECTION ---
 $username = "ADMIN"; 
 $password = "BiSMILLAh7&"; 
 $connection_string = "23ai_34ui2_high"; 
@@ -40,8 +44,11 @@ if ($data) {
         oci_bind_by_name($stmt, ':tim', $data['preferred_timing']);
         oci_bind_by_name($stmt, ':loc', $data['location']);
         oci_bind_by_name($stmt, ':dept', $data['department']);
-        oci_execute($stmt);
-        echo json_encode(["success" => true, "message" => "Identity Secured"]);
+        
+        if(oci_execute($stmt)) {
+            oci_commit($conn);
+            echo json_encode(["success" => true, "message" => "Identity Secured"]);
+        }
     }
 
     // --- GATE 2: CONTACT ---
@@ -52,28 +59,30 @@ if ($data) {
         oci_bind_by_name($stmt, ':em', $data['email']);
         oci_bind_by_name($stmt, ':ph', $data['number']);
         oci_bind_by_name($stmt, ':msg', $data['message']);
-        oci_execute($stmt);
-        echo json_encode(["success" => true, "message" => "Message Delivered"]);
+        
+        if(oci_execute($stmt)) {
+            oci_commit($conn);
+            echo json_encode(["success" => true, "message" => "Message Delivered"]);
+        }
     }
 
     // --- GATE 5: SOVEREIGN RECOVERY STRIKE ---
     else if (isset($data['action'])) {
         
-        // ACTION A: SENDING THE CODE
+        // ACTION A: SENDING THE CODE (Calls generateAndStoreOTP from vault_functions.php)
         if ($data['action'] == 'send_otp') {
-            $otp = rand(100000, 999999);
-            $sql = "INSERT INTO AK_OTP_VAULT (user_email, otp_code) VALUES (:em, :otp)";
-            $stmt = oci_parse($conn, $sql);
-            oci_bind_by_name($stmt, ':em', $data['email']);
-            oci_bind_by_name($stmt, ':otp', $otp);
+            $otp = generateAndStoreOTP($conn, $data['email']);
             
-            if (oci_execute($stmt)) {
+            if ($otp) {
                 echo json_encode(["success" => true, "message" => "OTP Sent to Vault", "debug_otp" => $otp]);
+            } else {
+                echo json_encode(["success" => false, "message" => "OTP Generation Failed"]);
             }
         }
 
         // ACTION B: VERIFY & RESET
         else if ($data['action'] == 'reset_password') {
+            // Note: Ensure your AK_OTP_VAULT table has columns: USER_EMAIL, OTP_CODE, IS_USED, EXPIRY
             $sql = "SELECT * FROM AK_OTP_VAULT 
                     WHERE user_email = :em AND otp_code = :otp AND is_used = 0 
                     AND expiry > CURRENT_TIMESTAMP";
@@ -94,6 +103,7 @@ if ($data) {
                 oci_bind_by_name($burn, ':em', $data['email']);
                 oci_execute($burn);
                 
+                oci_commit($conn);
                 echo json_encode(["success" => true, "message" => "Password Re-Established!"]);
             } else {
                 echo json_encode(["success" => false, "message" => "Invalid or Expired OTP Strike."]);
