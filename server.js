@@ -1,126 +1,56 @@
-const express = require('express');
-const mysql = require('mysql2');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-
-// 1. CONNECTION TO YOUR FREESQLDATABASE
-const db = mysql.createConnection({
-    host: 'sql12.freesqldatabase.com', 
-    user: 'your_db_username',    // REPLACE WITH YOUR ACTUAL DB USER
-    password: 'your_db_password', // REPLACE WITH YOUR ACTUAL DB PASS
-    database: 'your_db_name'      // REPLACE WITH YOUR ACTUAL DB NAME
-});
-
-db.connect(err => {
-    if (err) {
-        console.error('Master Hub Database Connection Failed: ' + err.stack);
-        return;
-    }
-    console.log('Connected to Abid Khan Hub Database.');
-});
-
-// --- NEW: SECURE FOUNDER LOGIN (Protects your honor) ---
-app.post('/api/founder-login', (req, res) => {
-    const { key } = req.body;
-    // THIS IS THE ONLY PLACE THE PASSWORD EXISTS
-    const MASTER_SECRET = "ABID786"; 
-
-    if (key === MASTER_SECRET) {
-        res.json({ 
-            success: true, 
-            token: "ABID_HUB_SECURE_ACCESS_99" // This token unlocks the dashboard
-        });
-    } else {
-        console.log("ALERT: Unauthorized attempt to enter Founder Panel!");
-        res.status(401).json({ success: false, message: "Unauthorized" });
-    }
-});
-
-// --- NEW: LIVE ANALYTICS FOR DASHBOARD ---
-app.get('/api/master-stats', (req, res) => {
-    const sql = `
-        SELECT 
-            (SELECT COUNT(*) FROM itstudenttable) as it_students,
-            (SELECT COUNT(*) FROM maleholyqurantable) as quran_students,
-            (SELECT COUNT(*) FROM hubtrainertable) + (SELECT COUNT(*) FROM islamictrainertable) as total_trainers
-    `;
-
-    db.query(sql, (err, results) => {
-        if (err) return res.status(500).json({ success: false, error: err.message });
+// --- 1. GENERATE & SEND OTP ---
+app.post('/api/send-otp', async (req, res) => {
+    let connection;
+    try {
+        const { phone } = req.body;
+        const otp = Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
         
-        const stats = results[0];
-        const total = stats.it_students + stats.quran_students + stats.total_trainers;
+        connection = await oracledb.getConnection(dbConfig);
         
-        res.json({
-            success: true,
-            total_active: total,
-            it_students: stats.it_students,
-            quran_students: stats.quran_students,
-            total_trainers: stats.total_trainers
-        });
-    });
+        // Save OTP to User Record (Valid for 10 minutes)
+        await connection.execute(
+            `UPDATE AK_USERS SET otp_code = :otp, otp_expiry = (CURRENT_TIMESTAMP + INTERVAL '10' MINUTE) 
+             WHERE whatsapp_no = :phone`,
+            [otp, phone],
+            { autoCommit: true }
+        );
+
+        console.log(`[SECURITY] OTP for ${phone}: ${otp}`); // In production, you'd send this via SMS API
+        res.json({ success: true, message: "Verification code sent to your Hub Number!" });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    } finally {
+        if (connection) await connection.close();
+    }
 });
 
-// 2. MASTER SIGNUP ROUTE
-app.post('/api/signup', (req, res) => {
-    const { 
-        full_name, email, password, phone_number, 
-        father_name, monthly_income, preferred_timing, 
-        location, field, role 
-    } = req.body;
+// --- 2. VERIFY & RESET PASSWORD ---
+app.post('/api/reset-password', async (req, res) => {
+    let connection;
+    try {
+        const { phone, otp, newPassword } = req.body;
+        connection = await oracledb.getConnection(dbConfig);
 
-    let targetTable = "";
-    if (role === 'learn') {
-        targetTable = (field === 'IT') ? "itstudenttable" : "maleholyqurantable";
-    } else if (role === 'teach') {
-        targetTable = (field === 'IT') ? "hubtrainertable" : "islamictrainertable";
-    }
+        // Check if OTP is valid and not expired
+        const result = await connection.execute(
+            `SELECT * FROM AK_USERS WHERE whatsapp_no = :phone AND otp_code = :otp AND otp_expiry > CURRENT_TIMESTAMP`,
+            [phone, otp]
+        );
 
-    let sql = "";
-    let params = [];
-
-    if (targetTable === "itstudenttable") {
-        sql = `INSERT INTO itstudenttable (full_name, email, password, status) VALUES (?, ?, ?, ?)`;
-        params = [full_name, email, password, 'Active'];
-    } else {
-        sql = `INSERT INTO ${targetTable} 
-               (name, email, password, phone_number, father_name, monthly_income, preferred_timing, location, type) 
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        params = [full_name, email, password, phone_number, father_name, monthly_income, preferred_timing, location, field];
-    }
-
-    db.query(sql, params, (err, result) => {
-        if (err) return res.status(500).json({ success: false, message: err.code });
-        res.json({ success: true, message: `Account created in ${targetTable}` });
-    });
-});
-
-// 3. MASTER LOGIN ROUTE
-app.post('/api/login', (req, res) => {
-    const { email, password } = req.body;
-    const sql = `
-        SELECT full_name, role, field FROM (
-            SELECT full_name, 'learn' as role, 'IT' as field, email, password FROM itstudenttable
-            UNION
-            SELECT name as full_name, 'learn' as role, 'Islamic' as field, email, password FROM maleholyqurantable
-            UNION
-            SELECT name as full_name, 'teach' as role, 'Islamic' as field, email, password FROM islamictrainertable
-            UNION
-            SELECT full_name, 'teach' as role, 'IT' as field, email, password FROM hubtrainertable
-        ) AS all_users WHERE email = ? AND password = ?`;
-
-    db.query(sql, [email, password], (err, results) => {
-        if (err) return res.status(500).json({ success: false });
-        if (results.length > 0) {
-            res.json({ success: true, user: results[0] });
+        if (result.rows.length > 0) {
+            const hashedPass = await bcrypt.hash(newPassword, 10);
+            await connection.execute(
+                `UPDATE AK_USERS SET password = :pass, otp_code = NULL WHERE whatsapp_no = :phone`,
+                [hashedPass, phone],
+                { autoCommit: true }
+            );
+            res.json({ success: true, message: "Identity Verified. Password Reset Complete!" });
         } else {
-            res.status(401).json({ success: false, message: "Invalid Credentials" });
+            res.status(400).json({ success: false, message: "Invalid or Expired Code." });
         }
-    });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    } finally {
+        if (connection) await connection.close();
+    }
 });
-
-app.listen(5000, () => console.log('Abid Khan Hub Master Server running on Port 5000'));
