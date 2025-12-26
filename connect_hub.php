@@ -1,5 +1,5 @@
 <?php
-// --- MASTER ACCESS HEADERS (TREMENDOUS SECURITY) ---
+// --- MASTER ACCESS HEADERS (SOVEREIGN SECURITY) ---
 header("Access-Control-Allow-Origin: *"); 
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
@@ -23,10 +23,11 @@ if (!$conn) {
     exit;
 }
 
+// CAPTURING THE GITHUB STRIKE
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($data) {
-    // --- GATE 1: SIGNUP STRIKE ---
+    // --- STRIKE 1: SIGNUP (From signup.html) ---
     if (isset($data['full_name']) && !isset($data['message'])) {
         $sql = "INSERT INTO AK_HUB_VAULT (full_name, email, password, whatsapp_no, father_name, monthly_income, preferred_timing, location, department, user_role) 
                 VALUES (:fn, :em, :pw, :wa, :ft, :inc, :tim, :loc, :dept, :role)";
@@ -43,9 +44,9 @@ if ($data) {
         oci_bind_by_name($stmt, ':role', $data['user_role']);
     } 
     
-    // --- GATE 2: CONTACT MESSAGE STRIKE ---
+    // --- STRIKE 2: CONTACT (From contact.html) ---
     else if (isset($data['message'])) {
-        $sql = "INSERT INTO AK_HUB_MESSAGES (name, email, whatsapp_number, message_text) 
+        $sql = "INSERT INTO AK_HUB_MESSAGES (sender_name, sender_email, sender_phone, message_text) 
                 VALUES (:nm, :em, :ph, :msg)";
         $stmt = oci_parse($conn, $sql);
         oci_bind_by_name($stmt, ':nm', $data['name']);
@@ -54,13 +55,29 @@ if ($data) {
         oci_bind_by_name($stmt, ':msg', $data['message']);
     }
 
+    // --- STRIKE 3: LOGIN (From signin.html) ---
+    else if (isset($data['email']) && isset($data['password'])) {
+        $sql = "SELECT FULL_NAME, USER_ROLE FROM AK_HUB_VAULT WHERE EMAIL = :em AND PASSWORD = :pw";
+        $stmt = oci_parse($conn, $sql);
+        oci_bind_by_name($stmt, ':em', $data['email']);
+        oci_bind_by_name($stmt, ':pw', $data['password']);
+    }
+
     $result = oci_execute($stmt);
 
     if ($result) {
-        echo json_encode(["success" => true, "message" => "Sovereign Vault Updated Successfully"]);
+        if (isset($data['email']) && isset($data['password']) && !isset($data['full_name'])) {
+            $row = oci_fetch_array($stmt, OCI_ASSOC);
+            if ($row) {
+                echo json_encode(["success" => true, "user" => ["full_name" => $row['FULL_NAME'], "role" => $row['USER_ROLE']]]);
+            } else {
+                echo json_encode(["success" => false, "message" => "Invalid Credentials"]);
+            }
+        } else {
+            echo json_encode(["success" => true, "message" => "Vault Updated Successfully"]);
+        }
     } else {
-        $e = oci_error($stmt);
-        echo json_encode(["success" => false, "message" => "Vault Entry Error"]);
+        echo json_encode(["success" => false, "message" => "Vault Execution Error"]);
     }
     oci_free_statement($stmt);
 }
