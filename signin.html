@@ -1,157 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In | Abid Khan Hub</title>
-  <style>
-    :root {
-      --primary-blue: #4fc3f7;
-      --dark-bg: #07090d;
-      --glass: rgba(255, 255, 255, 0.05);
-      --border: rgba(255, 255, 255, 0.1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Abid Khan Hub</title>
+    <style>
+        :root {
+            --primary-blue: #4fc3f7;
+            --deep-black: #000000;
+            --dark-gray: #0d0d0d;
+            --border: rgba(79, 195, 247, 0.3);
+        }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top right, #1a1c2c, #07090d);
-      color: #fff;
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top right, #1a1c2c, #000000);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
 
-    .form-container {
-      background: rgba(13, 17, 23, 0.8);
-      backdrop-filter: blur(20px);
-      padding: 40px;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      width: 100%;
-      max-width: 380px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
+        .form-container {
+            background: var(--dark-gray);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 0 30px rgba(79, 195, 247, 0.1);
+        }
 
-    .profile-pic {
-      display: block;
-      margin: 0 auto 20px auto;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary-blue);
-    }
+        .profile-pic {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-blue);
+        }
 
-    h2 { text-align: center; font-weight: 700; margin-bottom: 30px; letter-spacing: 1px; }
+        h2 { text-align: center; color: var(--primary-blue); letter-spacing: 2px; }
 
-    label { display: block; margin-bottom: 8px; font-size: 0.8rem; color: var(--primary-blue); text-transform: uppercase; font-weight: bold; }
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-size: 0.75rem; 
+            color: var(--primary-blue); 
+            font-weight: bold;
+        }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: #fff;
-      box-sizing: border-box;
-    }
+        /* MASTER DARK INPUTS */
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            background: var(--deep-black) !important; /* Pure Black Background */
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #ffffff !important; /* Pure White Text */
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
 
-    button {
-      width: 100%;
-      padding: 14px;
-      background: var(--primary-blue);
-      color: #000;
-      font-weight: 800;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
+        input:focus { border-color: #fff; box-shadow: 0 0 10px rgba(255,255,255,0.1); }
 
-    button:hover { background: #fff; transform: translateY(-2px); }
+        /* THE MASTER BUTTON */
+        .btn-unlock {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-blue);
+            color: #000;
+            font-weight: 800;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.4s;
+            margin-top: 10px;
+        }
 
-    .forgot-password { text-align: right; margin-top: -10px; margin-bottom: 20px; }
-    .forgot-password a { color: var(--primary-blue); text-decoration: none; font-size: 0.85em; }
-    
-    .signup-link { text-align: center; margin-top: 20px; font-size: 0.9rem; color: #888; }
-    .signup-link a { color: var(--primary-blue); text-decoration: none; font-weight: bold; }
-  </style>
+        .btn-unlock:hover { background: #fff; transform: scale(1.02); }
+
+        .signup-link { text-align: center; margin-top: 25px; font-size: 0.85rem; color: #555; }
+        .signup-link a { color: var(--primary-blue); text-decoration: none; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <form id="signin-form">
-      <img src="ABID KHAN.png" alt="Abid Khan" class="profile-pic">
-      <h2>Sign In</h2>
+<div class="form-container">
+    <form id="master-signin-strike">
+        <img src="ABID KHAN.png" alt="Founder" class="profile-pic">
+        <h2>HUB SIGN IN</h2>
 
-      <label for="email">Email Address</label>
-      <input type="email" id="email" required placeholder="Enter your email">
+        <label>Founder/Member Email</label>
+        <input type="email" id="email" required placeholder="Enter your email">
 
-      <label for="password">Password</label>
-      <input type="password" id="password" required placeholder="••••••••">
+        <label>Security Password</label>
+        <input type="password" id="password" required placeholder="••••••••">
 
-      <div class="forgot-password">
-        <a href="https://professionalabidkhan-hue.github.io/ABID-HUB/forgotpasswordrecovery.html" target="_blank">Forgot Password?</a>
-      </div>
-
-      <button type="submit">Unlock Hub</button>
-      
-      <div class="signup-link">
-        New to the Hub? <a href="signup.html">Join Now</a>
-      </div>
+        <button type="submit" class="btn-unlock">Unlock Hub Authority</button>
+        
+        <div class="signup-link">
+            Not a Member? <a href="signup.html">Request Access</a>
+        </div>
     </form>
-  </div>
-
-  <script>
-    document.getElementById('signin-form').addEventListener('submit', async (e) => {
+</div>
+<script>
+    // THE MASTER SIGN-IN STRIKE
+    document.getElementById('master-signin-strike').addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        const loginData = {
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        };
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+        // PRE-STRIKE VALIDATION
+        if (!loginData.email || !loginData.password) {
+            alert("SENTINEL NOTICE: Credentials cannot be empty.");
+            return;
+        }
 
         try {
-            // This connects to your Node.js server
-            const response = await fetch('http://localhost:5000/api/login', {
+            // THE DIRECT STRIKE TO YOUR PHP SENTINEL (Ensure URL is absolute)
+            const response = await fetch('https://your-freesql-domain.com/login_sentinel.php', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(loginData)
             });
 
-            const data = await response.json();
+            const result = await response.json();
 
-            if (data.success) {
-                // Save user session details
-                localStorage.setItem('hubUserName', data.user.full_name);
-                localStorage.setItem('hubUserRole', data.user.role);
-                localStorage.setItem('hubUserField', data.user.field);
+            if (result.success) {
+                // LOCK SESSION INTO SECURE LOCAL STORAGE
+                localStorage.setItem('hubUserName', result.user.full_name);
+                localStorage.setItem('hubUserRole', result.user.role);
+                localStorage.setItem('hubUserEmail', loginData.email);
+                
+                alert("ACCESS GRANTED: Welcome back to the Hub, " + result.user.full_name);
 
-                alert("Welcome back, " + data.user.full_name);
-
-                // MASTER REDIRECTION LOGIC
-                const role = data.user.role; // e.g., 'Founder', 'learn', 'teach'
-                const field = data.user.field; // e.g., 'IT', 'Islamic'
-
-                if (role === 'Founder' || email === 'professionalabidkhan@gmail.com') {
-                    window.location.href = 'DASHBOARDABIDKHAN.html';
-                } else if (role === 'teach') {
-                    window.location.href = (field === 'IT') ? 'dashboardittrainer.html' : 'dbdislamictrainer.html';
-                } else if (role === 'learn') {
-                    window.location.href = (field === 'IT') ? 'dashboarditstudent.html' : 'dbdislamicstudent.html';
+                // THE FOUNDER'S REDIRECTION LOGIC
+                // If it's your Master Email or the Role is 'Founder', enter Admin Vision
+                if (loginData.email === 'professionalabidkhan@gmail.com' || result.user.role === 'Founder') {
+                    console.log("Welcome, Master Abid Khan. Opening Admin Vision...");
+                    window.location.href = 'admin_vision.html';
                 } else {
-                    window.location.href = 'dashboardforvisitor.html';
+                    window.location.href = 'dashboard.html';
                 }
             } else {
-                alert("Invalid Credentials. Check your email/password.");
+                // AUTHENTICATION FAILED
+                alert("ACCESS DENIED: " + result.message);
             }
         } catch (error) {
-            console.error("Login Error:", error);
-            alert("Hub Server Connection Error.");
+            console.error("Sentinel Error:", error);
+            alert("SENTINEL OFFLINE: The Oracle Vault is currently unreachable.");
         }
     });
-  </script>
+</script>
+
+
 </body>
 </html>
