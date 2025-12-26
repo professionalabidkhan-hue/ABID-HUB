@@ -1,29 +1,45 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// --- MASTER ACCESS HEADERS (TREMENDOUS SECURITY) ---
+header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 header("Content-Type: application/json");
 
-// Oracle Connection Details
-// THE MASTER VAULT ACCESS
-$username = "ADMIN"; // Usually 'ADMIN' for Oracle Cloud unless you created a specific user
-$password = "BiSMILLAh7&"; 
-// THE 23ai TARGET
-// This is the name found in your 'tnsnames.ora' file or your Cloud Console
-$connection_string = "23ai_34ui2_high"; 
-// THE MASTER CONNECTION PULSE
-$conn = oci_connect($username, $password, $connection_string);
-if (!$conn) {
-    $e = oci_error();
-    echo json_encode(["success" => false, "message" => "Oracle Connection Failed: " . $e['message']]);
+// THE HANDSHAKE: Catch the "Options" request browsers send before the actual data
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
     exit;
 }
+
+// --- ORACLE 23ai VAULT CONNECTION ---
+$username = "ADMIN"; 
+$password = "BiSMILLAh7&"; 
+$connection_string = "23ai_34ui2_high"; 
+
+// THE MASTER CONNECTION PULSE
+$conn = oci_connect($username, $password, $connection_string);
+
+if (!$conn) {
+    $e = oci_error();
+    echo json_encode(["success" => false, "message" => "Oracle Vault Connection Failed: " . $e['message']]);
+    exit;
+}
+
+// CAPTURING THE INCOMING DATA FROM GITHUB
 $data = json_decode(file_get_contents("php://input"), true);
 
 if ($data) {
-    // SQL for the Tremendous Database Holder
-    $sql = "INSERT INTO AK_HUB_VAULT (full_name, email, password, whatsapp_no, father_name, monthly_income, preferred_timing, location, department, user_role) 
-            VALUES (:fn, :em, :pw, :wa, :ft, :inc, :tim, :loc, :dept, :role)";
+    // SQL FOR THE TREMENDOUS DATABASE HOLDER
+    $sql = "INSERT INTO AK_HUB_VAULT (
+                full_name, email, password, whatsapp_no, father_name, 
+                monthly_income, preferred_timing, location, department, user_role
+            ) VALUES (
+                :fn, :em, :pw, :wa, :ft, :inc, :tim, :loc, :dept, :role
+            )";
+            
     $stmt = oci_parse($conn, $sql);
-    // Bind values to prevent SQL Injection (Strategic Security)
+
+    // BINDING VALUES (PREVENTING SQL STRIKES)
     oci_bind_by_name($stmt, ':fn', $data['full_name']);
     oci_bind_by_name($stmt, ':em', $data['email']);
     oci_bind_by_name($stmt, ':pw', $data['password']);
@@ -34,16 +50,18 @@ if ($data) {
     oci_bind_by_name($stmt, ':loc', $data['location']);
     oci_bind_by_name($stmt, ':dept', $data['department']);
     oci_bind_by_name($stmt, ':role', $data['user_role']);
+
     $result = oci_execute($stmt);
+
     if ($result) {
         echo json_encode(["success" => true, "message" => "Data Secured in Oracle Vault"]);
     } else {
         $e = oci_error($stmt);
-        echo json_encode(["success" => false, "message" => "Oracle Insert Error: " . $e['message']]);
+        echo json_encode(["success" => false, "message" => "Vault Entry Error: " . $e['message']]);
     }
+    
+    oci_free_statement($stmt);
 }
 
-oci_free_statement($stmt);
 oci_close($conn);
-
 ?>
