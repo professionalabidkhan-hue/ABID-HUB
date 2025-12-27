@@ -1,3 +1,4 @@
+<?php
 // --- MASTER ACCESS HEADERS (CRUSHING CORS BLOCKS) ---
 header("Access-Control-Allow-Origin: *"); 
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -62,3 +63,4 @@ if ($data) {
     }
     // ... (Gate 2 and Gate 5 logic follows) ...
 }
+?>
