@@ -1,77 +1,75 @@
 <script>
-    // --- THE SOVEREIGN TRACE ---
     console.log("SENTINEL: Mastery Script Loaded and Ready.");
 
-    // Wait for the DOM to be fully loaded before attaching commands
     document.addEventListener('DOMContentLoaded', () => {
-        
-        // 1. IDENTITY PREVIEW UPDATERS
-        const nameInput = document.getElementById('name');
-        const locInput = document.getElementById('location');
-        const courseInput = document.getElementById('course');
-        const roleInput = document.getElementById('role');
+        // Safe-Link function to prevent "null" errors
+        const linkInput = (id, event, action) => {
+            const el = document.getElementById(id);
+            if (el) el[event] = action;
+            else console.warn(`SENTINEL: Element with ID '${id}' not found.`);
+        };
 
-        nameInput.oninput = (e) => document.getElementById('preview-name').innerText = e.target.value || "Member Name";
-        locInput.oninput = (e) => document.getElementById('preview-location').innerText = e.target.value || "---";
-        courseInput.onchange = (e) => document.getElementById('preview-course').innerText = e.target.options[e.target.selectedIndex].text;
-        roleInput.onchange = (e) => document.getElementById('preview-role').innerText = e.target.options[e.target.selectedIndex].text;
+        // 1. IDENTITY PREVIEW UPDATERS (Safe-Linked)
+        linkInput('name', 'oninput', (e) => {
+            const preview = document.getElementById('preview-name');
+            if (preview) preview.innerText = e.target.value || "Member Name";
+        });
+
+        linkInput('location', 'oninput', (e) => {
+            const preview = document.getElementById('preview-location');
+            if (preview) preview.innerText = e.target.value || "---";
+        });
+
+        linkInput('course', 'onchange', (e) => {
+            const preview = document.getElementById('preview-course');
+            if (preview) preview.innerText = e.target.options[e.target.selectedIndex].text;
+        });
 
         // 2. THE MASTER SIGNUP STRIKE
         const signUpBtn = document.getElementById('SignUp');
-        
         if (signUpBtn) {
             signUpBtn.onclick = async function() {
                 console.log("STRIKE: Visionary initiated the SignUp Protocol.");
                 
+                // Collect data with safety
+                const getVal = (id) => document.getElementById(id) ? document.getElementById(id).value : '';
+
                 const signupData = {
-                    full_name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    password: document.getElementById('password').value,
-                    whatsapp_no: document.getElementById('phone').value,
-                    father_name: document.getElementById('father_name').value,
-                    monthly_income: document.getElementById('monthly_income').value,
-                    preferred_timing: document.getElementById('preferred_timing').value,
-                    location: document.getElementById('location').value,
-                    department: document.getElementById('course').value,
-                    role: document.getElementById('role').value
+                    full_name: getVal('name'),
+                    email: getVal('email'),
+                    password: getVal('password'),
+                    whatsapp_no: getVal('phone'),
+                    father_name: getVal('father_name'),
+                    monthly_income: getVal('monthly_income'),
+                    preferred_timing: getVal('preferred_timing'),
+                    location: getVal('location'),
+                    department: getVal('course'),
+                    role: getVal('role')
                 };
 
-                // VALIDATION: The First Shield
                 if(!signupData.email || !signupData.password) {
-                    alert("SENTINEL: Email and Password are required to enter the Vault.");
+                    alert("SENTINEL: Email and Password are required.");
                     return;
                 }
 
                 alert("COMMAND RECEIVED: Attempting Vault Entry...");
 
                 try {
-                    // --- THE SOVEREIGN BRIDGE ---
                     const response = await fetch('./connect_hub.php', {
                         method: 'POST',
-                        headers: { 
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json' 
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(signupData)
                     });
 
-                    if (!response.ok) throw new Error('Network response was not ok');
-
                     const result = await response.json();
                     alert("SERVER RESPONSE: " + result.message);
-                    
-                    if(result.success) {
-                        console.log("VAULT ENTRY SECURED.");
-                        window.location.href = 'signin.html';
-                    }
+                    if(result.success) window.location.href = 'signin.html';
                     
                 } catch (error) {
                     console.error("STRIKE ERROR:", error);
-                    alert("SENTINEL NOTICE: The Bridge is blocked. \n1. Ensure XAMPP/WAMP is running. \n2. Open via http://localhost/...");
+                    alert("SENTINEL: The Bridge is blocked. Ensure connect_hub.php exists.");
                 }
             };
-        } else {
-            console.error("SENTINEL: Button ID 'SignUp' not found in HTML!");
         }
     });
 </script>
